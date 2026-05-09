@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bone: #F6F1E8;
+  --color-bone-soft: #FBF8F1;
+  --color-ivory: #FFFCF5;
+  --color-charcoal: #1B1A17;
+  --color-graphite: #2C2A26;
+  --color-stone: #4A463E;
+  --color-mist: #8C8780;
+  --color-line: #D9D2C2;
+
+  /* Brand: Prince Bazaar Kassala — royal purple + silver + gold */
+  --color-royal-deep: #3B1660;
+  --color-royal: #5D2A86;
+  --color-royal-soft: #7E45AB;
+  --color-royal-pale: #C8A8E0;
+
+  /* Legacy aliases retained so all existing emerald references resolve to royal purple */
+  --color-emerald-deep: var(--color-royal-deep);
+  --color-emerald: var(--color-royal);
+  --color-emerald-soft: var(--color-royal-soft);
+
+  --color-silver: #BCBCC2;
+  --color-silver-soft: #E1E1E5;
+
+  --color-gold: #B68A3E;
+  --color-gold-soft: #D4A861;
+  --color-gold-pale: #EFE0BF;
+
+  --color-terracotta: #B45A3C;
+  --color-saffron: #D89B3F;
+
+  --font-display: var(--font-display-loaded), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-sans-loaded), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-arabic-loaded), "Noto Naskh Arabic", serif;
+
+  --shadow-luxe: 0 30px 80px -20px rgba(59, 22, 96, 0.28);
+  --shadow-card: 0 20px 50px -25px rgba(27, 26, 23, 0.35);
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(182, 138, 62, 0.45); }
+  70% { box-shadow: 0 0 0 18px rgba(182, 138, 62, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(182, 138, 62, 0); }
+}
+@keyframes typingDot {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-3px); }
+}
+
+:root { color-scheme: light; }
+
+html, body {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-ivory);
+  min-height: 100vh;
+}
+
+::selection { background: var(--color-royal-deep); color: var(--color-gold-pale); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bone); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-royal) 0%, var(--color-royal-deep) 100%);
+  border-radius: 999px;
+}
+
+html { scroll-behavior: smooth; }
+
+.font-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+.font-arabic { font-family: var(--font-arabic); }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.hairline {
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold) 0%, transparent 100%);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.95rem 1.75rem;
+  background: var(--color-emerald-deep);
+  color: var(--color-gold-pale);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  border: 1px solid var(--color-emerald-deep);
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: var(--color-emerald);
+  box-shadow: var(--shadow-luxe);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.95rem 1.75rem;
+  background: transparent;
+  color: var(--color-charcoal);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-ghost:hover {
+  border-color: var(--color-gold);
+  color: var(--color-emerald-deep);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.95rem 1.75rem;
+  background: linear-gradient(135deg, var(--color-gold-soft) 0%, var(--color-gold) 100%);
+  color: var(--color-charcoal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  border: none;
+  cursor: pointer;
+}
+.btn-gold:hover {
+  box-shadow: 0 18px 40px -12px rgba(182, 138, 62, 0.5);
+  transform: translateY(-1px);
+}
+
+.glass-light {
+  background: rgba(255, 252, 245, 0.72);
+  backdrop-filter: saturate(140%) blur(20px);
+  -webkit-backdrop-filter: saturate(140%) blur(20px);
+  border: 1px solid rgba(217, 210, 194, 0.6);
+}
+
+.glass-dark {
+  background: rgba(14, 59, 46, 0.72);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid rgba(212, 168, 97, 0.18);
+}
+
+.gold-divider {
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+  height: 1px;
+  width: 100%;
+}
+
+.luxe-card {
+  background: var(--color-ivory);
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.luxe-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
+}
+
+.bg-arabesque {
+  background-image: radial-gradient(circle at 2px 2px, rgba(182, 138, 62, 0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+.concierge-pulse { animation: pulseRing 2.4s infinite; }
+
+.typing-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: typingDot 1.4s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+.aspect-portrait { aspect-ratio: 3 / 4; }
+.aspect-cinema { aspect-ratio: 21 / 9; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }

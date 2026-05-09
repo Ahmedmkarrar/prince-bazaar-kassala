@@ -1,0 +1,178 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+interface Vignette {
+  image: string;
+  eyebrow: string;
+  caption: string;
+  number: string;
+}
+
+const VIGNETTES: Vignette[] = [
+  {
+    number: "i",
+    eyebrow: "Arrival",
+    caption: "The carriage drive lined in date palms, and a doorman who already knows your name.",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1800&q=90&auto=format&fit=crop",
+  },
+  {
+    number: "ii",
+    eyebrow: "The Courtyard",
+    caption: "A reflecting pool. Shadows from the carved screens. The first call to prayer at dawn.",
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1800&q=90&auto=format&fit=crop",
+  },
+  {
+    number: "iii",
+    eyebrow: "The Suite",
+    caption: "Floor-to-ceiling glass. Handwoven textiles. The mountains, framed.",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1800&q=90&auto=format&fit=crop",
+  },
+  {
+    number: "iv",
+    eyebrow: "The Rooftop",
+    caption: "Five courses, the Taka spires turning red, and the last light on the Nile.",
+    image: "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1800&q=90&auto=format&fit=crop",
+  },
+  {
+    number: "v",
+    eyebrow: "The Mountain",
+    caption: "Before sunrise — a guide, a 4×4, and a thousand metres of granite waiting.",
+    image: "https://images.unsplash.com/photo-1500964757637-229ea73306fc?w=1800&q=90&auto=format&fit=crop",
+  },
+];
+
+export function HorizontalPan() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const node = sectionRef.current;
+      const track = trackRef.current;
+      if (!node || !track) return;
+      const rect = node.getBoundingClientRect();
+      const total = node.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const scrolled = -rect.top;
+      const ratio = Math.max(0, Math.min(1, scrolled / total));
+      setProgress(ratio);
+      const trackWidth = track.scrollWidth - window.innerWidth;
+      track.style.transform = `translate3d(${-trackWidth * ratio}px, 0, 0)`;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative hidden lg:block"
+      style={{ height: `${100 * VIGNETTES.length}vh`, background: "var(--color-charcoal)" }}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div
+          ref={trackRef}
+          className="flex h-full will-change-transform"
+          style={{ width: `${100 * VIGNETTES.length}vw` }}
+        >
+          {VIGNETTES.map((v, i) => (
+            <div
+              key={v.number}
+              className="relative h-full w-screen flex-shrink-0 overflow-hidden"
+              data-cursor="image"
+            >
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${v.image})` }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(120deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.65) 100%)",
+                }}
+              />
+              <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-12 pb-32">
+                <div className="max-w-[640px]">
+                  <div
+                    className="font-display italic"
+                    style={{
+                      color: "rgba(233, 199, 123, 0.85)",
+                      fontSize: "clamp(80px, 10vw, 140px)",
+                      lineHeight: 0.85,
+                      fontWeight: 400,
+                    }}
+                  >
+                    {v.number}
+                  </div>
+                  <div
+                    className="mt-6 text-[10px] font-medium uppercase tracking-[0.42em]"
+                    style={{ color: "rgba(255,255,255,0.78)" }}
+                  >
+                    {v.eyebrow}
+                  </div>
+                  <p
+                    className="mt-5 font-display tracking-[-0.01em]"
+                    style={{
+                      color: "#FFFFFF",
+                      fontSize: "clamp(28px, 3.4vw, 52px)",
+                      lineHeight: 1.18,
+                      fontWeight: 400,
+                    }}
+                  >
+                    {v.caption}
+                  </p>
+                </div>
+              </div>
+              <div
+                className="absolute bottom-12 right-12 text-[10px] font-medium uppercase tracking-[0.42em]"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
+                Plate {i + 1} of {VIGNETTES.length}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Progress bar */}
+        <div className="absolute bottom-8 left-12 right-12 z-20">
+          <div className="flex items-center gap-4">
+            <span
+              className="text-[10px] font-medium uppercase tracking-[0.42em]"
+              style={{ color: "rgba(255,255,255,0.55)" }}
+            >
+              The Property
+            </span>
+            <div className="relative h-px flex-1" style={{ background: "rgba(255,255,255,0.2)" }}>
+              <div
+                className="absolute inset-y-0 left-0 transition-transform"
+                style={{
+                  width: "100%",
+                  background: "rgba(233, 199, 123, 0.85)",
+                  transform: `scaleX(${progress})`,
+                  transformOrigin: "left center",
+                }}
+              />
+            </div>
+            <span
+              className="text-[10px] font-medium uppercase tracking-[0.42em] tabular-nums"
+              style={{ color: "rgba(233, 199, 123, 0.85)" }}
+            >
+              {Math.round(progress * 100)
+                .toString()
+                .padStart(2, "0")}
+              %
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

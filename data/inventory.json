@@ -1,0 +1,98 @@
+{
+  "rooms": [
+    {
+      "id": "royal",
+      "name": "Royal Suite",
+      "view": "Mountain or garden",
+      "capacity": 2,
+      "basePrice": 380,
+      "currency": "USD",
+      "description": "King bed, balcony, butler service, 65 m²"
+    },
+    {
+      "id": "presidential",
+      "name": "Presidential Suite",
+      "view": "Panoramic Taka",
+      "capacity": 4,
+      "basePrice": 720,
+      "currency": "USD",
+      "description": "Two bedrooms, private terrace, formal dining, 140 m²"
+    }
+  ],
+  "conferenceRooms": [
+    {
+      "id": "atbara",
+      "name": "The Atbara Room",
+      "description": "Our flagship conference room, named after Sudan's eastern river. Live-translation booth, full AV, daylight on three sides.",
+      "capacity": {
+        "theatre": 80,
+        "boardroom": 30,
+        "ushape": 25,
+        "reception": 100
+      },
+      "halfDayPrice": 450,
+      "fullDayPrice": 800,
+      "currency": "USD",
+      "features": [
+        "Live-translation booth (3 channels)",
+        "4K projection + 86\" displays",
+        "Daylight on three sides",
+        "Adjacent breakout area"
+      ]
+    },
+    {
+      "id": "gash",
+      "name": "The Gash Room",
+      "description": "Intimate boardroom for executive sessions and private councils.",
+      "capacity": {
+        "theatre": 40,
+        "boardroom": 16,
+        "ushape": 14,
+        "reception": 50
+      },
+      "halfDayPrice": 280,
+      "fullDayPrice": 500,
+      "currency": "USD",
+      "features": [
+        "Encrypted video conferencing",
+        "Soundproofed cabin",
+        "Private entrance",
+        "Discreet service"
+      ]
+    }
+  ],
+  "addons": [
+    { "id": "airport-transfer", "name": "Airport Transfer · Khartoum International", "price": 320, "category": "transport", "active": true },
+    { "id": "kassala-transfer", "name": "Airport Transfer · Kassala", "price": 60, "category": "transport", "active": true },
+    { "id": "mountain-sunrise", "name": "Sunrise Tour of the Taka Mountains", "price": 240, "category": "experience", "active": true },
+    { "id": "cultural-walk", "name": "Old Kassala Cultural Walk", "price": 180, "category": "experience", "active": true },
+    { "id": "private-chef", "name": "Private Chef's Table (5 courses)", "price": 380, "category": "dining", "active": true },
+    { "id": "hammam", "name": "Traditional Hammam Ritual", "price": 180, "category": "wellness", "active": true },
+    { "id": "oud-evening", "name": "Live Oud at Dinner", "price": 280, "category": "experience", "active": true },
+    { "id": "catering-bronze", "name": "Conference Catering · Bronze (per person)", "price": 38, "category": "catering", "active": true },
+    { "id": "catering-silver", "name": "Conference Catering · Silver (per person)", "price": 62, "category": "catering", "active": true },
+    { "id": "catering-gold", "name": "Conference Catering · Gold (per person)", "price": 95, "category": "catering", "active": true },
+    { "id": "av-translation", "name": "Live Translation Service (per channel/day)", "price": 220, "category": "av", "active": true },
+    { "id": "wedding-coordinator", "name": "Dedicated Wedding Coordinator", "price": 1800, "category": "events", "active": true }
+  ],
+  "availability": {
+    "2026-12-14": { "royal": 3, "presidential": 1, "priceMultiplier": 1.0 },
+    "2026-12-15": { "royal": 2, "presidential": 1, "priceMultiplier": 1.0 },
+    "2026-12-16": { "royal": 2, "presidential": 1, "priceMultiplier": 1.0 },
+    "2026-12-17": { "royal": 4, "presidential": 2, "priceMultiplier": 1.0 },
+    "2026-12-18": { "royal": 4, "presidential": 2, "priceMultiplier": 1.0 },
+    "2026-12-19": { "royal": 1, "presidential": 0, "priceMultiplier": 1.4 },
+    "2026-12-20": { "royal": 0, "presidential": 0, "priceMultiplier": 1.4 },
+    "2026-12-21": { "royal": 2, "presidential": 1, "priceMultiplier": 1.4 },
+    "2026-12-22": { "royal": 3, "presidential": 1, "priceMultiplier": 1.2 },
+    "2026-12-23": { "royal": 3, "presidential": 1, "priceMultiplier": 1.2 },
+    "2026-12-24": { "royal": 0, "presidential": 0, "priceMultiplier": 1.6 },
+    "2026-12-25": { "royal": 0, "presidential": 0, "priceMultiplier": 1.6 },
+    "2026-12-26": { "royal": 1, "presidential": 0, "priceMultiplier": 1.4 },
+    "2026-12-27": { "royal": 2, "presidential": 1, "priceMultiplier": 1.2 },
+    "2026-12-28": { "royal": 3, "presidential": 1, "priceMultiplier": 1.2 },
+    "2026-12-29": { "royal": 2, "presidential": 1, "priceMultiplier": 1.4 },
+    "2026-12-30": { "royal": 0, "presidential": 0, "priceMultiplier": 1.8 },
+    "2026-12-31": { "royal": 0, "presidential": 0, "priceMultiplier": 2.0 }
+  }
+}
