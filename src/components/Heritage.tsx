@@ -61,6 +61,7 @@ export function Heritage() {
 
   return (
     <section
+      id="heritage"
       className="relative px-6 py-32 lg:px-12 lg:py-44"
       style={{ background: "var(--color-bone-soft)" }}
     >

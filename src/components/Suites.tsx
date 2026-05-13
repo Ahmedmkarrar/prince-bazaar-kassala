@@ -6,14 +6,14 @@ const SUITES = [
     capacity: "King · 2 guests · 65 m²",
     view: "Mountain or garden view",
     image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1600&q=85&auto=format&fit=crop",
-    detail: "Plush interiors, ergonomic furnishings, and sophisticated decor that rival international five-star standards.",
+    detail: "Handwoven Sudanese textiles, oak floors, marble bath, and a private balcony framing the granite spires of the Taka. King bed, 24-hour butler.",
   },
   {
     name: "Presidential Suite",
     capacity: "Two bedrooms · up to 4 · 140 m²",
     view: "Panoramic Taka view",
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1600&q=85&auto=format&fit=crop",
-    detail: "Two-bedroom flagship with private terrace, formal dining, and dedicated butler service.",
+    detail: "Two bedrooms, formal dining for eight, a private terrace, and a dedicated butler. Designed for the visit you'll remember for a generation.",
   },
 ];
 

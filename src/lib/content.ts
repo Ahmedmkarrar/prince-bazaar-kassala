@@ -96,7 +96,7 @@ export const COMPLEXES: ComplexNode[] = [
     name: "Private Villas",
     tagline: "Garden-fronted, fully furnished",
     description:
-      "Long-stay residences for families, embassies, and executives. Walled gardens, private chefs on request, and the same five-star service as the Royal Suites.",
+      "Long-stay residences for families, embassies, and executives. Walled gardens, private chefs on request, and the same uncompromised attention as the Royal Suites.",
     highlights: ["2–4 bedroom layouts", "Walled private gardens", "Optional private chef", "Long-stay rates"],
     image: "https://images.unsplash.com/photo-1613553474179-e1eda3ea5734?w=1600&q=85&auto=format&fit=crop",
   },
@@ -132,11 +132,12 @@ export const GALLERY = [
   "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1400&q=85&auto=format&fit=crop",
 ];
 
-export const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=2400&q=90&auto=format&fit=crop";
+// Hero: the Khatmiyya Mosque at the foot of the Taka Mountains — the defining shot of Kassala.
+// Photo: Wikimedia Commons, file "Kathmiyah_Mosque_and_Taka_Mountains_in_Kassala,_Sudan.jpg"
+export const HERO_IMAGE = "/sudan/khatmiyya-mosque-taka.jpg";
 
-export const TAKA_IMAGE =
-  "https://images.unsplash.com/photo-1500964757637-229ea73306fc?w=2400&q=90&auto=format&fit=crop";
+// Taka Mountains panorama. Photo: Evon2023 (Wikimedia Commons, CC0).
+export const TAKA_IMAGE = "/sudan/taka-view.jpg";
 
 export const ARCHITECTURE_IMAGE =
   "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2400&q=90&auto=format&fit=crop";

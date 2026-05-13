@@ -82,6 +82,20 @@ export function Footer() {
             </span>
           </div>
         </div>
+
+        <div
+          className="mt-8 border-t pt-6 text-[10px] leading-[1.7] sm:flex sm:items-start sm:justify-between sm:gap-8"
+          style={{ borderColor: "rgba(239,224,191,0.12)", color: "rgba(239,224,191,0.4)" }}
+        >
+          <span className="font-medium uppercase tracking-[0.32em]">Image credits</span>
+          <span className="mt-2 block sm:mt-0 sm:max-w-3xl sm:text-right">
+            Khatmiyya Mosque &amp; Taka Mountains, Khatmiyya tomb, Khatmiyya arcades — Wikimedia Commons.
+            Taka Mountains panorama: Evon2023 (CC0).
+            Gash River: Bertramz (CC BY 3.0).
+            Kassala 2019: Omer6800000 (CC BY-SA 4.0).
+            All other imagery for design preview only — to be replaced with original Prince Bazaar photography on launch.
+          </span>
+        </div>
       </div>
     </footer>
   );

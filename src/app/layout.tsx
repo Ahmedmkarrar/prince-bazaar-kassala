@@ -25,14 +25,18 @@ const arabic = Noto_Naskh_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "Prince Bazaar Kassala — Where Urban Elegance Meets the Heart of Sudan",
+  metadataBase: new URL("https://prince-bazaar.vercel.app"),
+  title: {
+    default: "Prince Bazaar Kassala — Where Urban Elegance Meets the Heart of Sudan",
+    template: "%s · Prince Bazaar Kassala",
+  },
   description:
-    "A pioneering six-complex destination at the foot of the Taka Mountains. Royal Suites, Bazaar, Wellness, Culinary Hub, Business Center, Event Pavilions, Villas — your gateway to Eastern Sudan's new era.",
+    "A pioneering destination at the foot of the Taka Mountains. Royal Suites, Villas, Wellness, Culinary, Business, Events, Bazaar — your gateway to Eastern Sudan's new era.",
   keywords: [
     "Prince Bazaar Kassala",
     "Kassala hotel",
     "Taka Mountains",
-    "Sudan luxury hotel",
+    "Sudan hotel",
     "Eastern Sudan tourism",
     "Shahad Group",
   ],

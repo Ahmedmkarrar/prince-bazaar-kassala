@@ -147,6 +147,19 @@ export function Hero() {
         className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-24 will-change-transform lg:px-12"
       >
         <div className="max-w-[980px]">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5"
+            style={{
+              borderColor: "rgba(233,199,123,0.55)",
+              background: "rgba(233,199,123,0.10)",
+              color: "#E9C77B",
+            }}
+          >
+            <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: "#E9C77B" }} />
+            <span className="text-[10px] font-medium uppercase tracking-[0.32em]">
+              Opening Soon · Register Your Interest
+            </span>
+          </div>
+
           <div className="mb-8 flex items-center gap-3 overflow-hidden">
             <span ref={setWord(0)} className="inline-block h-px w-12" style={{ background: "rgba(255,255,255,0.55)" }} />
             <span

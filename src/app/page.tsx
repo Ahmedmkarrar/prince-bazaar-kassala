@@ -15,6 +15,10 @@ import { DayAt } from "@/components/DayAt";
 import { Heritage } from "@/components/Heritage";
 import { SudanMap } from "@/components/SudanMap";
 import { Tourism } from "@/components/Tourism";
+import { Karam } from "@/components/Karam";
+import { ThisIsKassala } from "@/components/ThisIsKassala";
+import { FoundersNote } from "@/components/FoundersNote";
+import { EventsShowcase } from "@/components/EventsShowcase";
 import { Conference } from "@/components/Conference";
 import { ChefsTable } from "@/components/ChefsTable";
 import { Testimonials } from "@/components/Testimonials";
@@ -43,9 +47,11 @@ export default function Home() {
       <Press />
       <LiveAtmosphere />
       <Story />
+      <Karam />
+      <FoundersNote />
       <Awards />
       <Interstitial
-        image="https://images.unsplash.com/photo-1500964757637-229ea73306fc?w=2400&q=90&auto=format&fit=crop"
+        image="/sudan/taka-view.jpg"
         eyebrow="The Mountain"
         line1="Granite spires that have watched"
         line2="over Kassala for ten thousand years."
@@ -65,9 +71,11 @@ export default function Home() {
       />
       <DayAt />
       <Heritage />
+      <ThisIsKassala />
       <SudanMap />
       <Tourism />
       <Conference />
+      <EventsShowcase />
       <ChefsTable />
       <Testimonials />
       <AISection />
