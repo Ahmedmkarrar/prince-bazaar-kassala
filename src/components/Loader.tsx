@@ -8,16 +8,24 @@ export function Loader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && sessionStorage.getItem("pb-loaded") === "1") {
+      setProgress(1);
+      setHidden(true);
+      return;
+    }
     let raf = 0;
     const start = performance.now();
-    const duration = 2400;
+    const duration = 600;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / duration);
       const eased = 1 - Math.pow(1 - t, 3);
       setProgress(eased);
       if (t < 1) raf = requestAnimationFrame(tick);
       else {
-        setTimeout(() => setHidden(true), 700);
+        setTimeout(() => {
+          setHidden(true);
+          try { sessionStorage.setItem("pb-loaded", "1"); } catch {}
+        }, 180);
       }
     };
     raf = requestAnimationFrame(tick);
@@ -26,7 +34,7 @@ export function Loader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-300 ${
         hidden ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
       style={{

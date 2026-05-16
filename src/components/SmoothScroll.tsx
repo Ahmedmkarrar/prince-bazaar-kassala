@@ -13,14 +13,14 @@ export function SmoothScroll() {
     let raf = 0;
     let active = false;
 
-    const ease = 0.08;
+    const ease = 0.22;
 
     const onWheel = (e: WheelEvent) => {
-      // Skip when over scrollable inner panes (chat panel, gallery)
       const path = (e.target as HTMLElement | null)?.closest("[data-no-smooth]");
       if (path) return;
       e.preventDefault();
-      target += e.deltaY;
+      const delta = Math.max(-180, Math.min(180, e.deltaY));
+      target += delta * 1.4;
       target = Math.max(0, Math.min(target, document.documentElement.scrollHeight - window.innerHeight));
       if (!active) {
         active = true;
@@ -31,12 +31,14 @@ export function SmoothScroll() {
     const loop = () => {
       current += (target - current) * ease;
       const dist = Math.abs(target - current);
-      window.scrollTo(0, current);
-      if (dist > 0.5) {
-        raf = requestAnimationFrame(loop);
-      } else {
+      if (dist < 0.4) {
+        current = target;
+        window.scrollTo(0, current);
         active = false;
+        return;
       }
+      window.scrollTo(0, current);
+      raf = requestAnimationFrame(loop);
     };
 
     const onResize = () => {

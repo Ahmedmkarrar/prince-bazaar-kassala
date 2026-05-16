@@ -11,25 +11,35 @@ export function Hero() {
   const wordsRef = useRef<HTMLSpanElement[]>([]);
 
   useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     wordsRef.current.forEach((el, i) => {
       if (!el) return;
-      el.style.opacity = "0";
-      el.style.transform = "translateY(60px)";
-      setTimeout(() => {
-        el.style.transition = "opacity 1.1s cubic-bezier(0.22,1,0.36,1), transform 1.1s cubic-bezier(0.22,1,0.36,1)";
+      if (reduce) {
         el.style.opacity = "1";
         el.style.transform = "translateY(0)";
-      }, 240 + i * 130);
+        return;
+      }
+      el.style.opacity = "0";
+      el.style.transform = "translateY(40px)";
+      setTimeout(() => {
+        el.style.transition = "opacity 800ms cubic-bezier(0.22,1,0.36,1), transform 800ms cubic-bezier(0.22,1,0.36,1)";
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      }, 120 + i * 90);
     });
 
-    let mx = 0;
-    let my = 0;
-    let cx = 0;
-    let cy = 0;
-    let raf = 0;
+    if (reduce) return;
 
-    const onScroll = () => {
-      const y = window.scrollY;
+    let mx = 0, my = 0, cx = 0, cy = 0;
+    let lastY = window.scrollY;
+    let scrollDirty = true;
+    let mouseDirty = false;
+    let raf = 0;
+    let running = false;
+
+    const writeTransforms = () => {
+      const y = lastY;
       if (imgRef.current) {
         imgRef.current.style.transform = `scale(${1 + y * 0.0004}) translate3d(${cx}px, ${y * 0.22 + cy}px, 0)`;
       }
@@ -40,26 +50,48 @@ export function Hero() {
       }
     };
 
+    const tick = () => {
+      const before = { cx, cy };
+      cx += (mx - cx) * 0.1;
+      cy += (my - cy) * 0.1;
+      const settled = Math.abs(cx - mx) < 0.05 && Math.abs(cy - my) < 0.05 && Math.abs(cx - before.cx) < 0.05;
+      if (scrollDirty || mouseDirty || !settled) {
+        writeTransforms();
+        scrollDirty = false;
+        mouseDirty = !settled;
+      }
+      if (mouseDirty || scrollDirty) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        running = false;
+      }
+    };
+
+    const kick = () => {
+      if (!running) {
+        running = true;
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
+    const onScroll = () => {
+      lastY = window.scrollY;
+      scrollDirty = true;
+      kick();
+    };
+
     const onMouse = (e: MouseEvent) => {
       const dx = (e.clientX / window.innerWidth - 0.5) * 24;
       const dy = (e.clientY / window.innerHeight - 0.5) * 16;
       mx = -dx;
       my = -dy;
+      mouseDirty = true;
+      kick();
     };
 
-    const tick = () => {
-      cx += (mx - cx) * 0.06;
-      cy += (my - cy) * 0.06;
-      const y = window.scrollY;
-      if (imgRef.current) {
-        imgRef.current.style.transform = `scale(${1 + y * 0.0004}) translate3d(${cx}px, ${y * 0.22 + cy}px, 0)`;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-
+    kick();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("mousemove", onMouse);
+    window.addEventListener("mousemove", onMouse, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
@@ -130,15 +162,30 @@ export function Hero() {
       </div>
 
       {/* Top hairline */}
-      <div className="absolute inset-x-0 top-24 z-10 mx-auto flex max-w-[1400px] items-center gap-4 px-6 lg:px-12">
-        <span className="h-px flex-1 max-w-[140px]" style={{ background: "rgba(255,255,255,0.22)" }} />
+      <div className="absolute inset-x-0 top-24 z-10 mx-auto flex max-w-[1400px] items-center justify-center gap-5 px-6 lg:px-12">
+        <span className="h-px flex-1 max-w-[160px]" style={{ background: "rgba(255,255,255,0.22)" }} />
         <span
           className="text-[10px] font-medium uppercase tracking-[0.42em]"
-          style={{ color: "rgba(255,255,255,0.78)" }}
+          style={{ color: "rgba(255,255,255,0.82)" }}
         >
-          Prince Bazaar Kassala · Est. 2026
+          Prince Bazaar Kassala
         </span>
-        <span className="h-px flex-1" style={{ background: "rgba(255,255,255,0.22)" }} />
+        <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1"
+          style={{
+            borderColor: "rgba(233,199,123,0.55)",
+            background: "rgba(233,199,123,0.10)",
+            color: "#E9C77B",
+          }}
+        >
+          <span className="relative inline-flex h-1.5 w-1.5">
+            <span className="absolute inset-0 animate-ping rounded-full" style={{ background: "rgba(233,199,123,0.55)" }} />
+            <span className="relative inline-block h-1.5 w-1.5 rounded-full" style={{ background: "#E9C77B" }} />
+          </span>
+          <span className="text-[10px] font-medium uppercase tracking-[0.32em]">
+            Opening 2026
+          </span>
+        </span>
+        <span className="h-px flex-1 max-w-[160px]" style={{ background: "rgba(255,255,255,0.22)" }} />
       </div>
 
       {/* Hero copy */}
@@ -147,19 +194,6 @@ export function Hero() {
         className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-24 will-change-transform lg:px-12"
       >
         <div className="max-w-[980px]">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5"
-            style={{
-              borderColor: "rgba(233,199,123,0.55)",
-              background: "rgba(233,199,123,0.10)",
-              color: "#E9C77B",
-            }}
-          >
-            <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: "#E9C77B" }} />
-            <span className="text-[10px] font-medium uppercase tracking-[0.32em]">
-              Opening Soon · Register Your Interest
-            </span>
-          </div>
-
           <div className="mb-8 flex items-center gap-3 overflow-hidden">
             <span ref={setWord(0)} className="inline-block h-px w-12" style={{ background: "rgba(255,255,255,0.55)" }} />
             <span
@@ -190,7 +224,7 @@ export function Hero() {
             className="mt-10 max-w-[560px] text-[16px] leading-[1.75] sm:text-[17px]"
             style={{ color: "rgba(255,255,255,0.82)" }}
           >
-            A pioneering nine-complex destination at the foot of the Taka Mountains. Royal Suites, a commercial plaza, the bazaar, wellness, dining, business, events, villas, and curated tourism — one architectural landmark redefining Eastern Sudan.
+            A nine-complex destination at the foot of the Taka Mountains — royal suites, a grand bazaar, dining, wellness, and ceremony. Eastern Sudan&apos;s new landmark, opening 2026.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
