@@ -176,7 +176,7 @@ export function ReservationModal() {
                 <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full" style={{ background: "linear-gradient(135deg, #FBF8F1 0%, #E5E0D2 100%)" }}>
                   <Image
                     src="/logos/princebazaar.jpeg"
-                    alt="Prince Bazaar"
+                    alt="Prince Plaza"
                     width={40}
                     height={40}
                     style={{ objectFit: "contain", width: "120%", height: "120%" }}
@@ -184,7 +184,7 @@ export function ReservationModal() {
                 </div>
                 <div className="leading-tight" style={{ color: "#FFFFFF" }}>
                   <div className="font-display" style={{ fontSize: "15px", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 500 }}>
-                    Prince Bazaar
+                    Prince Plaza
                   </div>
                   <div className="text-[9px] font-medium uppercase" style={{ letterSpacing: "0.42em", color: "#E9C77B" }}>
                     Kassala

@@ -33,7 +33,7 @@ const ERAS: Era[] = [
   {
     year: "Today",
     title: "A New Chapter",
-    body: "Prince Bazaar Kassala continues a thousand-year tradition of welcome. We build for the next century while honouring the depth of every century before.",
+    body: "Prince Plaza Kassala continues a thousand-year tradition of welcome. We build for the next century while honouring the depth of every century before.",
   },
 ];
 

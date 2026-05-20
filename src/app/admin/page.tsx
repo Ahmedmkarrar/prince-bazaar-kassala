@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { isAdmin } from "@/lib/admin-auth";
-import { readInquiries, readInventory } from "@/lib/data";
-import { AdminDashboard } from "./dashboard";
+import { readBookings } from "@/lib/data";
+import { AdminShell } from "./components/Shell";
+import { DashboardView } from "./components/DashboardView";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +10,13 @@ export default async function AdminPage() {
   if (!(await isAdmin())) {
     redirect("/admin/login");
   }
-  const [inventory, inquiries] = await Promise.all([readInventory(), readInquiries()]);
-  return <AdminDashboard initialInventory={inventory} initialInquiries={inquiries} />;
+
+  const bookings = await readBookings();
+  const pendingCount = bookings.filter((b) => b.status === "pending").length;
+
+  return (
+    <AdminShell pendingCount={pendingCount}>
+      <DashboardView />
+    </AdminShell>
+  );
 }

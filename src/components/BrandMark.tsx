@@ -4,7 +4,7 @@ interface BrandMarkProps {
   size?: number;
 }
 
-// Stylised four-lobed flower with hexagonal mountain core — references the real Prince Bazaar logo geometry
+// Stylised four-lobed flower with hexagonal mountain core — references the real Prince Plaza logo geometry
 export function BrandMark({ className = "", color = "currentColor", size = 64 }: BrandMarkProps) {
   return (
     <svg

@@ -3,14 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { UtilityBar } from "./UtilityBar";
 import { useI18n } from "@/lib/i18n";
 
 const LINKS = [
+  { href: "#complex", en: "The Complex", ar: "المجمعات" },
   { href: "#suites", en: "Stay", ar: "الإقامة" },
-  { href: "#kassala", en: "The Place", ar: "المكان" },
-  { href: "#events", en: "Events", ar: "المناسبات" },
-  { href: "#tourism", en: "Discover", ar: "اكتشف" },
+  { href: "#tourism", en: "Tourism", ar: "السياحة" },
   { href: "#concierge", en: "Concierge", ar: "الكونسيرج" },
   { href: "#contact", en: "Contact", ar: "تواصل" },
 ];
@@ -18,7 +16,8 @@ const LINKS = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { t } = useI18n();
+  const { t, language } = useI18n();
+  const isAr = language === "ar";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -31,10 +30,10 @@ export function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "py-3"
-          : "py-6"
+          ? "top-[34px] py-3"
+          : "top-[34px] py-5"
       }`}
       style={{
         background: scrolled ? "rgba(255, 252, 245, 0.85)" : "transparent",
@@ -44,7 +43,7 @@ export function Nav() {
       }}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-12">
-        <Link href="/" aria-label="Prince Bazaar Kassala home">
+        <Link href="/" aria-label="Prince Plaza Kassala home">
           <Logo variant={overHero ? "light" : "dark"} />
         </Link>
 
@@ -53,7 +52,7 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[11px] font-medium uppercase tracking-[0.28em] transition-colors"
+              className={`text-[11px] font-medium uppercase tracking-[0.28em] transition-colors ${isAr ? "font-arabic" : ""}`}
               style={{ color: overHero ? "rgba(255,255,255,0.78)" : "var(--color-stone)" }}
             >
               {t(link.en, link.ar)}
@@ -62,11 +61,6 @@ export function Nav() {
         </nav>
 
         <div className="hidden items-center gap-5 lg:flex">
-          <UtilityBar variant={overHero ? "dark" : "light"} />
-          <span
-            className="h-4 w-px"
-            style={{ background: overHero ? "rgba(255,255,255,0.18)" : "var(--color-line)" }}
-          />
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("pb:open-reservation"))}
             className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] transition-all"

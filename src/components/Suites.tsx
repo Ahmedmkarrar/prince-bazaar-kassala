@@ -3,17 +3,17 @@ import { Reveal } from "./Reveal";
 const SUITES = [
   {
     name: "Royal Suite",
-    capacity: "King · 2 guests · 65 m²",
-    view: "Mountain or garden view",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1600&q=85&auto=format&fit=crop",
-    detail: "Handwoven Sudanese textiles, oak floors, marble bath, and a private balcony framing the granite spires of the Taka. King bed, 24-hour butler.",
+    capacity: "King · 2 guests",
+    view: "Climate-controlled comfort",
+    image: "/hotel/room-king-warm.jpg",
+    detail: "King bed, climate-controlled, hardwood floors, and a quiet, considered atmosphere. En-suite bathroom and twenty-four-hour reception.",
   },
   {
     name: "Presidential Suite",
-    capacity: "Two bedrooms · up to 4 · 140 m²",
-    view: "Panoramic Taka view",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1600&q=85&auto=format&fit=crop",
-    detail: "Two bedrooms, formal dining for eight, a private terrace, and a dedicated butler. Designed for the visit you'll remember for a generation.",
+    capacity: "King · up to 4 guests",
+    view: "Premium, extended layout",
+    image: "/hotel/room-presidential.jpg",
+    detail: "Our flagship room. Spacious king-bed suite with an extended living area, premium furnishings, and the same uncompromised attention given to every guest.",
   },
 ];
 

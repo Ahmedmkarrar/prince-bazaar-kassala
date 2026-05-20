@@ -1,16 +1,20 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { HERO_IMAGE } from "@/lib/content";
-import { KassalaTime } from "./KassalaTime";
+import { HERO_IMAGE, COPY } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 
 export function Hero() {
   const imgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const wordsRef = useRef<HTMLSpanElement[]>([]);
+  const { language, t } = useI18n();
+  const isAr = language === "ar";
 
   useEffect(() => {
+    // Word fade-in is the only Hero animation — it runs once on mount.
+    // Scroll/mouse parallax was removed because it was the main cause of
+    // janky scroll on lower-end devices.
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     wordsRef.current.forEach((el, i) => {
@@ -28,75 +32,6 @@ export function Hero() {
         el.style.transform = "translateY(0)";
       }, 120 + i * 90);
     });
-
-    if (reduce) return;
-
-    let mx = 0, my = 0, cx = 0, cy = 0;
-    let lastY = window.scrollY;
-    let scrollDirty = true;
-    let mouseDirty = false;
-    let raf = 0;
-    let running = false;
-
-    const writeTransforms = () => {
-      const y = lastY;
-      if (imgRef.current) {
-        imgRef.current.style.transform = `scale(${1 + y * 0.0004}) translate3d(${cx}px, ${y * 0.22 + cy}px, 0)`;
-      }
-      if (titleRef.current) {
-        const opacity = Math.max(0, 1 - y / 700);
-        titleRef.current.style.transform = `translateY(${y * 0.18}px)`;
-        titleRef.current.style.opacity = `${opacity}`;
-      }
-    };
-
-    const tick = () => {
-      const before = { cx, cy };
-      cx += (mx - cx) * 0.1;
-      cy += (my - cy) * 0.1;
-      const settled = Math.abs(cx - mx) < 0.05 && Math.abs(cy - my) < 0.05 && Math.abs(cx - before.cx) < 0.05;
-      if (scrollDirty || mouseDirty || !settled) {
-        writeTransforms();
-        scrollDirty = false;
-        mouseDirty = !settled;
-      }
-      if (mouseDirty || scrollDirty) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        running = false;
-      }
-    };
-
-    const kick = () => {
-      if (!running) {
-        running = true;
-        raf = requestAnimationFrame(tick);
-      }
-    };
-
-    const onScroll = () => {
-      lastY = window.scrollY;
-      scrollDirty = true;
-      kick();
-    };
-
-    const onMouse = (e: MouseEvent) => {
-      const dx = (e.clientX / window.innerWidth - 0.5) * 24;
-      const dy = (e.clientY / window.innerHeight - 0.5) * 16;
-      mx = -dx;
-      my = -dy;
-      mouseDirty = true;
-      kick();
-    };
-
-    kick();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("mousemove", onMouse, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("mousemove", onMouse);
-    };
   }, []);
 
   const setWord = (i: number) => (el: HTMLSpanElement | null) => {
@@ -137,53 +72,14 @@ export function Hero() {
         />
       </div>
 
-      {/* Brand mark watermark — top-right, large, low opacity */}
-      <div
-        className="pointer-events-none absolute z-[1] hidden md:block"
-        style={{
-          top: "10%",
-          right: "-4%",
-          width: "min(46vw, 640px)",
-          aspectRatio: "1",
-          opacity: 0.16,
-          filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.4))",
-          mixBlendMode: "screen",
-        }}
-        aria-hidden
-      >
-        <Image
-          src="/logos/princebazaar.jpeg"
-          alt=""
-          fill
-          priority
-          sizes="50vw"
-          style={{ objectFit: "contain" }}
-        />
-      </div>
-
       {/* Top hairline */}
       <div className="absolute inset-x-0 top-24 z-10 mx-auto flex max-w-[1400px] items-center justify-center gap-5 px-6 lg:px-12">
         <span className="h-px flex-1 max-w-[160px]" style={{ background: "rgba(255,255,255,0.22)" }} />
         <span
-          className="text-[10px] font-medium uppercase tracking-[0.42em]"
+          className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
           style={{ color: "rgba(255,255,255,0.82)" }}
         >
-          Prince Bazaar Kassala
-        </span>
-        <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1"
-          style={{
-            borderColor: "rgba(233,199,123,0.55)",
-            background: "rgba(233,199,123,0.10)",
-            color: "#E9C77B",
-          }}
-        >
-          <span className="relative inline-flex h-1.5 w-1.5">
-            <span className="absolute inset-0 animate-ping rounded-full" style={{ background: "rgba(233,199,123,0.55)" }} />
-            <span className="relative inline-block h-1.5 w-1.5 rounded-full" style={{ background: "#E9C77B" }} />
-          </span>
-          <span className="text-[10px] font-medium uppercase tracking-[0.32em]">
-            Opening 2026
-          </span>
+          {t("Prince Plaza Kassala", "برنس بلازا كسلا")}
         </span>
         <span className="h-px flex-1 max-w-[160px]" style={{ background: "rgba(255,255,255,0.22)" }} />
       </div>
@@ -191,77 +87,74 @@ export function Hero() {
       {/* Hero copy */}
       <div
         ref={titleRef}
-        className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-24 will-change-transform lg:px-12"
+        className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-center px-6 pb-12 pt-32 will-change-transform sm:pb-16 sm:pt-36 lg:px-12 lg:pt-40"
       >
         <div className="max-w-[980px]">
           <div className="mb-8 flex items-center gap-3 overflow-hidden">
             <span ref={setWord(0)} className="inline-block h-px w-12" style={{ background: "rgba(255,255,255,0.55)" }} />
             <span
               ref={setWord(1)}
-              className="inline-block text-[11px] font-medium uppercase tracking-[0.32em]"
+              className={`inline-block text-[11px] font-medium uppercase tracking-[0.32em] ${isAr ? "font-arabic" : ""}`}
               style={{ color: "rgba(255,255,255,0.78)" }}
             >
-              Kassala · Eastern Sudan
+              {COPY.hero_subtitle[language]}
             </span>
           </div>
 
           <h1
-            className="font-display tracking-[-0.015em]"
-            style={{ color: "#FFFFFF", lineHeight: 0.92, fontSize: "clamp(58px, 10vw, 156px)", fontWeight: 400 }}
+            className={`tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+            style={{
+              color: "#FFFFFF",
+              lineHeight: isAr ? 1.1 : 0.96,
+              fontSize: isAr ? "clamp(38px, 6.5vw, 96px)" : "clamp(48px, 8vw, 124px)",
+              fontWeight: 400,
+            }}
+            dir={isAr ? "rtl" : "ltr"}
           >
-            <span className="block overflow-hidden">
-              <span ref={setWord(2)} className="inline-block">Where the desert</span>
-            </span>
-            <span className="block overflow-hidden">
-              <span ref={setWord(3)} className="inline-block italic" style={{ color: "#E9C77B", fontWeight: 300 }}>
-                meets ceremony.
-              </span>
-            </span>
+            {isAr ? (
+              <span className="block">{COPY.tagline.ar}</span>
+            ) : (
+              <>
+                <span className="block overflow-hidden">
+                  <span ref={setWord(2)} className="inline-block">Where Arabic Elegance</span>
+                </span>
+                <span className="block overflow-hidden">
+                  <span ref={setWord(3)} className="inline-block italic" style={{ color: "#E9C77B", fontWeight: 300 }}>
+                    Meets the Heart of Sudan.
+                  </span>
+                </span>
+              </>
+            )}
           </h1>
 
-          <p
-            ref={setWord(4) as unknown as React.LegacyRef<HTMLParagraphElement>}
-            className="mt-10 max-w-[560px] text-[16px] leading-[1.75] sm:text-[17px]"
-            style={{ color: "rgba(255,255,255,0.82)" }}
-          >
-            A nine-complex destination at the foot of the Taka Mountains — royal suites, a grand bazaar, dining, wellness, and ceremony. Eastern Sudan&apos;s new landmark, opening 2026.
-          </p>
-
-          <div className="mt-12 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center gap-4 sm:mt-12">
             <span ref={setWord(5)} className="inline-block">
               <button
                 type="button"
                 onClick={() => window.dispatchEvent(new CustomEvent("pb:open-reservation"))}
-                className="hero-cta-primary"
+                className={`hero-cta-primary ${isAr ? "font-arabic" : ""}`}
               >
-                Reserve Your Stay
-                <span aria-hidden>→</span>
+                {COPY.cta_book[language]}
+                <span aria-hidden>{isAr ? "←" : "→"}</span>
               </button>
             </span>
             <span ref={setWord(6)} className="inline-block">
-              <a href="#concierge" className="hero-cta-ghost">
-                Speak with Bashir
+              <a href="#complex" className={`hero-cta-ghost ${isAr ? "font-arabic" : ""}`}>
+                {COPY.cta_explore[language]}
               </a>
             </span>
           </div>
         </div>
       </div>
 
-      {/* Time strip — bottom, more elegant */}
-      <div className="absolute inset-x-0 bottom-0 z-10 border-t" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
-        <div className="mx-auto max-w-[1400px]">
-          <KassalaTime />
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-[110px] left-1/2 z-20 -translate-x-1/2 sm:bottom-[120px]">
+      {/* Scroll indicator — bottom-centred, well below CTAs */}
+      <div className="pointer-events-none absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 sm:flex">
         <div className="flex flex-col items-center gap-2">
           <span
-            className="text-[9px] font-medium uppercase tracking-[0.42em]"
+            className={`text-[9px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
             style={{ color: "rgba(255,255,255,0.5)" }}
           >
-            Scroll
+            {isAr ? "اسحب للأسفل" : "Scroll"}
           </span>
           <span
             className="h-8 w-px"

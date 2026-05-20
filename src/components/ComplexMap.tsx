@@ -100,7 +100,7 @@ export function ComplexMap() {
                   className="text-[9px] font-medium uppercase tracking-[0.42em]"
                   style={{ color: "var(--color-mist)" }}
                 >
-                  Prince Bazaar Kassala — Master Plan
+                  Prince Plaza Kassala — Master Plan
                 </span>
                 <span
                   className="text-[8px] uppercase tracking-[0.32em]"

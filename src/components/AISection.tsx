@@ -32,7 +32,7 @@ export function AISection() {
                 fontWeight: 400,
               }}
             >
-              Meet <em style={{ color: "#E9C77B", fontWeight: 300 }}>Bashir</em>.
+              Meet <em style={{ color: "#E9C77B", fontWeight: 300 }}>Taka AI</em>.
               <br />
               On duty, every hour.
             </h2>
@@ -40,7 +40,7 @@ export function AISection() {
               className="mt-8 max-w-md text-[16px] leading-[1.8]"
               style={{ color: "rgba(255, 255, 255, 0.72)" }}
             >
-              Powered by Claude, fluent in Arabic and English. Bashir books your suite, plans your tour, captures your wedding brief, and quietly hands every detail to a human team that follows up within four hours.
+              Powered by Claude, fluent in Arabic and English. Taka AI books your suite, plans your tour, captures your wedding brief, and quietly hands every detail to a human team that follows up within four hours.
             </p>
 
             <div className="mt-10 space-y-6">
@@ -77,7 +77,7 @@ export function AISection() {
                 className="inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] transition-all"
                 style={{ background: "#E9C77B", color: "#1A0E2E" }}
               >
-                Open Bashir
+                Open Taka AI
                 <span aria-hidden>→</span>
               </a>
               <span

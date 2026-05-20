@@ -18,16 +18,16 @@ const SUGGESTIONS = [
 ];
 
 const DEFAULT_GREETING =
-  "Welcome — I'm Bashir, your concierge at Prince Bazaar Kassala. How may I make today exceptional?";
+  "Welcome — I'm Taka AI, your concierge at Prince Plaza Kassala. How may I make today exceptional?";
 
 function timeAwareGreeting(): string {
   if (typeof window === "undefined") return DEFAULT_GREETING;
   const hour = new Date().toLocaleString("en-GB", { hour: "2-digit", hour12: false, timeZone: "Africa/Khartoum" });
   const h = parseInt(hour, 10);
-  if (h >= 5 && h < 12) return "Good morning — I'm Bashir, your concierge at Prince Bazaar Kassala. The Taka spires are catching first light. How may I make today exceptional?";
-  if (h >= 12 && h < 17) return "Good afternoon — I'm Bashir, your concierge at Prince Bazaar Kassala. The courtyard fountains are running and tea is on. How may I help?";
-  if (h >= 17 && h < 21) return "Good evening — I'm Bashir, your concierge at Prince Bazaar Kassala. The rooftop is opening for service. How may I make tonight memorable?";
-  return "A quiet welcome — I'm Bashir, your concierge at Prince Bazaar Kassala. The lounge is still lit. How may I help you tonight?";
+  if (h >= 5 && h < 12) return "Good morning — I'm Taka AI, your concierge at Prince Plaza Kassala. The Taka spires are catching first light. How may I make today exceptional?";
+  if (h >= 12 && h < 17) return "Good afternoon — I'm Taka AI, your concierge at Prince Plaza Kassala. The courtyard fountains are running and tea is on. How may I help?";
+  if (h >= 17 && h < 21) return "Good evening — I'm Taka AI, your concierge at Prince Plaza Kassala. The rooftop is opening for service. How may I make tonight memorable?";
+  return "A quiet welcome — I'm Taka AI, your concierge at Prince Plaza Kassala. The lounge is still lit. How may I help you tonight?";
 }
 
 interface ConciergeProps {
@@ -356,7 +356,7 @@ function ConciergeBubble({ open, onClick, streaming }: { open: boolean; onClick:
           className="block text-[9px] font-medium uppercase tracking-[0.32em]"
           style={{ color: "rgba(239,224,191,0.7)" }}
         >
-          {open ? "Close" : streaming ? "Bashir thinking…" : "Ask Bashir"}
+          {open ? "Close" : streaming ? "Taka AI thinking…" : "Ask Taka AI"}
         </span>
         <span className="block text-[13px]" style={{ fontFamily: "var(--font-display)" }}>
           AI Concierge
@@ -455,7 +455,7 @@ function ConciergeHeader({ onClose, clearConversation }: { onClose?: () => void;
             className="text-[15px]"
             style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em" }}
           >
-            Bashir · Always at service
+            Taka AI · Always at service
           </div>
         </div>
       </div>

@@ -1,9 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { CONCIERGE_SYSTEM, CONCIERGE_TOOLS } from "@/lib/concierge-system";
 import { appendInquiry, availabilityFor, type Inquiry } from "@/lib/data";
+import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
+export const dynamic = "force-dynamic";
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -95,13 +97,18 @@ async function runTool(name: string, input: unknown): Promise<string> {
 }
 
 export async function POST(req: Request) {
+  // Anti-abuse: max 20 messages per 10 min per IP. Stops cost-runaway.
+  const ip = req.headers.get("x-pb-ip") ?? "unknown";
+  const limit = rateLimit(`concierge:${ip}`, 20, 10 * 60_000);
+  if (!limit.ok) return rateLimitResponse(limit);
+
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return new Response(
       JSON.stringify({
         error: "missing_api_key",
         fallback:
-          "Welcome — I'm Bashir, your concierge at Prince Bazaar Kassala. The AI assistant is connecting; in the meantime please use the inquiry form below or call our reservations team. We'll be with you in moments.",
+          "Welcome — I'm Taka AI, your concierge at Prince Plaza Kassala. The AI assistant is connecting; in the meantime please use the inquiry form below or call our reservations team. We'll be with you in moments.",
       }),
       { status: 200, headers: { "content-type": "application/json" } },
     );

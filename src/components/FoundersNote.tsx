@@ -48,7 +48,7 @@ export function FoundersNote() {
             >
               &ldquo;Three generations of my family have lived between Khartoum and Kassala.
               We have built schools, homes, and the kind of quiet relationships that make a
-              country worth coming home to. Prince Bazaar is the house we have always wanted
+              country worth coming home to. Prince Plaza is the house we have always wanted
               to build — a place that says, without raising its voice, that Sudan is open
               for serious work and serious rest.&rdquo;
             </blockquote>

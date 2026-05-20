@@ -41,7 +41,7 @@ export function Gallery() {
                 fontWeight: 400,
               }}
             >
-              Moments at <em style={{ color: "var(--color-emerald-deep)" }}>Prince Bazaar</em>.
+              Moments at <em style={{ color: "var(--color-emerald-deep)" }}>Prince Plaza</em>.
             </h2>
           </div>
         </Reveal>

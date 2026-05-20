@@ -51,7 +51,7 @@ export function LoginForm() {
           className="mt-3 font-display"
           style={{ color: "var(--color-charcoal)", fontSize: "32px", lineHeight: 1.1, fontWeight: 400 }}
         >
-          Prince Bazaar Kassala
+          Prince Plaza Kassala
         </h1>
         <p className="mt-2 text-[12px]" style={{ color: "var(--color-mist)" }}>
           Staff access only. Enter your operations token to continue.

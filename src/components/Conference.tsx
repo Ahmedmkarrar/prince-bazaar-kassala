@@ -6,7 +6,7 @@ interface ConferenceRoomCard {
   description: string;
   capacity: { theatre: number; boardroom: number; ushape: number; reception: number };
   features: string[];
-  image: string;
+  image: string | null;
 }
 
 const ROOMS: ConferenceRoomCard[] = [
@@ -22,7 +22,7 @@ const ROOMS: ConferenceRoomCard[] = [
       "Daylight on three sides",
       "Adjacent breakout area",
     ],
-    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&q=85&auto=format&fit=crop",
+    image: null,
   },
   {
     id: "gash",
@@ -36,7 +36,7 @@ const ROOMS: ConferenceRoomCard[] = [
       "Private entrance from lobby",
       "Discreet table service",
     ],
-    image: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=1600&q=85&auto=format&fit=crop",
+    image: null,
   },
 ];
 
@@ -90,9 +90,9 @@ export function Conference() {
                   className="relative aspect-[4/3] overflow-hidden rounded-sm"
                   data-cursor="image"
                   style={{
-                    backgroundImage: `url(${r.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    background: r.image
+                      ? `url(${r.image}) center/cover no-repeat`
+                      : "linear-gradient(135deg, var(--color-royal-deep) 0%, #14101C 60%, var(--color-charcoal) 100%)",
                     boxShadow: "var(--shadow-card)",
                   }}
                 >

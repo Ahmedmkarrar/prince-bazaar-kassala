@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     template: "%s · Shahad Group",
   },
   description:
-    "A multi-disciplinary Sudanese group operating across construction, real estate, and hospitality. Home of Prince Hotel Khartoum and Prince Bazaar Kassala.",
+    "A multi-disciplinary Sudanese group operating across construction, real estate, and hospitality. Home of Prince Hotel Khartoum and Prince Plaza Kassala.",
 };
 
 export default function ShahadLayout({ children }: { children: React.ReactNode }) {

@@ -36,7 +36,7 @@ export function Logo({ className = "", variant = "dark", size = "md" }: LogoProp
       >
         <Image
           src="/logos/princebazaar.jpeg"
-          alt="Prince Bazaar Kassala"
+          alt="Prince Plaza Kassala"
           width={dim.coin}
           height={dim.coin}
           priority
@@ -55,7 +55,7 @@ export function Logo({ className = "", variant = "dark", size = "md" }: LogoProp
             textTransform: "uppercase",
           }}
         >
-          Prince Bazaar
+          Prince Plaza
         </div>
         <div
           className="font-medium uppercase"

@@ -1,143 +1,287 @@
 export type ComplexId =
   | "royal-suites"
   | "commercial-plaza"
-  | "bazaar"
+  | "business"
   | "wellness"
   | "culinary"
-  | "business"
   | "events"
+  | "bazaar"
   | "villas"
   | "tourism";
+
+export interface LocalisedText {
+  en: string;
+  ar: string;
+}
 
 export interface ComplexNode {
   id: ComplexId;
   number: string;
-  name: string;
-  tagline: string;
-  description: string;
-  highlights: string[];
-  image: string;
+  name: LocalisedText;
+  description: LocalisedText;
+  image: string | null;
 }
 
+// Complex listing follows the docx order and uses the docx descriptions verbatim.
+// Source: "Prince Plaza Kassala.docx" — Six-Complex Experience.
 export const COMPLEXES: ComplexNode[] = [
   {
     id: "royal-suites",
     number: "01",
-    name: "The Royal Suites",
-    tagline: "Panoramic views of the Taka Mountains",
-    description:
-      "Sanctuaries of unhurried luxury. Each suite is a curated retreat — handwoven textiles, oak floors, and floor-to-ceiling glass framing the granite spires of Kassala.",
-    highlights: ["King & Presidential layouts", "Private balconies", "24-hour butler service", "Mountain or garden views"],
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "The Royal Suites", ar: "الأجنحة الملكية" },
+    description: {
+      en: "Luxury accommodations featuring panoramic views of the iconic Taka Mountains.",
+      ar: "إقامات فاخرة بإطلالات بانورامية على جبال التاكا الشهيرة.",
+    },
+    image: "/hotel/room-king-warm.jpg",
   },
   {
     id: "commercial-plaza",
     number: "02",
-    name: "Commercial Plaza",
-    tagline: "Modern shopping at your doorstep",
-    description:
-      "A curated selection of international retail outlets — fashion, electronics, beauty, lifestyle. The mall experience refined for the heart of Kassala, climate-controlled and walkable from every suite.",
-    highlights: ["International retail", "Flagship boutiques", "Lifestyle & beauty", "Curated for the property"],
-    image: "https://images.unsplash.com/photo-1567958451986-2de427a4a0be?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "Commercial Plaza", ar: "البلازا التجارية" },
+    description: {
+      en: "A curated selection of retail outlets, bringing modern shopping to your doorstep.",
+      ar: "تشكيلة منتقاة من المتاجر تجلب التسوق العصري إلى عتبة دارك.",
+    },
+    image: null,
   },
   {
-    id: "bazaar",
+    id: "business",
     number: "03",
-    name: "The Bazaar",
-    tagline: "Everyday essentials to one-of-a-kind treasures",
-    description:
-      "Where master artisans sit beside daily-needs vendors — spice, textile, silver, indigo, and the small things you didn't know you needed. The soul of Kassala, refined.",
-    highlights: ["Curated artisan stalls", "Spice & textile market", "Daily provisions", "Custom tailoring"],
-    image: "https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "Business Center", ar: "مركز الأعمال" },
+    description: {
+      en: "State-of-the-art meeting rooms and coworking spaces for the modern professional.",
+      ar: "قاعات اجتماعات ومساحات عمل مشتركة بأحدث المعايير للمحترف العصري.",
+    },
+    image: "/hotel/room-single-desk.jpg",
   },
   {
     id: "wellness",
     number: "04",
-    name: "Wellness & Spa",
-    tagline: "A sanctuary for rejuvenation",
-    description:
-      "Hammam, steam, full-service gym, and traditional Sudanese rituals. We honour generations of healing knowledge and pair it with the precision of contemporary wellness.",
-    highlights: ["Traditional hammam", "Personal training studio", "Couples' treatment suites", "Cold plunge & sauna"],
-    image: "https://images.unsplash.com/photo-1545158535-c3f7168c28b6?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "Wellness & Spa", ar: "العافية والسبا" },
+    description: {
+      en: "A dedicated space hosting independent wellness and spa providers who offer their services to guests.",
+      ar: "مساحة مخصصة تستضيف مزوّدي خدمات العافية والسبا المستقلين الذين يقدّمون خدماتهم للضيوف.",
+    },
+    image: null,
   },
   {
     id: "culinary",
     number: "05",
-    name: "The Culinary Hub",
-    tagline: "Sudanese flavour, world technique",
-    description:
-      "Multiple dining venues from sunrise to last-call. A signature mountain-view restaurant, a courtyard café, an after-hours lounge, and a private chef's table.",
-    highlights: ["Signature restaurant", "Rooftop lounge", "Courtyard café", "Private chef's table"],
-    image: "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1600&q=85&auto=format&fit=crop",
-  },
-  {
-    id: "business",
-    number: "06",
-    name: "Business Center",
-    tagline: "Where commerce meets ceremony",
-    description:
-      "State-of-the-art meeting rooms, coworking studios, and a private boardroom. Built for the diplomat, the founder, and the strategist working between continents.",
-    highlights: ["Six private meeting rooms", "Live-translation boardroom", "Coworking studio", "Press & media suite"],
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "Culinary Hub", ar: "مركز الطهي" },
+    description: {
+      en: "Multiple dining venues serving a fusion of local Sudanese flavors and international cuisine.",
+      ar: "عدة منافذ طعام تقدم مزيجًا من النكهات السودانية المحلية والمأكولات العالمية.",
+    },
+    image: null,
   },
   {
     id: "events",
+    number: "06",
+    name: { en: "Event Pavilions", ar: "أجنحة المناسبات" },
+    description: {
+      en: "Expansive spaces for weddings, conferences, and cultural celebrations.",
+      ar: "فضاءات واسعة للأعراس والمؤتمرات والاحتفالات الثقافية.",
+    },
+    image: null,
+  },
+  {
+    id: "bazaar",
     number: "07",
-    name: "Event Pavilions",
-    tagline: "Weddings, conferences, cultural celebrations",
-    description:
-      "Expansive ballrooms and open-air pavilions designed for weddings worth a thousand photographs and conferences worth a thousand decisions.",
-    highlights: ["Grand ballroom (800 guests)", "Open-air pavilion", "Cultural amphitheatre", "Full-service planning"],
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "Bazaar", ar: "السوق" },
+    description: {
+      en: "From everyday essentials to unique treasures, our diverse range of stores has something for everyone.",
+      ar: "من الأساسيات اليومية إلى الكنوز الفريدة، تشكيلتنا المتنوعة من المتاجر تضمّ ما يناسب الجميع.",
+    },
+    image: null,
   },
   {
     id: "villas",
     number: "08",
-    name: "Private Villas",
-    tagline: "Garden-fronted, fully furnished",
-    description:
-      "Long-stay residences for families, embassies, and executives. Walled gardens, private chefs on request, and the same uncompromised attention as the Royal Suites.",
-    highlights: ["2–4 bedroom layouts", "Walled private gardens", "Optional private chef", "Long-stay rates"],
-    image: "https://images.unsplash.com/photo-1613553474179-e1eda3ea5734?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "Villas", ar: "الفيلات" },
+    description: {
+      en: "Luxurious villas with garden and completely furnished.",
+      ar: "فيلات فاخرة بحدائق ومؤثثة بالكامل.",
+    },
+    image: "/hotel/room-family.jpg",
   },
   {
     id: "tourism",
     number: "09",
-    name: "Tourism & Concierge",
-    tagline: "From the airport to the summit",
-    description:
-      "Curated journeys to the Taka Mountains, Totil, and the markets of Kassala. Airport transfers, multi-day expeditions, and bespoke itineraries — all arranged through your dedicated concierge.",
-    highlights: ["Airport transfers", "Mountain expeditions", "Cultural tours", "Bespoke itineraries"],
-    image: "https://images.unsplash.com/photo-1500964757637-229ea73306fc?w=1600&q=85&auto=format&fit=crop",
+    name: { en: "Tourism", ar: "السياحة" },
+    description: {
+      en: "Transport from and to airport plus destination of your dreams.",
+      ar: "نقل من وإلى المطار، إلى جانب وجهة أحلامك.",
+    },
+    image: null,
   },
 ];
 
-export const AMENITIES = [
-  { label: "High-speed Wi-Fi", caption: "Throughout every complex" },
-  { label: "24/7 Concierge", caption: "Every hour, every request" },
-  { label: "Private Security", caption: "Discreet, always present" },
-  { label: "Climate Control", caption: "Engineered for the desert" },
-  { label: "Ample Parking", caption: "Valet on arrival" },
-  { label: "Integrated Transport", caption: "Airport to atrium" },
+// Amenities mirror the docx "Complete Amenities" list — four items, verbatim.
+export interface AmenityItem {
+  label: LocalisedText;
+  caption: LocalisedText;
+}
+
+export const AMENITIES: AmenityItem[] = [
+  {
+    label: { en: "High-speed Wi-Fi", ar: "واي فاي عالي السرعة" },
+    caption: {
+      en: "Throughout the entire complex.",
+      ar: "في كل أرجاء المجمع.",
+    },
+  },
+  {
+    label: { en: "24/7 Concierge & Security", ar: "كونسيرج وأمن على مدار الساعة" },
+    caption: {
+      en: "Around-the-clock service and protection.",
+      ar: "خدمة وحماية على مدار الساعة.",
+    },
+  },
+  {
+    label: { en: "Parking & Integrated Transport", ar: "مواقف ونقل متكامل" },
+    caption: {
+      en: "Ample parking and integrated transport links.",
+      ar: "مواقف واسعة وروابط نقل متكاملة.",
+    },
+  },
+  {
+    label: { en: "Climate-controlled Environments", ar: "بيئات مكيّفة" },
+    caption: {
+      en: "For maximum comfort.",
+      ar: "للحصول على أقصى درجات الراحة.",
+    },
+  },
 ];
 
+// Gallery — only Prince Plaza photography supplied by the client.
 export const GALLERY = [
-  "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1500964757637-229ea73306fc?w=1400&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1400&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1400&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1545158535-c3f7168c28b6?w=1400&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1400&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1400&q=85&auto=format&fit=crop",
+  "/hotel/room-king-warm.jpg",
+  "/hotel/room-presidential.jpg",
+  "/hotel/room-king-sunset.jpg",
+  "/hotel/room-family.jpg",
+  "/hotel/room-twin-gray.jpg",
+  "/hotel/room-twin-cream.jpg",
+  "/hotel/room-triple.jpg",
+  "/hotel/room-single-padded.jpg",
 ];
 
-// Hero: the Khatmiyya Mosque at the foot of the Taka Mountains — the defining shot of Kassala.
-// Photo: Wikimedia Commons, file "Kathmiyah_Mosque_and_Taka_Mountains_in_Kassala,_Sudan.jpg"
-export const HERO_IMAGE = "/sudan/khatmiyya-mosque-taka.jpg";
+// Hero — Prince Plaza king-bed suite.
+export const HERO_IMAGE = "/hotel/room-king-warm.jpg";
 
-// Taka Mountains panorama. Photo: Evon2023 (Wikimedia Commons, CC0).
-export const TAKA_IMAGE = "/sudan/taka-view.jpg";
+// Atmospheric secondary image — Prince Plaza presidential.
+export const TAKA_IMAGE = "/hotel/room-king-sunset.jpg";
 
-export const ARCHITECTURE_IMAGE =
-  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2400&q=90&auto=format&fit=crop";
+// Architectural detail image — used by Tourism / interstitial elsewhere.
+export const ARCHITECTURE_IMAGE = "/hotel/room-presidential.jpg";
+
+// Centralised, verbatim docx copy used across the site.
+export const COPY = {
+  tagline: {
+    en: "Where Arabic Elegance Meets the Heart of Sudan",
+    ar: "حيث تلتقي الأناقة العربية بقلب السودان",
+  },
+  hero_subtitle: {
+    en: "Experience the New Standard of Rural Luxury",
+    ar: "اختبر المعيار الجديد للفخامة الريفية",
+  },
+  welcome: {
+    en: "Welcome to Prince Plaza Kassala, a pioneering architectural landmark designed to redefine the landscape of Eastern Sudan. More than just a place to stay, our interconnected six-complex destination is a catalyst for urbanization, bringing world-class sophistication and modern convenience to the breathtaking rural beauty of Kassala.",
+    ar: "أهلاً بكم في برنس بلازا كسلا، صرحٌ معماري رائد صُمم ليعيد تشكيل وجه شرق السودان. ليس مجرد مكان للإقامة، بل وجهة متكاملة من ستة مجمعات مترابطة، وحافزٌ للتحضّر يجمع بين الرقي العالمي والراحة العصرية في قلب الجمال الريفي الخلاب لكسلا.",
+  },
+  vision_eyebrow: { en: "A Vision of Progress", ar: "رؤية للتقدّم" },
+  vision_p1: {
+    en: "Prince Plaza Kassala stands as a beacon of growth. By integrating high-end hospitality with vibrant commercial spaces, we are bridging the gap between urban luxury and rural charm.",
+    ar: "يقف برنس بلازا كسلا منارةً للنمو. من خلال دمج الضيافة الراقية مع المساحات التجارية النابضة بالحياة، نُسدُّ الفجوة بين الفخامة الحضرية والسحر الريفي.",
+  },
+  vision_p2: {
+    en: "Our complex is designed to spark local economic development while providing international travelers with a seamless, high-standard experience.",
+    ar: "صُمم مجمعنا لإشعال التنمية الاقتصادية المحلية، مع تقديم تجربة سلسة وعالية المستوى للمسافرين الدوليين.",
+  },
+  complex_eyebrow: { en: "The Six-Complex Experience", ar: "تجربة المجمعات الستة" },
+  complex_intro: {
+    en: "Our unique architecture consists of six interconnected hubs, each curated to offer a specific facet of the modern lifestyle:",
+    ar: "تتألف هندستنا الفريدة من ستة مجمعات مترابطة، كلٌّ منها مُصمَّم ليقدم وجهًا من وجوه الحياة العصرية:",
+  },
+  amenities_eyebrow: { en: "Complete Amenities", ar: "وسائل راحة متكاملة" },
+  amenities_intro: {
+    en: "We've thought of everything so you don't have to. At Prince Plaza, “complete” means:",
+    ar: "فكّرنا في كل شيء حتى لا تضطر إلى ذلك. في برنس بلازا، “الاكتمال” يعني:",
+  },
+  tourism_eyebrow: { en: "Tourism Redefined", ar: "إعادة تعريف السياحة" },
+  tourism_p1: {
+    en: "Kassala is known for its stunning mountains and rich history. Prince Plaza serves as your luxury basecamp, allowing you to explore the rugged beauty of the region during the day and return to unparalleled comfort at night. We offer the perfect blend of adventure and relaxation.",
+    ar: "تشتهر كسلا بجبالها الخلابة وتاريخها العريق. يخدمك برنس بلازا كقاعدة فاخرة، تنطلق منها لاستكشاف الجمال الوعر للمنطقة نهارًا، وتعود إلى راحة لا تُضاهى ليلًا. نقدّم المزيج المثالي بين المغامرة والاسترخاء.",
+  },
+  tourism_p2: {
+    en: "Join the Urban Revolution in Kassala. Whether you are here for business, leisure, or to be a part of Sudan's future, Prince Plaza Kassala is your gateway to a new era.",
+    ar: "انضمّ إلى ثورة المدن في كسلا. سواء جئت من أجل العمل أو الترفيه، أو لتكون جزءًا من مستقبل السودان، فإن برنس بلازا كسلا بوابتك إلى عهدٍ جديد.",
+  },
+  cta_book: { en: "Book Your Stay", ar: "احجز إقامتك" },
+  cta_explore: { en: "Explore the Complex and Villas", ar: "استكشف المجمع والفيلات" },
+
+  // Piedmont Travel and Tourism — verbatim client copy.
+  piedmont_eyebrow: {
+    en: "Piedmont Travel and Tourism",
+    ar: "بيدمونت للسفر والسياحة",
+  },
+  piedmont_intro: {
+    en: "Piedmont Travel and Tourism is the premier on-site travel agency at the Prince Plaza Hotel in Kassala, Sudan, dedicated to providing seamless journey solutions for both local residents and international visitors.",
+    ar: "بيدمونت للسفر والسياحة هي وكالة السفر الرئيسية داخل فندق برنس بلازا في كسلا، السودان، المكرّسة لتقديم حلول سفر متكاملة لكل من المقيمين المحليين والزوار الدوليين.",
+  },
+  piedmont_services_eyebrow: { en: "Core Services", ar: "الخدمات الأساسية" },
+  piedmont_why_eyebrow: { en: "Why Choose Us", ar: "لماذا تختارنا" },
+} as const;
+
+export interface PiedmontItem {
+  title: { en: string; ar: string };
+  body: { en: string; ar: string };
+}
+
+export const PIEDMONT_SERVICES: PiedmontItem[] = [
+  {
+    title: { en: "Comprehensive Transportation", ar: "نقل شامل" },
+    body: {
+      en: "Reliable airport transfers, private local drivers, and regional ground transport.",
+      ar: "نقل موثوق من وإلى المطار، سائقون محليون خاصون، ونقل بري إقليمي.",
+    },
+  },
+  {
+    title: { en: "Domestic & International Flights", ar: "رحلات داخلية ودولية" },
+    body: {
+      en: "Hassle-free ticketing, route planning, and booking with major global airlines.",
+      ar: "حجز تذاكر سلس، وتخطيط مسارات، وحجوزات مع كبرى شركات الطيران العالمية.",
+    },
+  },
+  {
+    title: { en: "Curated Sudan Tourism", ar: "سياحة سودانية منتقاة" },
+    body: {
+      en: "Guided excursions to Kassala's iconic Taka Mountains, historical sites, and cultural landmarks.",
+      ar: "رحلات مرشَدة إلى جبال التاكا الشهيرة في كسلا والمواقع التاريخية والمعالم الثقافية.",
+    },
+  },
+];
+
+export const PIEDMONT_WHY: PiedmontItem[] = [
+  {
+    title: { en: "Prime Location", ar: "موقع متميز" },
+    body: {
+      en: "Conveniently based directly inside the Prince Plaza Hotel lobby for instant guest access.",
+      ar: "نقع مباشرة داخل بهو فندق برنس بلازا للوصول الفوري من قِبل الضيوف.",
+    },
+  },
+  {
+    title: { en: "Dual Expertise", ar: "خبرة مزدوجة" },
+    body: {
+      en: "Tailored packages that respect local customs while meeting international hospitality standards.",
+      ar: "باقات مصمّمة تحترم العادات المحلية مع تلبية معايير الضيافة الدولية.",
+    },
+  },
+  {
+    title: { en: "End-to-End Care", ar: "عناية شاملة" },
+    body: {
+      en: "Complete management of your itinerary from the moment you land until your final departure.",
+      ar: "إدارة كاملة لبرنامج رحلتك من لحظة هبوطك حتى مغادرتك النهائية.",
+    },
+  },
+];

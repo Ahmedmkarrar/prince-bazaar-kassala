@@ -78,7 +78,7 @@ export function DayAt() {
           <div className="flex items-center gap-3">
             <span className="hairline" style={{ background: "linear-gradient(90deg, var(--color-gold-soft) 0%, transparent 100%)" }} />
             <span className="eyebrow" style={{ color: "var(--color-gold-soft)" }}>
-              An Editorial · A Day at Prince Bazaar
+              An Editorial · A Day at Prince Plaza
             </span>
           </div>
           <h2

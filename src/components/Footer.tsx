@@ -39,8 +39,8 @@ export function Footer() {
 
           <FooterCol title="Contact">
             <FooterLink>+249 ●●● ●●● ●●●</FooterLink>
-            <FooterLink>reservations@princebazaar.sd</FooterLink>
-            <FooterLink>events@princebazaar.sd</FooterLink>
+            <FooterLink>reservations@princeplaza.sd</FooterLink>
+            <FooterLink>events@princeplaza.sd</FooterLink>
             <FooterLink>Kassala, Eastern Sudan</FooterLink>
           </FooterCol>
         </div>
@@ -89,11 +89,7 @@ export function Footer() {
         >
           <span className="font-medium uppercase tracking-[0.32em]">Image credits</span>
           <span className="mt-2 block sm:mt-0 sm:max-w-3xl sm:text-right">
-            Khatmiyya Mosque &amp; Taka Mountains, Khatmiyya tomb, Khatmiyya arcades — Wikimedia Commons.
-            Taka Mountains panorama: Evon2023 (CC0).
-            Gash River: Bertramz (CC BY 3.0).
-            Kassala 2019: Omer6800000 (CC BY-SA 4.0).
-            All other imagery for design preview only — to be replaced with original Prince Bazaar photography on launch.
+            All photography supplied by Prince Plaza Kassala.
           </span>
         </div>
       </div>

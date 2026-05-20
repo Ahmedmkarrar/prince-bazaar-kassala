@@ -41,8 +41,8 @@ export const SECTORS: Sector[] = [
   },
   {
     id: "prince-bazaar",
-    name: "Prince Bazaar Kassala",
-    short: "Prince Bazaar",
+    name: "Prince Plaza Kassala",
+    short: "Prince Plaza",
     tagline: "At the Foot of the Taka Mountains",
     href: "/",
     image: "/sectors/prince-bazaar.jpeg",

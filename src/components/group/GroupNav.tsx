@@ -9,7 +9,7 @@ const LINKS = [
   { href: "/shahad/construction", label: "Construction" },
   { href: "/shahad/real-estate", label: "Real Estate" },
   { href: "/shahad/prince-hotel", label: "Prince Hotel" },
-  { href: "/", label: "Prince Bazaar" },
+  { href: "/", label: "Prince Plaza" },
   { href: "/shahad/contact", label: "Contact" },
 ];
 

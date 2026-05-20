@@ -112,7 +112,7 @@ export function ConciergeDemo() {
               className="text-[14px]"
               style={{ color: "#FFFFFF", fontFamily: "var(--font-display)", fontWeight: 400 }}
             >
-              Bashir · Live preview
+              Taka AI · Live preview
             </div>
           </div>
         </div>

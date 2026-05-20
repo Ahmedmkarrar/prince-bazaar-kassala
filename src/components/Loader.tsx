@@ -64,7 +64,7 @@ export function Loader() {
         >
           <Image
             src="/logos/princebazaar.jpeg"
-            alt="Prince Bazaar Kassala"
+            alt="Prince Plaza Kassala"
             width={160}
             height={160}
             priority
@@ -84,7 +84,7 @@ export function Loader() {
               textTransform: "uppercase",
             }}
           >
-            Prince Bazaar
+            Prince Plaza
           </div>
           <div
             className="mt-2 text-[10px] font-medium uppercase"

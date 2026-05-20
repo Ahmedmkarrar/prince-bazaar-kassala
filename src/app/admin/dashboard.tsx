@@ -57,7 +57,7 @@ export function AdminDashboard({ initialInventory, initialInquiries }: Props) {
               className="mt-2 font-display"
               style={{ color: "var(--color-charcoal)", fontSize: "32px", lineHeight: 1.1, fontWeight: 400 }}
             >
-              Prince Bazaar Kassala
+              Prince Plaza Kassala
             </h1>
           </div>
           <div className="flex items-center gap-4">
@@ -313,7 +313,11 @@ function ConferenceTab({ inv, setInv }: { inv: Inventory; setInv: (i: Inventory)
 }
 
 function AddonsTab({ inv, setInv }: { inv: Inventory; setInv: (i: Inventory) => void }) {
-  function update(id: string, key: keyof Addon, value: string | number | boolean) {
+  function update(
+    id: string,
+    key: keyof Addon,
+    value: string | number | boolean | { en: string; ar: string },
+  ) {
     setInv({
       ...inv,
       addons: inv.addons.map((a) => (a.id === id ? { ...a, [key]: value } : a)),
@@ -353,7 +357,21 @@ function AddonsTab({ inv, setInv }: { inv: Inventory; setInv: (i: Inventory) => 
                     onChange={(e) => update(a.id, "active", e.target.checked)}
                   />
                 </Td>
-                <Td><TextInput value={a.name} onChange={(v) => update(a.id, "name", v)} wide /></Td>
+                <Td>
+                  <TextInput
+                    value={typeof a.name === "string" ? a.name : a.name.en}
+                    onChange={(v) =>
+                      update(
+                        a.id,
+                        "name",
+                        typeof a.name === "string"
+                          ? v
+                          : { ...a.name, en: v },
+                      )
+                    }
+                    wide
+                  />
+                </Td>
                 <Td>
                   <select
                     value={a.category}

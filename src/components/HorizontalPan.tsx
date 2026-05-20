@@ -12,33 +12,33 @@ interface Vignette {
 const VIGNETTES: Vignette[] = [
   {
     number: "i",
-    eyebrow: "Arrival",
-    caption: "The carriage drive lined in date palms, and a doorman who already knows your name.",
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1800&q=90&auto=format&fit=crop",
+    eyebrow: "The King Suite",
+    caption: "Climate-controlled comfort, hardwood floors, and a quiet that feels rare.",
+    image: "/hotel/room-king-warm.jpg",
   },
   {
     number: "ii",
-    eyebrow: "The Courtyard",
-    caption: "A reflecting pool. Shadows from the carved screens. The first call to prayer at dawn.",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1800&q=90&auto=format&fit=crop",
+    eyebrow: "The Presidential",
+    caption: "Spacious king-bed suite with extended living area and premium furnishings.",
+    image: "/hotel/room-presidential.jpg",
   },
   {
     number: "iii",
-    eyebrow: "The Suite",
-    caption: "Floor-to-ceiling glass. Handwoven textiles. The mountains, framed.",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1800&q=90&auto=format&fit=crop",
+    eyebrow: "The Twin",
+    caption: "Two beds, considered details, and the same uncompromised standard.",
+    image: "/hotel/room-twin-cream.jpg",
   },
   {
     number: "iv",
-    eyebrow: "The Rooftop",
-    caption: "Five courses, the Taka spires turning red, and the last light on the Nile.",
-    image: "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1800&q=90&auto=format&fit=crop",
+    eyebrow: "Family Suite",
+    caption: "Triple-bed layout, in-room television, ideal for families and small groups.",
+    image: "/hotel/room-family.jpg",
   },
   {
     number: "v",
-    eyebrow: "The Mountain",
-    caption: "Before sunrise — a guide, a 4×4, and a thousand metres of granite waiting.",
-    image: "https://images.unsplash.com/photo-1500964757637-229ea73306fc?w=1800&q=90&auto=format&fit=crop",
+    eyebrow: "Sunset Room",
+    caption: "Warm evening light through the curtains. Quiet, considered, ours.",
+    image: "/hotel/room-king-sunset.jpg",
   },
 ];
 

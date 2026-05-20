@@ -14,7 +14,7 @@ interface City {
 
 const CITIES: City[] = [
   { id: "khartoum", name: "Khartoum", x: 658, y: 345, note: "Capital · 480 km" },
-  { id: "kassala", name: "Kassala", x: 900, y: 353, note: "Prince Bazaar", highlight: true },
+  { id: "kassala", name: "Kassala", x: 900, y: 353, note: "Prince Plaza", highlight: true },
   { id: "portsudan", name: "Port Sudan", x: 950, y: 129, note: "Red Sea · 380 km" },
   { id: "atbara", name: "Atbara", x: 749, y: 232, note: "Junction of Niles" },
   { id: "wadihalfa", name: "Wadi Halfa", x: 583, y: 11, note: "Northern Border" },
@@ -246,7 +246,7 @@ export function SudanMap() {
                           fill="rgba(233, 199, 123, 0.65)"
                           style={{ textTransform: "uppercase" }}
                         >
-                          Prince Bazaar
+                          Prince Plaza
                         </text>
                       ) : null}
                     </g>

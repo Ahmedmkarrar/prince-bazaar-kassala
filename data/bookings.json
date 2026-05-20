@@ -1,0 +1,36 @@
+[
+  {
+    "hotelId": "prince-plaza-kassala",
+    "roomTypeId": "royal",
+    "guestName": "Sara Ahmed",
+    "guestEmail": "sara@example.com",
+    "guestPhone": "+971501234567",
+    "guestLanguage": "en",
+    "checkIn": "2026-06-01",
+    "checkOut": "2026-06-03",
+    "nights": 2,
+    "guests": 2,
+    "baseTotal": 760,
+    "addonsTotal": 200,
+    "grandTotal": 960,
+    "currency": "USD",
+    "addons": [
+      {
+        "id": "airport-transfer",
+        "name": "Airport Transfer · Kassala",
+        "price": 80
+      },
+      {
+        "id": "mountain-sunrise",
+        "name": "Sunrise Tour · Taka Mountains",
+        "price": 120
+      }
+    ],
+    "specialRequests": "Late check-in around 22:00",
+    "id": "bk_1778927644899_hhuioa",
+    "reference": "PP-2026-00001",
+    "status": "pending",
+    "createdAt": "2026-05-16T10:34:04.899Z",
+    "updatedAt": "2026-05-16T10:34:04.899Z"
+  }
+]

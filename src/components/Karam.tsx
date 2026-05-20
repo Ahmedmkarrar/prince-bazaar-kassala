@@ -62,7 +62,7 @@ export function Karam() {
               <p>
                 Karam is what binds Sudanese hospitality together. It is not service; it is
                 a stance. It cannot be trained into a staff manual — it can only be hired for
-                and protected from drift. At Prince Bazaar Kassala, it is the single
+                and protected from drift. At Prince Plaza Kassala, it is the single
                 non-negotiable standard against which everything else is measured.
               </p>
               <p style={{ color: "var(--color-stone)", fontStyle: "italic" }}>
