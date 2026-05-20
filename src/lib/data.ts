@@ -82,6 +82,24 @@ export interface DayAvailability {
   priceMultiplier: number;
 }
 
+export interface TourismPackage {
+  id: string;
+  title: Localised;
+  duration: Localised;
+  description: Localised;
+  priceUsd: number;
+  category: "nature" | "culture" | "history" | "spiritual" | "multi-day";
+}
+
+export interface TransportRoute {
+  id: string;
+  title: Localised;
+  duration: Localised;
+  description: Localised;
+  priceUsd: number;
+  category: "airport" | "regional" | "private";
+}
+
 export interface Inventory {
   hotels: Hotel[];
   roomTypes: RoomType[];
@@ -89,6 +107,8 @@ export interface Inventory {
   conferenceRooms: ConferenceRoom[];
   addons: Addon[];
   availability: Record<string, DayAvailability>;
+  tourismPackages?: TourismPackage[];
+  transportRoutes?: TransportRoute[];
 }
 
 export interface Inquiry {

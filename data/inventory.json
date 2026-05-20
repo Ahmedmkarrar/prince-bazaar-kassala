@@ -101,5 +101,119 @@
     { "id": "wellness-day", "name": { "en": "Wellness & Spa Day", "ar": "يوم العافية والسبا" }, "price": 180, "category": "wellness", "active": true },
     { "id": "oud-evening", "name": { "en": "Live Oud at Dinner", "ar": "عزف العود في العشاء" }, "price": 95, "category": "experience", "active": true }
   ],
-  "availability": {}
+  "availability": {},
+  "tourismPackages": [
+    {
+      "id": "taka-sunrise",
+      "title": { "en": "Sunrise on the Taka Mountains", "ar": "شروق على جبال التاكا" },
+      "duration": { "en": "Half day · 5 hours", "ar": "نصف يوم · ٥ ساعات" },
+      "description": {
+        "en": "Private 4×4 expedition before dawn to the foot of the granite spires. Sudanese breakfast, a guided walk, and return to the property by mid-morning.",
+        "ar": "رحلة خاصة بسيارة دفع رباعي قبل الفجر إلى سفوح الجبال الجرانيتية. إفطار سوداني، نزهة مرشَدة، والعودة إلى الفندق منتصف الصباح."
+      },
+      "priceUsd": 120,
+      "category": "nature"
+    },
+    {
+      "id": "khatmiyya-pilgrimage",
+      "title": { "en": "Khatmiyya Mosque Pilgrimage", "ar": "زيارة مسجد الختمية" },
+      "duration": { "en": "Half day · 4 hours", "ar": "نصف يوم · ٤ ساعات" },
+      "description": {
+        "en": "A respectful guided visit to one of Sudan's most important Sufi sites — the tomb of Sayid Hasan al-Mirghani at the foot of the Taka.",
+        "ar": "زيارة مرشَدة محترمة لأحد أهم مواقع الصوفية في السودان — ضريح السيد حسن الميرغني عند سفح التاكا."
+      },
+      "priceUsd": 95,
+      "category": "spiritual"
+    },
+    {
+      "id": "old-kassala-walk",
+      "title": { "en": "Old Kassala Cultural Walk", "ar": "جولة كسلا القديمة الثقافية" },
+      "duration": { "en": "Full day · 8 hours", "ar": "يوم كامل · ٨ ساعات" },
+      "description": {
+        "en": "The cultural quarter, the central bazaar, a jebana coffee ceremony with a Beja host, and a private viewing at the regional textile collection.",
+        "ar": "الحي الثقافي، السوق المركزي، حفل قهوة الجبنا مع مُضيف من البجا، ومعاينة خاصة لمجموعة المنسوجات الإقليمية."
+      },
+      "priceUsd": 180,
+      "category": "culture"
+    },
+    {
+      "id": "gash-valley",
+      "title": { "en": "Gash Valley & Orchards", "ar": "وادي القاش والبساتين" },
+      "duration": { "en": "Half day · 5 hours", "ar": "نصف يوم · ٥ ساعات" },
+      "description": {
+        "en": "Drive along the seasonal Gash river, walk through the orchards that produce Sudan's sweetest grapefruit and mangoes, and lunch with a local farming family.",
+        "ar": "قيادة على طول نهر القاش الموسمي، نزهة في البساتين التي تنتج أحلى جريب فروت ومانجو في السودان، وغداء مع عائلة مزارعة محلية."
+      },
+      "priceUsd": 140,
+      "category": "nature"
+    },
+    {
+      "id": "eastern-sudan-circuit",
+      "title": { "en": "Eastern Sudan · Multi-day Circuit", "ar": "شرق السودان · جولة متعددة الأيام" },
+      "duration": { "en": "3 days · 2 nights", "ar": "٣ أيام · ليلتان" },
+      "description": {
+        "en": "Kassala, Sinkat, and the Red Sea coast. Private transport throughout, curated stays, all meals, and a senior guide for the full circuit.",
+        "ar": "كسلا، سنكات، وساحل البحر الأحمر. نقل خاص طوال الرحلة، إقامات منتقاة، جميع الوجبات، ومرشد كبير طوال الجولة."
+      },
+      "priceUsd": 1480,
+      "category": "multi-day"
+    },
+    {
+      "id": "khartoum-day",
+      "title": { "en": "Khartoum Day Trip", "ar": "رحلة يوم إلى الخرطوم" },
+      "duration": { "en": "Full day · charter flight", "ar": "يوم كامل · رحلة خاصة" },
+      "description": {
+        "en": "Charter flight to Khartoum, the confluence of the Niles, the National Museum, and a private dinner before returning the same evening.",
+        "ar": "رحلة خاصة إلى الخرطوم، ملتقى النيلين، المتحف القومي، وعشاء خاص قبل العودة في نفس المساء."
+      },
+      "priceUsd": 980,
+      "category": "history"
+    }
+  ],
+  "transportRoutes": [
+    {
+      "id": "kassala-airport-transfer",
+      "title": { "en": "Kassala Airport · Hotel Transfer", "ar": "مطار كسلا · نقل إلى الفندق" },
+      "duration": { "en": "~30 min · private car", "ar": "~٣٠ دقيقة · سيارة خاصة" },
+      "description": {
+        "en": "Air-conditioned private car with a uniformed driver. Meet & greet inside the terminal, luggage handled, water and refreshments on board.",
+        "ar": "سيارة خاصة مكيّفة مع سائق بزي رسمي. استقبال داخل المطار، تولّي الأمتعة، ومياه ومرطبات داخل السيارة."
+      },
+      "priceUsd": 80,
+      "category": "airport"
+    },
+    {
+      "id": "khartoum-airport-transfer",
+      "title": { "en": "Khartoum Airport · Hotel Transfer", "ar": "مطار الخرطوم · نقل إلى الفندق" },
+      "duration": { "en": "~5 hours overland · private", "ar": "~٥ ساعات برًا · خاص" },
+      "description": {
+        "en": "Long-distance private transfer from Khartoum International Airport. Comfortable SUV, two rest stops, meals included on the road.",
+        "ar": "نقل خاص لمسافات طويلة من مطار الخرطوم الدولي. سيارة دفع رباعي مريحة، توقفان للراحة، الوجبات مشمولة."
+      },
+      "priceUsd": 240,
+      "category": "airport"
+    },
+    {
+      "id": "private-driver-day",
+      "title": { "en": "Private Driver · Full Day", "ar": "سائق خاص · يوم كامل" },
+      "duration": { "en": "10 hours · private car", "ar": "١٠ ساعات · سيارة خاصة" },
+      "description": {
+        "en": "A dedicated driver and SUV at your disposal for the day. Use them for sightseeing, meetings, shopping — wherever you need.",
+        "ar": "سائق خاص وسيارة دفع رباعي تحت تصرفك طوال اليوم. للسياحة، الاجتماعات، التسوق — أينما احتجت."
+      },
+      "priceUsd": 220,
+      "category": "private"
+    },
+    {
+      "id": "port-sudan-route",
+      "title": { "en": "Kassala ↔ Port Sudan", "ar": "كسلا ↔ بورتسودان" },
+      "duration": { "en": "~6 hours overland", "ar": "~٦ ساعات برًا" },
+      "description": {
+        "en": "Regional transfer to or from Port Sudan and the Red Sea coast. SUV with experienced driver, meals + rest stops on the route.",
+        "ar": "نقل إقليمي من وإلى بورتسودان وساحل البحر الأحمر. سيارة دفع رباعي مع سائق خبير، وجبات وتوقفات راحة على الطريق."
+      },
+      "priceUsd": 320,
+      "category": "regional"
+    }
+  ]
 }

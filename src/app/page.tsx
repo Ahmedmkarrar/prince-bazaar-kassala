@@ -25,6 +25,7 @@ const BookingForm = dynamic(() => import("@/components/BookingForm").then(m => (
 const Footer = dynamic(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 const CeoMessage = dynamic(() => import("@/components/CeoMessage").then(m => ({ default: m.CeoMessage })));
 const Piedmont = dynamic(() => import("@/components/Piedmont").then(m => ({ default: m.Piedmont })));
+const JourneyPlanner = dynamic(() => import("@/components/JourneyPlanner").then(m => ({ default: m.JourneyPlanner })));
 const Concierge = dynamic(() => import("@/components/Concierge").then(m => ({ default: m.Concierge })));
 const StickyReserve = dynamic(() => import("@/components/StickyReserve").then(m => ({ default: m.StickyReserve })));
 const BookingModal = dynamic(() => import("@/components/BookingModal").then(m => ({ default: m.BookingModal })));
@@ -53,6 +54,7 @@ export default function Home() {
       <SudanMap />
       <Tourism />
       <Piedmont />
+      <JourneyPlanner />
       <CeoMessage />
       <Conference />
       <AISection />
