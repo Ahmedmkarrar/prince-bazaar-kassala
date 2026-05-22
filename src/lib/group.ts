@@ -58,7 +58,7 @@ export const GROUP = {
     "A multi-disciplinary group with operations rooted in Sudan, building across construction, real estate, and hospitality.",
   contact: {
     email: "contact@shahadgroup.com",
-    phone: "+249 ●●● ●●● ●●●",
+    phone: "+249 96 510 5555",
     addresses: [
       { label: "Khartoum, Sudan", line: "Head office" },
       { label: "Kassala, Sudan", line: "Eastern Sudan operations" },

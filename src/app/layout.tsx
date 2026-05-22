@@ -78,7 +78,7 @@ const HOTEL_LD = {
     "A pioneering architectural landmark at the foot of the Taka Mountains in Eastern Sudan. Nine interconnected complexes — Royal Suites, Commercial Plaza, Business Centre, Wellness & Spa, Culinary Hub, Event Pavilions, Bazaar, Villas, Tourism.",
   url: "https://prince-bazaar.vercel.app",
   telephone: "+249-000-000-000",
-  email: "reservations@princeplaza.sd",
+  email: "Kassala@princehotel-sd.com",
   image: [
     "https://prince-bazaar.vercel.app/hotel/room-king-warm.jpg",
     "https://prince-bazaar.vercel.app/hotel/room-presidential.jpg",

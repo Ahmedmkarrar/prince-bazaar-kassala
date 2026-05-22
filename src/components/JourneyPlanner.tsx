@@ -40,7 +40,7 @@ export function JourneyPlanner() {
       .catch(() => {});
   }, []);
 
-  const whatsapp = data?.hotel?.whatsapp ?? "+249000000000";
+  const whatsapp = data?.hotel?.whatsapp ?? "+249965105555";
 
   return (
     <section

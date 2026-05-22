@@ -72,7 +72,7 @@ const STATUS_COPY: Record<
   },
 };
 
-const WHATSAPP_FALLBACK = "+249000000000";
+const WHATSAPP_FALLBACK = "+249965105555";
 
 export function LookupClient({
   reference,

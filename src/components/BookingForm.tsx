@@ -101,8 +101,8 @@ export function BookingForm() {
 
           <div className="mt-10 space-y-5 border-t pt-8" style={{ borderColor: "var(--color-line)" }}>
             {[
-              ["Direct line", "+249 ●●● ●●● ●●●"],
-              ["Reservations", "reservations@princeplaza.sd"],
+              ["Direct line", "+249 96 510 5555"],
+              ["Reservations", "Kassala@princehotel-sd.com"],
               ["Press", "press@princeplaza.sd"],
             ].map(([label, value]) => (
               <div key={label} className="flex items-baseline justify-between gap-4">

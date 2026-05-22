@@ -38,8 +38,8 @@ export function Footer() {
           </FooterCol>
 
           <FooterCol title="Contact">
-            <FooterLink>+249 ●●● ●●● ●●●</FooterLink>
-            <FooterLink>reservations@princeplaza.sd</FooterLink>
+            <FooterLink>+249 96 510 5555</FooterLink>
+            <FooterLink>Kassala@princehotel-sd.com</FooterLink>
             <FooterLink>events@princeplaza.sd</FooterLink>
             <FooterLink>Kassala, Eastern Sudan</FooterLink>
           </FooterCol>

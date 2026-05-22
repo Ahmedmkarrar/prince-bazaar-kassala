@@ -157,7 +157,7 @@ export function PrintClient({ reference, email }: { reference: string; email: st
           <div>
             <strong>Prince Plaza Kassala</strong> · Reservations
             <br />
-            +249 ●●● ●●● ●●● · reservations@princeplaza.sd
+            +249 96 510 5555 · Kassala@princehotel-sd.com
           </div>
           <div className="meta">
             Generated {new Date().toLocaleString("en-GB")} ·{" "}
