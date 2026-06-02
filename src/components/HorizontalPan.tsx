@@ -89,7 +89,7 @@ export function HorizontalPan() {
               data-cursor="image"
             >
               <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="photo-warm absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${v.image})` }}
               />
               <div

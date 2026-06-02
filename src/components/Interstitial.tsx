@@ -45,7 +45,7 @@ export function Interstitial({
       className="relative h-[80vh] min-h-[640px] w-full overflow-hidden"
       data-cursor="image"
     >
-      <div ref={imgRef} className="absolute inset-0 will-change-transform">
+      <div ref={imgRef} className="photo-warm photo-grain absolute inset-0 will-change-transform">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${image})` }}

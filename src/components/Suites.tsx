@@ -17,11 +17,36 @@ const SUITES = [
   },
 ];
 
+/** Slowly rotating gold seal — a refined, hospitality-grade rotating accent. */
+function SealMark({ id }: { id: string }) {
+  return (
+    <div
+      className="absolute -bottom-7 right-6 z-10 flex h-[88px] w-[88px] items-center justify-center rounded-full"
+      style={{ background: "var(--color-ivory)", boxShadow: "var(--shadow-card)" }}
+      aria-hidden
+    >
+      <svg viewBox="0 0 100 100" className="spin-slow h-full w-full" style={{ color: "var(--color-gold)" }}>
+        <defs>
+          <path id={id} d="M50,50 m-33,0 a33,33 0 1,1 66,0 a33,33 0 1,1 -66,0" fill="none" />
+        </defs>
+        <text fill="currentColor" fontSize="9.5" letterSpacing="2.2" style={{ textTransform: "uppercase", fontWeight: 500 }}>
+          <textPath href={`#${id}`} startOffset="0">
+            Prince Plaza · Kassala · Sudan ·
+          </textPath>
+        </text>
+      </svg>
+      <span className="absolute font-display text-[22px]" style={{ color: "var(--color-emerald-deep)" }}>
+        ✦
+      </span>
+    </div>
+  );
+}
+
 export function Suites() {
   return (
     <section id="suites" className="px-6 py-32 lg:px-12 lg:py-44">
       <div className="mx-auto max-w-[1400px]">
-        <Reveal className="mb-16 flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
+        <Reveal className="mb-20 flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <div>
             <div className="flex items-center gap-3">
               <span className="h-px w-10" style={{ background: "var(--color-gold)" }} />
@@ -45,40 +70,42 @@ export function Suites() {
             </h2>
           </div>
           <p className="max-w-md text-[16px] leading-[1.8]" style={{ color: "var(--color-stone)" }}>
-            Three flagship layouts. Plush interiors, premium amenities, and the same impeccable service across each. Tell us your dates — we'll match you to the right one.
+            Flagship layouts, plush interiors, and the same impeccable service across each. Tell us your dates — we&apos;ll match you to the right one.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-[920px] grid-cols-1 gap-x-16 gap-y-24 sm:grid-cols-2">
           {SUITES.map((s, i) => (
-            <Reveal key={s.name} delay={i * 100}>
-              <article className="group flex flex-col">
-                <div
-                  className="aspect-[4/5] overflow-hidden rounded-sm"
-                  data-cursor="image"
-                  style={{
-                    backgroundImage: `url(${s.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    boxShadow: "var(--shadow-card)",
-                  }}
-                >
-                  <div className="h-full w-full transition-transform duration-700 group-hover:scale-[1.04]" />
-                </div>
-                <div className="pt-6">
-                  <div className="flex items-baseline justify-between">
-                    <h3 className="font-display text-[28px] leading-tight">{s.name}</h3>
-                    <div className="text-[10px] font-medium uppercase tracking-[0.28em]" style={{ color: "var(--color-gold)" }}>
-                      {s.view}
-                    </div>
+            <Reveal key={s.name} delay={i * 120}>
+              <article className="group flex flex-col items-center text-center">
+                <div className="photo-arch relative w-full max-w-[340px]" data-cursor="image">
+                  <div className="photo-arch-inner photo-warm photo-grain aspect-[3/4]">
+                    <div
+                      className="kenburns absolute inset-0 bg-cover bg-center transition-transform duration-[1200ms] group-hover:scale-[1.06]"
+                      style={{ backgroundImage: `url(${s.image})` }}
+                    />
                   </div>
+                  <SealMark id={`seal-${i}`} />
+                </div>
+
+                <div className="mt-12 flex flex-col items-center">
+                  <div className="text-[10px] font-medium uppercase tracking-[0.28em]" style={{ color: "var(--color-gold)" }}>
+                    {s.view}
+                  </div>
+                  <h3 className="mt-3 font-display text-[30px] leading-tight" style={{ color: "var(--color-charcoal)" }}>
+                    {s.name}
+                  </h3>
                   <div className="mt-1 text-[12px]" style={{ color: "var(--color-mist)" }}>
                     {s.capacity}
                   </div>
-                  <p className="mt-4 text-[14px] leading-[1.75]" style={{ color: "var(--color-stone)" }}>
+                  <p className="mt-5 max-w-[360px] text-[14px] leading-[1.75]" style={{ color: "var(--color-stone)" }}>
                     {s.detail}
                   </p>
-                  <a href="#book" className="mt-6 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.2em]" style={{ color: "var(--color-emerald-deep)" }}>
+                  <a
+                    href="#book"
+                    className="mt-7 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.2em]"
+                    style={{ color: "var(--color-emerald-deep)" }}
+                  >
                     Reserve
                     <span aria-hidden>→</span>
                   </a>

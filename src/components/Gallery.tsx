@@ -52,7 +52,7 @@ export function Gallery() {
               <button
                 onClick={() => setActive(i)}
                 data-cursor="image"
-                className={`group relative block w-full overflow-hidden rounded-sm ${
+                className={`photo-warm group relative block w-full overflow-hidden rounded-sm ${
                   i % 5 === 0 ? "row-span-2 aspect-portrait" : "aspect-square"
                 }`}
                 style={{
