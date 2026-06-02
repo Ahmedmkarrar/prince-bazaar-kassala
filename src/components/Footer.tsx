@@ -13,7 +13,7 @@ export function Footer() {
           <div className="lg:col-span-5">
             <Logo variant="light" />
             <p className="mt-6 max-w-sm text-[14px] leading-[1.8]" style={{ color: "rgba(239,224,191,0.65)" }}>
-              A pioneering six-complex destination at the foot of the Taka Mountains. A Shahad Group destination, redefining hospitality across Eastern Sudan.
+              A pioneering nine-complex destination at the foot of the Taka Mountains. A Shahad Group destination, redefining hospitality across Eastern Sudan.
             </p>
             <div className="mt-8 flex gap-3">
               <a href="#book" className="btn-gold">Reserve</a>

@@ -117,11 +117,11 @@ export function Conference() {
 
                   <div className="mt-7">
                     <div className="text-[10px] font-medium uppercase tracking-[0.32em]" style={{ color: "var(--color-mist)" }}>
-                      Capacity by Layout
+                      Seating capacity by layout
                     </div>
                     <div className="mt-3 grid grid-cols-4 gap-px" style={{ background: "var(--color-line)" }}>
                       {[
-                        ["Theatre", r.capacity.theatre],
+                        ["Theatre-style", r.capacity.theatre],
                         ["Boardroom", r.capacity.boardroom],
                         ["U-shape", r.capacity.ushape],
                         ["Reception", r.capacity.reception],
@@ -136,6 +136,9 @@ export function Conference() {
                         </div>
                       ))}
                     </div>
+                    <p className="mt-2 text-[10px]" style={{ color: "var(--color-mist)" }}>
+                      Numbers show the maximum guests this room seats in each layout.
+                    </p>
                   </div>
 
                   <ul className="mt-7 space-y-2">

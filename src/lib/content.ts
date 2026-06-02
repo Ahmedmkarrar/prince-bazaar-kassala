@@ -23,7 +23,7 @@ export interface ComplexNode {
 }
 
 // Complex listing follows the docx order and uses the docx descriptions verbatim.
-// Source: "Prince Plaza Kassala.docx" — Six-Complex Experience.
+// Source: "Prince Plaza Kassala.docx" — Nine-Complex Experience.
 export const COMPLEXES: ComplexNode[] = [
   {
     id: "royal-suites",
@@ -186,8 +186,8 @@ export const COPY = {
     ar: "اختبر المعيار الجديد للفخامة الريفية",
   },
   welcome: {
-    en: "Welcome to Prince Plaza Kassala, a pioneering architectural landmark designed to redefine the landscape of Eastern Sudan. More than just a place to stay, our interconnected six-complex destination is a catalyst for urbanization, bringing world-class sophistication and modern convenience to the breathtaking rural beauty of Kassala.",
-    ar: "أهلاً بكم في برنس بلازا كسلا، صرحٌ معماري رائد صُمم ليعيد تشكيل وجه شرق السودان. ليس مجرد مكان للإقامة، بل وجهة متكاملة من ستة مجمعات مترابطة، وحافزٌ للتحضّر يجمع بين الرقي العالمي والراحة العصرية في قلب الجمال الريفي الخلاب لكسلا.",
+    en: "Welcome to Prince Plaza Kassala, a pioneering architectural landmark designed to redefine the landscape of Eastern Sudan. More than just a place to stay, our interconnected nine-complex destination is a catalyst for urbanization, bringing world-class sophistication and modern convenience to the breathtaking rural beauty of Kassala.",
+    ar: "أهلاً بكم في برنس بلازا كسلا، صرحٌ معماري رائد صُمم ليعيد تشكيل وجه شرق السودان. ليس مجرد مكان للإقامة، بل وجهة متكاملة من تسعة مجمعات مترابطة، وحافزٌ للتحضّر يجمع بين الرقي العالمي والراحة العصرية في قلب الجمال الريفي الخلاب لكسلا.",
   },
   vision_eyebrow: { en: "A Vision of Progress", ar: "رؤية للتقدّم" },
   vision_p1: {
@@ -198,10 +198,10 @@ export const COPY = {
     en: "Our complex is designed to spark local economic development while providing international travelers with a seamless, high-standard experience.",
     ar: "صُمم مجمعنا لإشعال التنمية الاقتصادية المحلية، مع تقديم تجربة سلسة وعالية المستوى للمسافرين الدوليين.",
   },
-  complex_eyebrow: { en: "The Six-Complex Experience", ar: "تجربة المجمعات الستة" },
+  complex_eyebrow: { en: "The Nine-Complex Experience", ar: "تجربة المجمعات التسعة" },
   complex_intro: {
-    en: "Our unique architecture consists of six interconnected hubs, each curated to offer a specific facet of the modern lifestyle:",
-    ar: "تتألف هندستنا الفريدة من ستة مجمعات مترابطة، كلٌّ منها مُصمَّم ليقدم وجهًا من وجوه الحياة العصرية:",
+    en: "Our unique architecture consists of nine interconnected hubs, each curated to offer a specific facet of the modern lifestyle:",
+    ar: "تتألف هندستنا الفريدة من تسعة مجمعات مترابطة، كلٌّ منها مُصمَّم ليقدم وجهًا من وجوه الحياة العصرية:",
   },
   amenities_eyebrow: { en: "Complete Amenities", ar: "وسائل راحة متكاملة" },
   amenities_intro: {
