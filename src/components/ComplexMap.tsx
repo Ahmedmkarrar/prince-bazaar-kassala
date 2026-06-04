@@ -16,29 +16,23 @@ interface Node {
 }
 
 const NODES: Node[] = [
-  { id: "royal", number: "01", name: "Royal Suites", blurb: "King + Presidential layouts, mountain views", cx: 250, cy: 140, w: 100, h: 70, shape: "rect" },
+  { id: "royal", number: "01", name: "Royal Suites", blurb: "Four suite types, 49 rooms, mountain views", cx: 250, cy: 140, w: 100, h: 70, shape: "rect" },
   { id: "plaza", number: "02", name: "Commercial Plaza", blurb: "International retail, flagship boutiques", cx: 420, cy: 130, w: 120, h: 60, shape: "rect" },
-  { id: "bazaar", number: "03", name: "The Bazaar", blurb: "Stalls, spice, textile, daily provisions", cx: 600, cy: 150, w: 110, h: 60, shape: "rect" },
-  { id: "wellness", number: "04", name: "Wellness & Spa", blurb: "Hammam, gym, couples' suites", cx: 200, cy: 280, w: 90, h: 90, shape: "rect" },
-  { id: "culinary", number: "05", name: "Culinary Hub", blurb: "Signature restaurant, rooftop, café", cx: 410, cy: 290, w: 130, h: 75, shape: "rect" },
-  { id: "business", number: "06", name: "Business Center", blurb: "Boardrooms and coworking", cx: 620, cy: 280, w: 100, h: 80, shape: "rect" },
-  { id: "events", number: "07", name: "Event Pavilions", blurb: "Ballroom and open-air pavilion", cx: 330, cy: 430, w: 150, h: 75, shape: "rect" },
-  { id: "villas", number: "08", name: "Private Villas", blurb: "Walled gardens, optional chef", cx: 580, cy: 430, w: 120, h: 95, shape: "rect" },
-  { id: "tourism", number: "09", name: "Tourism & Concierge", blurb: "Airport, mountain, cultural tours", cx: 790, cy: 200, w: 60, h: 60, shape: "round" },
+  { id: "business", number: "03", name: "Business Center", blurb: "Boardrooms and coworking", cx: 620, cy: 280, w: 100, h: 80, shape: "rect" },
+  { id: "culinary", number: "04", name: "Culinary Hub", blurb: "Restaurant, dine-in and room service", cx: 410, cy: 290, w: 130, h: 75, shape: "rect" },
+  { id: "events", number: "05", name: "Event Pavilions", blurb: "Conference rooms and events pavilion", cx: 330, cy: 430, w: 150, h: 75, shape: "rect" },
+  { id: "bazaar", number: "06", name: "The Bazaar", blurb: "Stalls, spice, textile, daily provisions", cx: 600, cy: 150, w: 110, h: 60, shape: "rect" },
+  { id: "tourism", number: "07", name: "Tourism & Concierge", blurb: "Airport, mountain, cultural tours", cx: 790, cy: 200, w: 60, h: 60, shape: "round" },
 ];
 
 const CONNECTIONS: [string, string][] = [
   ["royal", "plaza"],
   ["plaza", "bazaar"],
-  ["royal", "wellness"],
   ["plaza", "culinary"],
   ["bazaar", "culinary"],
   ["bazaar", "tourism"],
-  ["wellness", "culinary"],
   ["culinary", "business"],
   ["culinary", "events"],
-  ["events", "villas"],
-  ["business", "villas"],
   ["business", "tourism"],
 ];
 
@@ -72,7 +66,7 @@ export function ComplexMap() {
                 fontWeight: 400,
               }}
             >
-              Nine worlds, <em style={{ color: "var(--color-emerald-deep)" }}>connected</em>.
+              Seven worlds, <em style={{ color: "var(--color-emerald-deep)" }}>connected</em>.
             </h2>
           </div>
           <p className="max-w-md text-[15px] leading-[1.85]" style={{ color: "var(--color-stone)" }}>

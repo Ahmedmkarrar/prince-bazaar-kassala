@@ -4,46 +4,46 @@ interface ConferenceRoomCard {
   id: string;
   name: string;
   description: string;
-  capacity: { theatre: number; boardroom: number; ushape: number; reception: number };
+  capacity: number;
   features: string[];
   image: string | null;
 }
 
 const ROOMS: ConferenceRoomCard[] = [
   {
-    id: "atbara",
-    name: "The Atbara Room",
+    id: "events-pavilion",
+    name: "Events Pavilion",
     description:
-      "Our flagship conference venue, named after Sudan's eastern river. Daylight on three sides, a live-translation booth, and adjacent breakout space for receptions.",
-    capacity: { theatre: 80, boardroom: 30, ushape: 25, reception: 100 },
+      "Our larger venue for weddings, conferences, and cultural celebrations — good for up to 100 guests, with a large screen and surround sound.",
+    capacity: 100,
     features: [
-      "Live-translation booth · 3 channels",
-      "4K projection + 86″ displays",
-      "Daylight on three sides",
-      "Adjacent breakout area",
+      "Good for up to 100 guests",
+      "Large projection screen",
+      "Surround sound system",
+      "Wi-Fi throughout",
     ],
     image: null,
   },
   {
-    id: "gash",
-    name: "The Gash Room",
+    id: "conference-room",
+    name: "Conference Room",
     description:
-      "An intimate boardroom for executive sessions and private councils. Soundproofed, encrypted, with a discreet private entrance from the lobby.",
-    capacity: { theatre: 40, boardroom: 16, ushape: 14, reception: 50 },
+      "A dedicated conference room for meetings, workshops, and corporate sessions — good for up to 60 guests, with Wi-Fi, a projector, and a full sound system.",
+    capacity: 60,
     features: [
-      "Encrypted video conferencing",
-      "Soundproofed cabin",
-      "Private entrance from lobby",
-      "Discreet table service",
+      "Good for up to 60 guests",
+      "Wi-Fi",
+      "Projector",
+      "Sound system",
     ],
     image: null,
   },
 ];
 
 const CATERING_TIERS = [
-  { tier: "Bronze", price: "$38", note: "Working lunch · plant-forward" },
-  { tier: "Silver", price: "$62", note: "Three-course plated · regional wines" },
-  { tier: "Gold", price: "$95", note: "Five-course chef's menu · canapés on arrival" },
+  { tier: "Bronze", note: "Working lunch · plant-forward" },
+  { tier: "Silver", note: "Three-course plated · regional flavours" },
+  { tier: "Gold", note: "Five-course chef's menu · canapés on arrival" },
 ];
 
 export function Conference() {
@@ -117,28 +117,16 @@ export function Conference() {
 
                   <div className="mt-7">
                     <div className="text-[10px] font-medium uppercase tracking-[0.32em]" style={{ color: "var(--color-mist)" }}>
-                      Seating capacity by layout
+                      Capacity
                     </div>
-                    <div className="mt-3 grid grid-cols-4 gap-px" style={{ background: "var(--color-line)" }}>
-                      {[
-                        ["Theatre-style", r.capacity.theatre],
-                        ["Boardroom", r.capacity.boardroom],
-                        ["U-shape", r.capacity.ushape],
-                        ["Reception", r.capacity.reception],
-                      ].map(([label, n]) => (
-                        <div key={label as string} className="px-2 py-3 text-center" style={{ background: "var(--color-ivory)" }}>
-                          <div className="font-display tabular-nums" style={{ color: "var(--color-emerald-deep)", fontSize: "22px", lineHeight: 1, fontWeight: 400 }}>
-                            {n}
-                          </div>
-                          <div className="mt-1 text-[9px] font-medium uppercase tracking-[0.22em]" style={{ color: "var(--color-mist)" }}>
-                            {label}
-                          </div>
-                        </div>
-                      ))}
+                    <div className="mt-3 flex items-baseline gap-3">
+                      <span className="font-display tabular-nums" style={{ color: "var(--color-emerald-deep)", fontSize: "44px", lineHeight: 1, fontWeight: 400 }}>
+                        {r.capacity}
+                      </span>
+                      <span className="text-[12px] font-medium uppercase tracking-[0.22em]" style={{ color: "var(--color-mist)" }}>
+                        guests
+                      </span>
                     </div>
-                    <p className="mt-2 text-[10px]" style={{ color: "var(--color-mist)" }}>
-                      Numbers show the maximum guests this room seats in each layout.
-                    </p>
                   </div>
 
                   <ul className="mt-7 space-y-2">
@@ -157,7 +145,7 @@ export function Conference() {
                   style={{ color: "var(--color-emerald-deep)" }}
                 >
                   <span className="h-px w-6" style={{ background: "var(--color-emerald-deep)" }} />
-                  Reserve {r.name}
+                  Inquire — {r.name}
                 </a>
               </article>
             </Reveal>
@@ -188,10 +176,10 @@ export function Conference() {
                     {t.tier}
                   </div>
                   <div
-                    className="mt-3 font-display tabular-nums"
-                    style={{ color: "var(--color-emerald-deep)", fontSize: "32px", lineHeight: 1, fontWeight: 400 }}
+                    className="mt-3 font-display"
+                    style={{ color: "var(--color-emerald-deep)", fontSize: "28px", lineHeight: 1, fontWeight: 400 }}
                   >
-                    {t.price}
+                    On request
                   </div>
                   <div className="mt-1 text-[10px]" style={{ color: "var(--color-mist)" }}>
                     per person

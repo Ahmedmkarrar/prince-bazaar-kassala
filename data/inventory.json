@@ -15,81 +15,98 @@
   ],
   "roomTypes": [
     {
-      "id": "royal",
+      "id": "single",
       "hotelId": "prince-plaza-kassala",
-      "name": { "en": "Royal Suite", "ar": "الجناح الملكي" },
-      "shortName": { "en": "Royal", "ar": "ملكي" },
-      "view": { "en": "Mountain or garden view", "ar": "إطلالة على الجبال أو الحديقة" },
-      "capacity": 2,
-      "sqm": 65,
-      "basePrice": 380,
+      "name": { "en": "Single Suite", "ar": "جناح فردي" },
+      "shortName": { "en": "Single", "ar": "فردي" },
+      "view": { "en": "One bed · garden or city view", "ar": "سرير واحد · إطلالة على الحديقة أو المدينة" },
+      "capacity": 1,
+      "sqm": 26,
+      "basePrice": 0,
       "currency": "USD",
-      "totalUnits": 12,
+      "totalUnits": 10,
       "description": {
-        "en": "King bed, climate-controlled comfort, hardwood floors, en-suite bathroom. Quietly elegant.",
-        "ar": "سرير كينغ، تكييف كامل، أرضيات خشبية، حمام داخلي. أناقة هادئة."
+        "en": "A comfortable single-bed suite. Inclusive of refrigerator, seating, towel and bathroom amenities.",
+        "ar": "جناح مريح بسرير فردي. يشمل ثلاجة، ومنطقة جلوس، ومناشف، ومستلزمات الحمام."
+      },
+      "image": "/hotel/room-single-padded.jpg"
+    },
+    {
+      "id": "double",
+      "hotelId": "prince-plaza-kassala",
+      "name": { "en": "Double Room", "ar": "غرفة مزدوجة" },
+      "shortName": { "en": "Double", "ar": "مزدوجة" },
+      "view": { "en": "One double bed", "ar": "سرير مزدوج واحد" },
+      "capacity": 2,
+      "sqm": 30,
+      "basePrice": 0,
+      "currency": "USD",
+      "totalUnits": 13,
+      "description": {
+        "en": "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities.",
+        "ar": "غرفة مزدوجة بسرير واحد. تشمل ثلاجة، ومنطقة جلوس، ومناشف، ومستلزمات الحمام."
       },
       "image": "/hotel/room-king-warm.jpg"
     },
     {
-      "id": "presidential",
+      "id": "twin",
       "hotelId": "prince-plaza-kassala",
-      "name": { "en": "Presidential Suite", "ar": "الجناح الرئاسي" },
-      "shortName": { "en": "Presidential", "ar": "رئاسي" },
-      "view": { "en": "Premium room with extended living area", "ar": "غرفة فاخرة مع منطقة جلوس موسعة" },
-      "capacity": 4,
-      "sqm": 140,
-      "basePrice": 720,
+      "name": { "en": "Twin Suite", "ar": "جناح بسريرين" },
+      "shortName": { "en": "Twin", "ar": "بسريرين" },
+      "view": { "en": "Two single beds", "ar": "سريران منفصلان" },
+      "capacity": 2,
+      "sqm": 32,
+      "basePrice": 0,
+      "currency": "USD",
+      "totalUnits": 22,
+      "description": {
+        "en": "A twin suite with two beds. Inclusive of refrigerator, seating, towel and bathroom amenities.",
+        "ar": "جناح بسريرين منفصلين. يشمل ثلاجة، ومنطقة جلوس، ومناشف، ومستلزمات الحمام."
+      },
+      "image": "/hotel/room-twin-gray.jpg"
+    },
+    {
+      "id": "three-bed",
+      "hotelId": "prince-plaza-kassala",
+      "name": { "en": "Three Bed Suite", "ar": "جناح بثلاثة أسرّة" },
+      "shortName": { "en": "Three Bed", "ar": "ثلاثة أسرّة" },
+      "view": { "en": "Three beds · ideal for families", "ar": "ثلاثة أسرّة · مثالي للعائلات" },
+      "capacity": 6,
+      "sqm": 55,
+      "basePrice": 0,
       "currency": "USD",
       "totalUnits": 4,
       "description": {
-        "en": "Spacious king-bed suite with extended living area and premium furnishings. Our flagship room.",
-        "ar": "جناح فسيح بسرير كينغ ومنطقة جلوس موسعة وتأثيث فاخر. جناحنا الرائد."
+        "en": "A spacious three-bed suite for families and groups. Inclusive of refrigerator, seating, towel and bathroom amenities.",
+        "ar": "جناح فسيح بثلاثة أسرّة للعائلات والمجموعات. يشمل ثلاجة، ومنطقة جلوس، ومناشف، ومستلزمات الحمام."
       },
-      "image": "/hotel/room-presidential.jpg"
-    },
-    {
-      "id": "family-suite",
-      "hotelId": "prince-plaza-kassala",
-      "name": { "en": "Family Suite", "ar": "جناح العائلة" },
-      "shortName": { "en": "Family", "ar": "عائلة" },
-      "view": { "en": "Multi-bed layout for families and small groups", "ar": "تصميم متعدد الأسرّة للعائلات والمجموعات الصغيرة" },
-      "capacity": 4,
-      "sqm": 110,
-      "basePrice": 520,
-      "currency": "USD",
-      "totalUnits": 6,
-      "description": {
-        "en": "Triple-bed configuration with in-room television, climate-controlled, fully furnished. Ideal for families and small groups.",
-        "ar": "تصميم بثلاثة أسرّة مع تلفاز داخلي، تكييف كامل، تأثيث شامل. مثالي للعائلات والمجموعات الصغيرة."
-      },
-      "image": "/hotel/room-family.jpg"
+      "image": "/hotel/room-triple.jpg"
     }
   ],
   "rooms": [
-    { "id": "royal", "name": "Royal Suite", "view": "Mountain or garden", "capacity": 2, "basePrice": 380, "currency": "USD", "description": "King bed, balcony, butler service, 65 m²" },
-    { "id": "presidential", "name": "Presidential Suite", "view": "Panoramic Taka", "capacity": 4, "basePrice": 720, "currency": "USD", "description": "Two bedrooms, private terrace, formal dining, 140 m²" }
+    { "id": "single", "name": "Single Suite", "view": "Garden or city", "capacity": 1, "basePrice": 0, "currency": "USD", "description": "One bed, refrigerator, seating, bathroom amenities, 26 m²" },
+    { "id": "three-bed", "name": "Three Bed Suite", "view": "Family layout", "capacity": 6, "basePrice": 0, "currency": "USD", "description": "Three beds, refrigerator, seating, bathroom amenities, 55 m²" }
   ],
   "conferenceRooms": [
     {
       "id": "atbara",
-      "name": "The Atbara Room",
-      "description": "Our flagship conference room, named after Sudan's eastern river. Live-translation booth, full AV, daylight on three sides.",
-      "capacity": { "theatre": 80, "boardroom": 30, "ushape": 25, "reception": 100 },
-      "halfDayPrice": 450,
-      "fullDayPrice": 800,
+      "name": "Events Pavilion",
+      "description": "Our larger events pavilion, good for up to 100 guests. Large screen, surround sound, and Wi-Fi throughout.",
+      "capacity": { "theatre": 100, "boardroom": 40, "ushape": 32, "reception": 100 },
+      "halfDayPrice": 0,
+      "fullDayPrice": 0,
       "currency": "USD",
-      "features": ["Live-translation booth (3 channels)", "4K projection + 86\" displays", "Daylight on three sides", "Adjacent breakout area"]
+      "features": ["Good for up to 100 guests", "Large projection screen", "Surround sound system", "Wi-Fi throughout"]
     },
     {
       "id": "gash",
-      "name": "The Gash Room",
-      "description": "An intimate, oak-panelled boardroom for sensitive meetings. Climate-controlled, soundproofed, with discreet service.",
-      "capacity": { "theatre": 30, "boardroom": 14, "ushape": 12, "reception": 40 },
-      "halfDayPrice": 280,
-      "fullDayPrice": 480,
+      "name": "Conference Room",
+      "description": "A dedicated conference room, good for up to 60 guests. Wi-Fi, projector, and a full sound system.",
+      "capacity": { "theatre": 60, "boardroom": 24, "ushape": 20, "reception": 60 },
+      "halfDayPrice": 0,
+      "fullDayPrice": 0,
       "currency": "USD",
-      "features": ["Oak-panelled, soundproofed", "Discreet service entrance", "Encrypted video conferencing", "Private antechamber"]
+      "features": ["Good for up to 60 guests", "Wi-Fi", "Projector", "Sound system"]
     }
   ],
   "addons": [
@@ -98,7 +115,6 @@
     { "id": "mountain-sunrise", "name": { "en": "Sunrise Tour · Taka Mountains", "ar": "جولة الشروق · جبال التاكا" }, "price": 120, "category": "experience", "active": true },
     { "id": "private-chef", "name": { "en": "Private Chef's Table", "ar": "طاولة الشيف الخاصة" }, "price": 240, "category": "dining", "active": true },
     { "id": "catering-package", "name": { "en": "Event Catering Package", "ar": "باقة تموين المناسبات" }, "price": 320, "category": "catering", "active": true },
-    { "id": "wellness-day", "name": { "en": "Wellness & Spa Day", "ar": "يوم العافية والسبا" }, "price": 180, "category": "wellness", "active": true },
     { "id": "oud-evening", "name": { "en": "Live Oud at Dinner", "ar": "عزف العود في العشاء" }, "price": 95, "category": "experience", "active": true }
   ],
   "availability": {},

@@ -44,19 +44,15 @@ function bookingMessageEn(b: Booking, h: Hotel): string {
   lines.push(`Nights: ${b.nights}    Guests: ${b.guests}`);
   lines.push("");
   lines.push(`Room: ${b.roomTypeId}`);
-  const nightly = b.nights > 0 ? Math.round(b.baseTotal / b.nights) : b.baseTotal;
-  lines.push(`Nightly: ${b.currency} ${nightly}`);
   if (b.addons.length > 0) {
     lines.push("");
-    lines.push("Add-ons:");
+    lines.push("Add-ons requested:");
     for (const a of b.addons) {
-      lines.push(`  · ${a.name} — ${b.currency} ${a.price}`);
+      lines.push(`  · ${a.name}`);
     }
   }
   lines.push("");
-  lines.push(`Rooms total:  ${b.currency} ${b.baseTotal}`);
-  if (b.addonsTotal > 0) lines.push(`Add-ons:      ${b.currency} ${b.addonsTotal}`);
-  lines.push(`Grand total:  ${b.currency} ${b.grandTotal}`);
+  lines.push("Rate: to be confirmed by our reservations team.");
   if (b.specialRequests) {
     lines.push("");
     lines.push(`Special requests: ${b.specialRequests}`);
@@ -83,15 +79,13 @@ function bookingMessageAr(b: Booking, h: Hotel): string {
   lines.push(`الغرفة: ${b.roomTypeId}`);
   if (b.addons.length > 0) {
     lines.push("");
-    lines.push("الإضافات:");
+    lines.push("الإضافات المطلوبة:");
     for (const a of b.addons) {
-      lines.push(`  · ${a.name} — ${b.currency} ${a.price}`);
+      lines.push(`  · ${a.name}`);
     }
   }
   lines.push("");
-  lines.push(`إجمالي الغرف: ${b.currency} ${b.baseTotal}`);
-  if (b.addonsTotal > 0) lines.push(`الإضافات: ${b.currency} ${b.addonsTotal}`);
-  lines.push(`الإجمالي: ${b.currency} ${b.grandTotal}`);
+  lines.push("السعر: سيؤكده فريق الحجوزات.");
   if (b.specialRequests) {
     lines.push("");
     lines.push(`طلبات خاصة: ${b.specialRequests}`);

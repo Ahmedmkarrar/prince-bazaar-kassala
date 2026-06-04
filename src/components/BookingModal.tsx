@@ -152,14 +152,6 @@ export function BookingModal() {
     () => availability?.options.find((o) => o.roomTypeId === selectedRoomTypeId),
     [availability, selectedRoomTypeId],
   );
-  const addonsTotal = useMemo(() => {
-    if (!availability) return 0;
-    return availability.addons
-      .filter((a) => selectedAddonIds.includes(a.id))
-      .reduce((s, a) => s + a.price, 0);
-  }, [availability, selectedAddonIds]);
-  const grandTotal = (selectedOption?.totalPrice ?? 0) + addonsTotal;
-  const currency = selectedOption?.currency ?? "USD";
 
   // Submit ──────────────────────────────────────────────────────────────
   const submit = async () => {
@@ -326,12 +318,12 @@ export function BookingModal() {
                   className={`text-[10px] font-medium uppercase tracking-[0.32em] ${isAr ? "font-arabic" : ""}`}
                   style={{ color: "var(--color-mist)" }}
                 >
-                  {selectedOption ? t("To discuss", "للمناقشة") : t("Select a room", "اختر غرفة")}
+                  {selectedOption ? t("Rates on request", "الأسعار عند الطلب") : t("Select a room", "اختر غرفة")}
                 </div>
                 {selectedOption ? (
                   <div className="mt-1 flex items-baseline gap-2">
-                    <span className="font-display text-[26px] sm:text-[30px]" style={{ color: "var(--color-royal-deep)" }}>
-                      {currency} {grandTotal.toLocaleString()}
+                    <span className={`font-display text-[20px] sm:text-[22px] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-royal-deep)" }}>
+                      {selectedOption.name[language]}
                     </span>
                     <span className={`text-[12px] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-stone)" }}>
                       · {availability?.nights} {t("nights", "ليلة")}
@@ -532,14 +524,11 @@ function SearchStep(props: {
                         </div>
                       </div>
                       <div className={`text-right ${isAr ? "text-left" : ""}`}>
-                        <div className="font-display text-[20px]" style={{ color: "var(--color-charcoal)" }}>
-                          {o.currency} {o.nightlyRate}
-                        </div>
                         <div
-                          className={`text-[10px] uppercase tracking-[0.22em] ${isAr ? "font-arabic" : ""}`}
-                          style={{ color: "var(--color-mist)" }}
+                          className={`text-[10px] font-medium uppercase tracking-[0.22em] ${isAr ? "font-arabic" : ""}`}
+                          style={{ color: "var(--color-gold)" }}
                         >
-                          {props.t("per night", "لكل ليلة")}
+                          {props.t("Rates on request", "الأسعار عند الطلب")}
                         </div>
                       </div>
                     </div>
@@ -600,7 +589,6 @@ function SearchStep(props: {
                       {displayName}
                     </span>
                   </span>
-                  <span className="font-display text-[14px]">USD {a.price}</span>
                 </label>
               );
             })}
@@ -736,8 +724,8 @@ function DetailsStep(props: {
               isAr={isAr}
             />
             <SummaryRow
-              label={t("Rooms total", "إجمالي الغرف")}
-              value={`${selectedOption.currency} ${selectedOption.totalPrice}`}
+              label={t("Rates", "الأسعار")}
+              value={t("On request", "عند الطلب")}
               isAr={isAr}
             />
             {availability.addons
@@ -746,7 +734,7 @@ function DetailsStep(props: {
                 <SummaryRow
                   key={a.id}
                   label={typeof a.name === "string" ? a.name : a.name[language]}
-                  value={`${selectedOption.currency} ${a.price}`}
+                  value={t("Added", "مُضاف")}
                   isAr={isAr}
                 />
               ))}

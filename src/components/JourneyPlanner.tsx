@@ -214,11 +214,8 @@ function CardList({
             </div>
             <div className={`flex flex-col items-end justify-between text-right ${isAr ? "items-start text-left" : ""}`}>
               <div>
-                <div className="font-display text-[24px]" style={{ color: "var(--color-royal-deep)" }}>
-                  ${item.priceUsd}
-                </div>
-                <div className={`mt-0.5 text-[10px] uppercase tracking-[0.28em] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-mist)" }}>
-                  {t("from", "من")}
+                <div className={`font-display text-[18px] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-royal-deep)" }}>
+                  {t("Rates on request", "الأسعار عند الطلب")}
                 </div>
               </div>
               <span className={`text-[11px] font-medium uppercase tracking-[0.28em] transition-all ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-gold)" }}>
@@ -425,7 +422,6 @@ function InquiryModal({
           "",
           `الخدمة: ${item.title.ar}`,
           `المدة: ${item.duration.ar}`,
-          `السعر التقريبي: $${item.priceUsd}`,
           "",
           `الاسم: ${name}`,
           `الهاتف: ${phone}`,
@@ -438,7 +434,6 @@ function InquiryModal({
           "",
           `Service: ${item.title.en}`,
           `Duration: ${item.duration.en}`,
-          `Indicative price: $${item.priceUsd}`,
           "",
           `Name: ${name}`,
           `Phone: ${phone}`,
@@ -487,7 +482,7 @@ function InquiryModal({
             style={{ background: "var(--color-bone-soft)", border: "1px solid var(--color-line)" }}
           >
             <div className={`text-[10px] font-medium uppercase tracking-[0.32em] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-gold)" }}>
-              {item.duration[language]} · ${item.priceUsd} {t("from", "من")}
+              {item.duration[language]} · {t("Rates on request", "الأسعار عند الطلب")}
             </div>
             <p className={`mt-3 text-[13px] leading-[1.85] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-stone)" }}>
               {item.description[language]}

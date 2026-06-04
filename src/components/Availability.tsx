@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Reveal } from "./Reveal";
-import { useI18n } from "@/lib/i18n";
 
 interface Option {
   id: string;
@@ -31,7 +30,6 @@ export function Availability() {
   const [checkOut, setCheckOut] = useState<string>("");
   const [result, setResult] = useState<Result | null>(null);
   const [loading, setLoading] = useState(false);
-  const { format, currency } = useI18n();
 
   useEffect(() => {
     setCheckIn(todayPlus(7));
@@ -79,7 +77,7 @@ export function Availability() {
             Choose your <em style={{ color: "var(--color-emerald-deep)" }}>dates</em>.
           </h2>
           <p className="mt-6 text-[16px] leading-[1.8]" style={{ color: "var(--color-stone)" }}>
-            Indicative availability and rates. Final pricing — including service, taxes, and any seasonal adjustments — is confirmed by our reservations team within four hours of your inquiry.
+            Indicative availability for your dates. Rates are confirmed by our reservations team within four hours of your inquiry.
           </p>
         </Reveal>
 
@@ -163,15 +161,13 @@ export function Availability() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className="text-[10px] font-medium uppercase tracking-[0.28em]" style={{ color: "var(--color-mist)" }}>
-                          From · {currency}
-                        </div>
-                        <div className="font-display" style={{ fontSize: "26px", color: "var(--color-royal-deep)", fontWeight: 400 }}>
-                          {format(o.nightlyFromUSD)}
-                        </div>
-                        <div className="text-[10px]" style={{ color: "var(--color-mist)" }}>
-                          per night · {format(o.totalUSD)} total
-                        </div>
+                        <a
+                          href="#book"
+                          className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.22em]"
+                          style={{ background: "var(--color-emerald-deep)", color: "var(--color-gold-pale)" }}
+                        >
+                          Inquire rates →
+                        </a>
                       </div>
                     </div>
                     <div className="mt-5 flex items-center justify-between">
@@ -186,7 +182,7 @@ export function Availability() {
                         className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em]"
                         style={{ color: "var(--color-emerald-deep)" }}
                       >
-                        Reserve →
+                        Inquire rates →
                       </a>
                     </div>
                   </div>

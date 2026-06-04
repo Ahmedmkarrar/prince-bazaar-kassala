@@ -2,11 +2,9 @@ export type ComplexId =
   | "royal-suites"
   | "commercial-plaza"
   | "business"
-  | "wellness"
   | "culinary"
   | "events"
   | "bazaar"
-  | "villas"
   | "tourism";
 
 export interface LocalisedText {
@@ -23,7 +21,7 @@ export interface ComplexNode {
 }
 
 // Complex listing follows the docx order and uses the docx descriptions verbatim.
-// Source: "Prince Plaza Kassala.docx" — Nine-Complex Experience.
+// Source: "Prince Plaza Kassala.docx" — Seven-Complex Experience.
 export const COMPLEXES: ComplexNode[] = [
   {
     id: "royal-suites",
@@ -56,28 +54,18 @@ export const COMPLEXES: ComplexNode[] = [
     image: "/hotel/room-single-desk.jpg",
   },
   {
-    id: "wellness",
-    number: "04",
-    name: { en: "Wellness & Spa", ar: "العافية والسبا" },
-    description: {
-      en: "A dedicated space hosting independent wellness and spa providers who offer their services to guests.",
-      ar: "مساحة مخصصة تستضيف مزوّدي خدمات العافية والسبا المستقلين الذين يقدّمون خدماتهم للضيوف.",
-    },
-    image: null,
-  },
-  {
     id: "culinary",
-    number: "05",
+    number: "04",
     name: { en: "Culinary Hub", ar: "مركز الطهي" },
     description: {
-      en: "Multiple dining venues serving a fusion of local Sudanese flavors and international cuisine.",
-      ar: "عدة منافذ طعام تقدم مزيجًا من النكهات السودانية المحلية والمأكولات العالمية.",
+      en: "A functional restaurant for a great dine-in experience, with in-room dining and room service throughout the property.",
+      ar: "مطعم متكامل لتجربة طعام رائعة داخل المطعم، مع خدمة الطعام في الغرف على مدار إقامتك.",
     },
     image: null,
   },
   {
     id: "events",
-    number: "06",
+    number: "05",
     name: { en: "Event Pavilions", ar: "أجنحة المناسبات" },
     description: {
       en: "Expansive spaces for weddings, conferences, and cultural celebrations.",
@@ -87,7 +75,7 @@ export const COMPLEXES: ComplexNode[] = [
   },
   {
     id: "bazaar",
-    number: "07",
+    number: "06",
     name: { en: "Bazaar", ar: "السوق" },
     description: {
       en: "From everyday essentials to unique treasures, our diverse range of stores has something for everyone.",
@@ -96,18 +84,8 @@ export const COMPLEXES: ComplexNode[] = [
     image: null,
   },
   {
-    id: "villas",
-    number: "08",
-    name: { en: "Villas", ar: "الفيلات" },
-    description: {
-      en: "Luxurious villas with garden and completely furnished.",
-      ar: "فيلات فاخرة بحدائق ومؤثثة بالكامل.",
-    },
-    image: "/hotel/room-family.jpg",
-  },
-  {
     id: "tourism",
-    number: "09",
+    number: "07",
     name: { en: "Tourism", ar: "السياحة" },
     description: {
       en: "Transport from and to airport plus destination of your dreams.",
@@ -186,8 +164,8 @@ export const COPY = {
     ar: "اختبر المعيار الجديد للفخامة الريفية",
   },
   welcome: {
-    en: "Welcome to Prince Plaza Kassala, a pioneering architectural landmark designed to redefine the landscape of Eastern Sudan. More than just a place to stay, our interconnected nine-complex destination is a catalyst for urbanization, bringing world-class sophistication and modern convenience to the breathtaking rural beauty of Kassala.",
-    ar: "أهلاً بكم في برنس بلازا كسلا، صرحٌ معماري رائد صُمم ليعيد تشكيل وجه شرق السودان. ليس مجرد مكان للإقامة، بل وجهة متكاملة من تسعة مجمعات مترابطة، وحافزٌ للتحضّر يجمع بين الرقي العالمي والراحة العصرية في قلب الجمال الريفي الخلاب لكسلا.",
+    en: "Welcome to Prince Plaza Kassala, a pioneering architectural landmark designed to redefine the landscape of Eastern Sudan. More than just a place to stay, our interconnected seven-complex destination is a catalyst for urbanization, bringing world-class sophistication and modern convenience to the breathtaking rural beauty of Kassala.",
+    ar: "أهلاً بكم في برنس بلازا كسلا، صرحٌ معماري رائد صُمم ليعيد تشكيل وجه شرق السودان. ليس مجرد مكان للإقامة، بل وجهة متكاملة من سبعة مجمعات مترابطة، وحافزٌ للتحضّر يجمع بين الرقي العالمي والراحة العصرية في قلب الجمال الريفي الخلاب لكسلا.",
   },
   vision_eyebrow: { en: "A Vision of Progress", ar: "رؤية للتقدّم" },
   vision_p1: {
@@ -198,10 +176,10 @@ export const COPY = {
     en: "Our complex is designed to spark local economic development while providing international travelers with a seamless, high-standard experience.",
     ar: "صُمم مجمعنا لإشعال التنمية الاقتصادية المحلية، مع تقديم تجربة سلسة وعالية المستوى للمسافرين الدوليين.",
   },
-  complex_eyebrow: { en: "The Nine-Complex Experience", ar: "تجربة المجمعات التسعة" },
+  complex_eyebrow: { en: "The Seven-Complex Experience", ar: "تجربة المجمعات السبعة" },
   complex_intro: {
-    en: "Our unique architecture consists of nine interconnected hubs, each curated to offer a specific facet of the modern lifestyle:",
-    ar: "تتألف هندستنا الفريدة من تسعة مجمعات مترابطة، كلٌّ منها مُصمَّم ليقدم وجهًا من وجوه الحياة العصرية:",
+    en: "Our unique architecture consists of seven interconnected hubs, each curated to offer a specific facet of the modern lifestyle:",
+    ar: "تتألف هندستنا الفريدة من سبعة مجمعات مترابطة، كلٌّ منها مُصمَّم ليقدم وجهًا من وجوه الحياة العصرية:",
   },
   amenities_eyebrow: { en: "Complete Amenities", ar: "وسائل راحة متكاملة" },
   amenities_intro: {
@@ -218,7 +196,7 @@ export const COPY = {
     ar: "انضمّ إلى ثورة المدن في كسلا. سواء جئت من أجل العمل أو الترفيه، أو لتكون جزءًا من مستقبل السودان، فإن برنس بلازا كسلا بوابتك إلى عهدٍ جديد.",
   },
   cta_book: { en: "Book Your Stay", ar: "احجز إقامتك" },
-  cta_explore: { en: "Explore the Complex and Villas", ar: "استكشف المجمع والفيلات" },
+  cta_explore: { en: "Explore Prince Plaza", ar: "استكشف برنس بلازا" },
 
   // Piedmont Travel and Tourism — verbatim client copy.
   piedmont_eyebrow: {

@@ -2,18 +2,32 @@ import { Reveal } from "./Reveal";
 
 const SUITES = [
   {
-    name: "Royal Suite",
-    capacity: "King · 2 guests",
-    view: "Climate-controlled comfort",
-    image: "/hotel/room-king-warm.jpg",
-    detail: "King bed, climate-controlled, hardwood floors, and a quiet, considered atmosphere. En-suite bathroom and twenty-four-hour reception.",
+    name: "Single Suite",
+    capacity: "1 bed · 1 guest · 10 rooms",
+    view: "Refrigerator, seating & amenities",
+    image: "/hotel/room-single-padded.jpg",
+    detail: "A comfortable single-bed suite. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
   },
   {
-    name: "Presidential Suite",
-    capacity: "King · up to 4 guests",
-    view: "Premium, extended layout",
-    image: "/hotel/room-presidential.jpg",
-    detail: "Our flagship room. Spacious king-bed suite with an extended living area, premium furnishings, and the same uncompromised attention given to every guest.",
+    name: "Double Room",
+    capacity: "1 double bed · 2 guests · 13 rooms",
+    view: "Refrigerator, seating & amenities",
+    image: "/hotel/room-king-warm.jpg",
+    detail: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+  },
+  {
+    name: "Twin Suite",
+    capacity: "2 beds · 2 guests · 22 rooms",
+    view: "Refrigerator, seating & amenities",
+    image: "/hotel/room-twin-gray.jpg",
+    detail: "A twin suite with two separate beds. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+  },
+  {
+    name: "Three Bed Suite",
+    capacity: "3 beds · up to 6 · 4 rooms",
+    view: "Refrigerator, seating & amenities",
+    image: "/hotel/room-triple.jpg",
+    detail: "A spacious three-bed suite for families and groups. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
   },
 ];
 
@@ -106,7 +120,7 @@ export function Suites() {
                     className="mt-7 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.2em]"
                     style={{ color: "var(--color-emerald-deep)" }}
                   >
-                    Reserve
+                    Inquire rates
                     <span aria-hidden>→</span>
                   </a>
                 </div>
