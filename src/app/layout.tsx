@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s · Prince Plaza Kassala",
   },
   description:
-    "A pioneering architectural landmark at the foot of the Taka Mountains. Royal Suites, Commercial Plaza, Business Centre, Wellness & Spa, Culinary Hub, Event Pavilions, Bazaar, Villas, Tourism — your gateway to Eastern Sudan's new era.",
+    "A pioneering architectural landmark at the foot of the Taka Mountains. Royal Suites, Commercial Plaza, Business Centre, Culinary Hub, Event Pavilions, Bazaar, Tourism — your gateway to Eastern Sudan's new era.",
   keywords: [
     "Prince Plaza Kassala",
     "Kassala hotel",
@@ -75,7 +75,7 @@ const HOTEL_LD = {
   name: "Prince Plaza Kassala",
   alternateName: "برنس بلازا كسلا",
   description:
-    "A pioneering architectural landmark at the foot of the Taka Mountains in Eastern Sudan. Nine interconnected complexes — Royal Suites, Commercial Plaza, Business Centre, Wellness & Spa, Culinary Hub, Event Pavilions, Bazaar, Villas, Tourism.",
+    "A pioneering architectural landmark at the foot of the Taka Mountains in Eastern Sudan. Seven interconnected complexes — Royal Suites, Commercial Plaza, Business Centre, Culinary Hub, Event Pavilions, Bazaar, Tourism.",
   url: "https://prince-bazaar.vercel.app",
   telephone: "+249-000-000-000",
   email: "Kassala@princehotel-sd.com",
@@ -100,8 +100,7 @@ const HOTEL_LD = {
   amenityFeature: [
     { "@type": "LocationFeatureSpecification", name: "High-speed Wi-Fi" },
     { "@type": "LocationFeatureSpecification", name: "24/7 Concierge & Security" },
-    { "@type": "LocationFeatureSpecification", name: "Wellness & Spa" },
-    { "@type": "LocationFeatureSpecification", name: "Multiple Dining Venues" },
+    { "@type": "LocationFeatureSpecification", name: "Restaurant & Room Service" },
     { "@type": "LocationFeatureSpecification", name: "Business Centre" },
     { "@type": "LocationFeatureSpecification", name: "Event Pavilions" },
     { "@type": "LocationFeatureSpecification", name: "Climate-controlled" },

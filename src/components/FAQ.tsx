@@ -48,7 +48,7 @@ const SECTIONS: { title: string; items: QA[] }[] = [
     items: [
       {
         q: "Is the property family-friendly?",
-        a: "Yes. Our Presidential Suite and Garden Villa layouts accommodate families. We offer in-room cribs, child-safe amenities, kid-curated menus at all dining venues, and a small daytime children's program.",
+        a: "Yes. Our Three Bed Suite accommodates families and small groups. We offer in-room cribs, child-safe amenities, kid-curated menus at the restaurant, and a small daytime children's program.",
       },
       {
         q: "Is the property wheelchair accessible?",

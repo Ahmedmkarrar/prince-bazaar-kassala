@@ -8,7 +8,6 @@ import { Story } from "@/components/Story";
 import { Loader } from "@/components/Loader";
 
 // Below-the-fold sections — load on demand to keep the initial bundle slim.
-const Awards = dynamic(() => import("@/components/Awards").then(m => ({ default: m.Awards })));
 const Interstitial = dynamic(() => import("@/components/Interstitial").then(m => ({ default: m.Interstitial })));
 const HorizontalPan = dynamic(() => import("@/components/HorizontalPan").then(m => ({ default: m.HorizontalPan })));
 const ComplexShowcase = dynamic(() => import("@/components/ComplexShowcase").then(m => ({ default: m.ComplexShowcase })));
@@ -40,7 +39,6 @@ export default function Home() {
       <Press />
       <LiveAtmosphere />
       <Story />
-      <Awards />
       <Interstitial
         image="/hotel/room-king-sunset.jpg"
         eyebrow="The Plaza"

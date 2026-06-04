@@ -47,7 +47,7 @@ export const SECTORS: Sector[] = [
     href: "/",
     image: "/sectors/prince-bazaar.jpeg",
     blurb:
-      "An integrated destination of suites, villas, dining and commerce at the foot of Kassala's iconic Taka Mountains. Eastern Sudan's new landmark.",
+      "An integrated destination of suites, dining and commerce at the foot of Kassala's iconic Taka Mountains. Eastern Sudan's new landmark.",
   },
 ];
 
