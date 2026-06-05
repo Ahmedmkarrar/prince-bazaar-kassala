@@ -46,37 +46,50 @@ export function Gallery() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
-          {GALLERY.map((src, i) => (
-            <Reveal key={src} delay={i * 60}>
-              <button
-                onClick={() => setActive(i)}
-                data-cursor="image"
-                className={`photo-warm group relative block w-full overflow-hidden rounded-sm ${
-                  i % 5 === 0 ? "row-span-2 aspect-portrait" : "aspect-square"
-                }`}
-                style={{
-                  backgroundImage: `url(${src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-                aria-label={`Open image ${i + 1}`}
-              >
-                <span
-                  className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0"
-                  style={{ background: "linear-gradient(180deg, transparent 50%, rgba(14,59,46,0.35) 100%)" }}
-                />
-                <span
-                  className="absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-full opacity-0 transition-opacity group-hover:opacity-100"
-                  style={{ background: "var(--color-ivory)", color: "var(--color-emerald-deep)" }}
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
+          {GALLERY.map((src, i) => {
+            const tall = i % 5 === 0;
+            return (
+              <Reveal key={src} delay={i * 60}>
+                <button
+                  onClick={() => setActive(i)}
+                  data-cursor="image"
+                  aria-label={`Open image ${i + 1}`}
+                  className={`group relative block w-full ${tall ? "row-span-2" : ""}`}
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M5 19 L19 5 M19 5 L19 13 M19 5 L11 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-              </button>
-            </Reveal>
-          ))}
+                  {/* Matted frame */}
+                  <div
+                    className="relative overflow-hidden rounded-md border p-[6px] transition-all duration-500
+                      [border-color:var(--color-line)] [background:var(--color-ivory)]
+                      [box-shadow:0_6px_20px_-10px_rgba(20,12,30,0.22)]
+                      group-hover:-translate-y-[5px] group-hover:[border-color:var(--color-gold)]
+                      group-hover:[box-shadow:0_26px_50px_-18px_rgba(14,59,46,0.34)]"
+                  >
+                    <div className={`relative overflow-hidden rounded-[3px] ${tall ? "aspect-portrait" : "aspect-square"}`}>
+                      <div
+                        className="photo-warm absolute inset-0 bg-cover bg-center transition-transform duration-[900ms] group-hover:scale-[1.07]"
+                        style={{ backgroundImage: `url(${src})` }}
+                      />
+                      {/* Bottom gradient for depth */}
+                      <span
+                        className="absolute inset-0"
+                        style={{ background: "linear-gradient(180deg, transparent 55%, rgba(14,59,46,0.4) 100%)" }}
+                      />
+                      {/* Expand icon */}
+                      <span
+                        className="absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-full opacity-0 transition-all duration-500 group-hover:opacity-100"
+                        style={{ background: "var(--color-ivory)", color: "var(--color-emerald-deep)" }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+                          <path d="M5 19 L19 5 M19 5 L19 13 M19 5 L11 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
 
@@ -128,10 +141,15 @@ export function Gallery() {
           </button>
 
           <div
-            className="relative max-h-full max-w-5xl overflow-hidden rounded-sm"
+            className="relative max-h-full max-w-5xl overflow-hidden rounded-md border p-[6px]"
+            style={{
+              borderColor: "var(--color-gold)",
+              background: "var(--color-ivory)",
+              boxShadow: "0 30px 80px -20px rgba(0,0,0,0.6)",
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={GALLERY[active]} alt="" className="block h-auto max-h-[80vh] w-full object-cover" />
+            <img src={GALLERY[active]} alt="" className="block h-auto max-h-[80vh] w-full rounded-[3px] object-cover" />
             <div
               className="absolute bottom-4 left-4 text-[10px] font-medium uppercase tracking-[0.32em]"
               style={{ color: "var(--color-gold-pale)" }}
