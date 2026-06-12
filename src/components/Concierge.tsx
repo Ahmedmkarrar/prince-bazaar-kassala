@@ -18,17 +18,24 @@ const SUGGESTIONS = [
   "Best time for a business retreat",
 ];
 
+// Bilingual language prompt appended to the opening greeting. We're in Sudan —
+// guests choose Arabic or English before anything else.
+const LANG_PROMPT =
+  "\n\nWould you prefer to continue in English or Arabic?\nهل تفضّل المتابعة بالعربية أم الإنجليزية؟";
+
 const DEFAULT_GREETING =
-  "Welcome — I'm Taka AI, your concierge at Prince Plaza Kassala. How may I make today exceptional?";
+  "Welcome — I'm Taka AI, your concierge at Prince Plaza Kassala." + LANG_PROMPT;
 
 function timeAwareGreeting(): string {
   if (typeof window === "undefined") return DEFAULT_GREETING;
   const hour = new Date().toLocaleString("en-GB", { hour: "2-digit", hour12: false, timeZone: "Africa/Khartoum" });
   const h = parseInt(hour, 10);
-  if (h >= 5 && h < 12) return "Good morning — I'm Taka AI, your concierge at Prince Plaza Kassala. The Taka spires are catching first light. How may I make today exceptional?";
-  if (h >= 12 && h < 17) return "Good afternoon — I'm Taka AI, your concierge at Prince Plaza Kassala. The courtyard fountains are running and tea is on. How may I help?";
-  if (h >= 17 && h < 21) return "Good evening — I'm Taka AI, your concierge at Prince Plaza Kassala. The rooftop is opening for service. How may I make tonight memorable?";
-  return "A quiet welcome — I'm Taka AI, your concierge at Prince Plaza Kassala. The lounge is still lit. How may I help you tonight?";
+  let g: string;
+  if (h >= 5 && h < 12) g = "Good morning — I'm Taka AI, your concierge at Prince Plaza Kassala. The Taka spires are catching first light.";
+  else if (h >= 12 && h < 17) g = "Good afternoon — I'm Taka AI, your concierge at Prince Plaza Kassala. The courtyard fountains are running and tea is on.";
+  else if (h >= 17 && h < 21) g = "Good evening — I'm Taka AI, your concierge at Prince Plaza Kassala. The rooftop is opening for service.";
+  else g = "A quiet welcome — I'm Taka AI, your concierge at Prince Plaza Kassala. The lounge is still lit.";
+  return g + LANG_PROMPT;
 }
 
 interface ConciergeProps {
@@ -517,6 +524,39 @@ function ConciergeBody(props: PanelProps | Omit<PanelProps, "open" | "onClose">)
         <div className="mt-8">
           <div
             className="text-[10px] font-medium uppercase tracking-[0.32em]"
+            style={{ color: "var(--color-mist)" }}
+          >
+            Choose a language · اختر لغتك
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button
+              onClick={() => onSuggestion("Let's continue in English, please.")}
+              className="rounded-full px-5 py-2 text-[13px] font-medium transition-all"
+              style={{
+                background: "var(--color-emerald-deep)",
+                color: "var(--color-gold-pale)",
+                border: "1px solid var(--color-emerald-deep)",
+              }}
+            >
+              English
+            </button>
+            <button
+              onClick={() => onSuggestion("لنواصل بالعربية من فضلك.")}
+              dir="rtl"
+              lang="ar"
+              className="font-arabic rounded-full px-5 py-2 text-[14px] font-medium transition-all"
+              style={{
+                background: "var(--color-emerald-deep)",
+                color: "var(--color-gold-pale)",
+                border: "1px solid var(--color-emerald-deep)",
+              }}
+            >
+              العربية
+            </button>
+          </div>
+
+          <div
+            className="mt-6 text-[10px] font-medium uppercase tracking-[0.32em]"
             style={{ color: "var(--color-mist)" }}
           >
             Try asking
