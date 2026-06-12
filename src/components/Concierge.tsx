@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
 type ToolCall = { name: string; input: Record<string, unknown>; result?: Record<string, unknown> };
 
@@ -544,10 +545,8 @@ function ConciergeBody(props: PanelProps | Omit<PanelProps, "open" | "onClose">)
 
 function ToolBadge({ name }: { name: string }) {
   const label =
-    name === "check_availability"
-      ? "Checking suite availability"
-      : name === "save_inquiry"
-      ? "Logging your inquiry"
+    name === "whatsapp_handoff"
+      ? "Connecting you to our team"
       : name === "recommend_experience"
       ? "Curating your recommendation"
       : "Working";
@@ -611,27 +610,14 @@ function Bubble({ message, streaming }: { message: ChatMessage; streaming?: bool
 }
 
 function ToolCard({ call }: { call: ToolCall }) {
-  if (call.name === "check_availability") {
+  if (call.name === "whatsapp_handoff") {
+    const url = (call.result?.whatsapp_url as string) ?? WHATSAPP_URL;
     return (
       <GenCard
-        eyebrow="Availability"
-        title="Indicative Suite Options"
-        accent="A reservations specialist will confirm exact availability and rates within 4 hours."
-        rows={[
-          { label: "Royal Suite (Mountain View)", caption: "King bed · balcony · butler" },
-          { label: "Presidential Suite", caption: "2 bedrooms · terrace · dining" },
-          { label: "Garden Villa", caption: "2 bedrooms · walled garden · optional chef" },
-        ]}
-      />
-    );
-  }
-  if (call.name === "save_inquiry") {
-    const ref = (call.result?.reference as string) ?? "PB-—";
-    return (
-      <GenCard
-        eyebrow="Inquiry Captured"
-        title={`Reference ${ref}`}
-        accent="Our reservations team will reply within 4 hours with a tailored proposal."
+        eyebrow="Ready on WhatsApp"
+        title="Continue with our team"
+        accent="I've prepared your request. Tap below to open WhatsApp — our front office confirms dates, rates and everything else there."
+        cta={{ href: url, label: "Open WhatsApp" }}
       />
     );
   }
@@ -652,11 +638,13 @@ function GenCard({
   title,
   accent,
   rows,
+  cta,
 }: {
   eyebrow: string;
   title: string;
   accent: string;
   rows?: { label: string; caption: string }[];
+  cta?: { href: string; label: string };
 }) {
   return (
     <div
@@ -682,6 +670,18 @@ function GenCard({
       <div className="mt-3 text-[12px] leading-[1.6]" style={{ color: "var(--color-stone)" }}>
         {accent}
       </div>
+      {cta ? (
+        <a
+          href={cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em]"
+          style={{ background: "var(--color-emerald-deep)", color: "var(--color-gold-pale)" }}
+        >
+          {cta.label}
+          <span aria-hidden>→</span>
+        </a>
+      ) : null}
     </div>
   );
 }

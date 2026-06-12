@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { useI18n } from "@/lib/i18n";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
 const LINKS = [
   { href: "#complex", en: "The Complex", ar: "المجمعات" },
@@ -69,7 +70,7 @@ export function Nav() {
               color: overHero ? "#0A0A0A" : "var(--color-gold-pale)",
             }}
           >
-            {t("Reserve", "احجز")}
+            {t("WhatsApp", "واتساب")}
           </button>
         </div>
 
@@ -113,8 +114,8 @@ export function Nav() {
                 <a href="#concierge" onClick={() => setOpen(false)} className="btn-ghost flex-1 justify-center">
                   Ask AI
                 </a>
-                <a href="#book" onClick={() => setOpen(false)} className="btn-primary flex-1 justify-center">
-                  Book
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="btn-primary flex-1 justify-center">
+                  WhatsApp
                 </a>
               </div>
             </div>

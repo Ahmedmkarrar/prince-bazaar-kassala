@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { CONCIERGE_SYSTEM, CONCIERGE_TOOLS } from "@/lib/concierge-system";
-import { appendInquiry, availabilityFor, type Inquiry } from "@/lib/data";
+import { whatsappLink } from "@/lib/whatsapp";
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -36,23 +36,8 @@ interface RecommendInput {
   duration?: string;
 }
 
-interface AvailabilityInput {
-  check_in?: string;
-  check_out?: string;
-  guests?: number;
-}
-
-interface InquiryToolInput {
-  name?: string;
-  email?: string;
-  phone?: string;
-  category?: string;
-  check_in?: string;
-  check_out?: string;
-  guests?: number;
-  conference_room?: string;
-  addons?: string[];
-  message?: string;
+interface HandoffInput {
+  summary?: string;
 }
 
 async function runTool(name: string, input: unknown): Promise<string> {
@@ -63,34 +48,14 @@ async function runTool(name: string, input: unknown): Promise<string> {
     return JSON.stringify({ recommendation: body, duration: i.duration ?? "half_day" });
   }
 
-  if (name === "check_availability") {
-    const i = input as AvailabilityInput;
-    if (!i.check_in || !i.check_out) {
-      return JSON.stringify({ error: "check_in and check_out required" });
-    }
-    const result = await availabilityFor(i.check_in, i.check_out);
-    return JSON.stringify(result);
-  }
-
-  if (name === "save_inquiry") {
-    const i = input as InquiryToolInput;
-    const reference = `PB-${Date.now().toString(36).toUpperCase()}`;
-    const inquiry: Inquiry = {
-      id: reference,
-      name: i.name ?? "",
-      email: i.email ?? "",
-      phone: i.phone,
-      category: i.category ?? "general",
-      checkIn: i.check_in,
-      checkOut: i.check_out,
-      guests: i.guests,
-      conferenceRoom: i.conference_room,
-      addons: i.addons,
-      message: i.message ?? "",
-      ts: new Date().toISOString(),
-    };
-    await appendInquiry(inquiry);
-    return JSON.stringify({ status: "captured", reference });
+  // The only "booking" path now: hand the guest to the front office on
+  // WhatsApp with their request pre-filled into the first message.
+  if (name === "whatsapp_handoff") {
+    const i = input as HandoffInput;
+    const summary =
+      i.summary?.trim() ||
+      "Marhaba — I'd like to enquire about a stay at Prince Plaza Kassala.";
+    return JSON.stringify({ whatsapp_url: whatsappLink(summary), prefilled: summary });
   }
 
   return JSON.stringify({ error: `Unknown tool: ${name}` });

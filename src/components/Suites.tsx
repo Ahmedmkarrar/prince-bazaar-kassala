@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
 const SUITES = [
   {
@@ -116,7 +117,9 @@ export function Suites() {
                     {s.detail}
                   </p>
                   <a
-                    href="#book"
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-7 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.2em]"
                     style={{ color: "var(--color-emerald-deep)" }}
                   >

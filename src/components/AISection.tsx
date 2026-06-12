@@ -40,13 +40,13 @@ export function AISection() {
               className="mt-8 max-w-md text-[16px] leading-[1.8]"
               style={{ color: "rgba(255, 255, 255, 0.72)" }}
             >
-              Powered by Claude, fluent in Arabic and English. Taka AI books your suite, plans your tour, captures your wedding brief, and quietly hands every detail to a human team that follows up within four hours.
+              Powered by Claude, fluent in Arabic and English. Taka AI answers your questions, plans your tour, shapes your wedding brief, then hands you straight to our front office on WhatsApp to confirm everything.
             </p>
 
             <div className="mt-10 space-y-6">
               {[
-                ["Real-time inquiries", "Suite availability, event capacity, dining hours."],
-                ["Effortless booking", "Captures your details, a specialist confirms within four hours."],
+                ["Real-time answers", "Suites, event capacity, dining hours, the mountains."],
+                ["Seamless handover", "Your request, pre-filled into a WhatsApp chat with our team."],
                 ["Tour curation", "Mountain expeditions, cultural walks, wellness rituals — tailored."],
                 ["Multilingual hospitality", "Reply in Arabic, English, or your preferred language."],
               ].map(([title, body]) => (

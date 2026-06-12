@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Logo } from "./Logo";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
 export function Footer() {
   return (
@@ -16,7 +17,7 @@ export function Footer() {
               A pioneering seven-complex destination at the foot of the Taka Mountains. A Shahad Group destination, redefining hospitality across Eastern Sudan.
             </p>
             <div className="mt-8 flex gap-3">
-              <a href="#book" className="btn-gold">Reserve</a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-gold">Chat on WhatsApp</a>
               <a href="#concierge" className="btn-ghost" style={{ borderColor: "rgba(239,224,191,0.35)", color: "var(--color-gold-pale)" }}>
                 Ask AI
               </a>
@@ -27,13 +28,13 @@ export function Footer() {
             <FooterLink href="#story">Our Story</FooterLink>
             <FooterLink href="#complex">The Complex</FooterLink>
             <FooterLink href="#tourism">Tourism</FooterLink>
-            <FooterLink href="#book">Reservations</FooterLink>
+            <FooterLink href={WHATSAPP_URL}>Reservations</FooterLink>
           </FooterCol>
 
           <FooterCol title="Stay">
             <FooterLink href="#suites">Royal Suite</FooterLink>
             <FooterLink href="#suites">Presidential</FooterLink>
-            <FooterLink href="#availability">Availability</FooterLink>
+            <FooterLink href={WHATSAPP_URL}>Check Rates</FooterLink>
             <FooterLink href="#conference">Conference</FooterLink>
           </FooterCol>
 

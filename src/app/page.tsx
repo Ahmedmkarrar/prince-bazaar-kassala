@@ -12,7 +12,6 @@ const Interstitial = dynamic(() => import("@/components/Interstitial").then(m =>
 const HorizontalPan = dynamic(() => import("@/components/HorizontalPan").then(m => ({ default: m.HorizontalPan })));
 const ComplexShowcase = dynamic(() => import("@/components/ComplexShowcase").then(m => ({ default: m.ComplexShowcase })));
 const Suites = dynamic(() => import("@/components/Suites").then(m => ({ default: m.Suites })));
-const Availability = dynamic(() => import("@/components/Availability").then(m => ({ default: m.Availability })));
 const SudanMap = dynamic(() => import("@/components/SudanMap").then(m => ({ default: m.SudanMap })));
 const Tourism = dynamic(() => import("@/components/Tourism").then(m => ({ default: m.Tourism })));
 const Conference = dynamic(() => import("@/components/Conference").then(m => ({ default: m.Conference })));
@@ -20,14 +19,12 @@ const AISection = dynamic(() => import("@/components/AISection").then(m => ({ de
 const Amenities = dynamic(() => import("@/components/Amenities").then(m => ({ default: m.Amenities })));
 const Gallery = dynamic(() => import("@/components/Gallery").then(m => ({ default: m.Gallery })));
 const FAQ = dynamic(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
-const BookingForm = dynamic(() => import("@/components/BookingForm").then(m => ({ default: m.BookingForm })));
 const Footer = dynamic(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 const CeoMessage = dynamic(() => import("@/components/CeoMessage").then(m => ({ default: m.CeoMessage })));
 const Piedmont = dynamic(() => import("@/components/Piedmont").then(m => ({ default: m.Piedmont })));
 const JourneyPlanner = dynamic(() => import("@/components/JourneyPlanner").then(m => ({ default: m.JourneyPlanner })));
 const Concierge = dynamic(() => import("@/components/Concierge").then(m => ({ default: m.Concierge })));
-const StickyReserve = dynamic(() => import("@/components/StickyReserve").then(m => ({ default: m.StickyReserve })));
-const BookingModal = dynamic(() => import("@/components/BookingModal").then(m => ({ default: m.BookingModal })));
+const WhatsAppReserve = dynamic(() => import("@/components/WhatsAppReserve").then(m => ({ default: m.WhatsAppReserve })));
 
 export default function Home() {
   return (
@@ -48,7 +45,6 @@ export default function Home() {
       <HorizontalPan />
       <ComplexShowcase />
       <Suites />
-      <Availability />
       <SudanMap />
       <Tourism />
       <Piedmont />
@@ -59,11 +55,9 @@ export default function Home() {
       <Amenities />
       <Gallery />
       <FAQ />
-      <BookingForm />
       <Footer />
       <Concierge />
-      <StickyReserve />
-      <BookingModal />
+      <WhatsAppReserve />
     </main>
   );
 }

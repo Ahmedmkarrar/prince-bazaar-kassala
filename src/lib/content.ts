@@ -195,7 +195,7 @@ export const COPY = {
     en: "Join the Urban Revolution in Kassala. Whether you are here for business, leisure, or to be a part of Sudan's future, Prince Plaza Kassala is your gateway to a new era.",
     ar: "انضمّ إلى ثورة المدن في كسلا. سواء جئت من أجل العمل أو الترفيه، أو لتكون جزءًا من مستقبل السودان، فإن برنس بلازا كسلا بوابتك إلى عهدٍ جديد.",
   },
-  cta_book: { en: "Book Your Stay", ar: "احجز إقامتك" },
+  cta_book: { en: "Chat on WhatsApp", ar: "تواصل عبر واتساب" },
   cta_explore: { en: "Explore Prince Plaza", ar: "استكشف برنس بلازا" },
 
   // Piedmont Travel and Tourism — verbatim client copy.

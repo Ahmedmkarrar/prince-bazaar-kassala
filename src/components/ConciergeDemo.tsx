@@ -15,8 +15,8 @@ const SCRIPT: Turn[] = [
   },
   {
     role: "assistant",
-    text: "A pleasure — let me check our December availability and put together something quietly extraordinary.",
-    tool: "check_availability",
+    text: "A pleasure — let me put together something quietly extraordinary for those December dates.",
+    tool: "recommend_experience",
   },
   {
     role: "assistant",
@@ -28,8 +28,8 @@ const SCRIPT: Turn[] = [
   },
   {
     role: "assistant",
-    text: "Of course. A private cake from our pastry chef, a candle-lit corner of the courtyard, and an oud player at sunset. I'll capture the brief now — you'll hear from our reservations specialist within four hours.",
-    tool: "save_inquiry",
+    text: "Of course. A private cake from our pastry chef, a candle-lit corner of the courtyard, and an oud player at sunset. I've prepared your brief — tap through to WhatsApp and our front office will confirm every detail.",
+    tool: "whatsapp_handoff",
   },
 ];
 
@@ -167,10 +167,10 @@ export function ConciergeDemo() {
                     style={{ color: "rgba(233, 199, 123, 0.7)" }}
                   >
                     ◇{" "}
-                    {turn.tool === "check_availability"
-                      ? "Checked availability · 3 options"
-                      : turn.tool === "save_inquiry"
-                      ? "Inquiry captured · PB-K9D2X"
+                    {turn.tool === "recommend_experience"
+                      ? "Curated · sunrise tour + dinner"
+                      : turn.tool === "whatsapp_handoff"
+                      ? "Handed to our team · WhatsApp"
                       : "Tool used"}
                   </span>
                 </div>

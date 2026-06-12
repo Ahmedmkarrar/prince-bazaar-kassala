@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "./Reveal";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
 const OCCASIONS = [
   {
@@ -148,7 +149,7 @@ export function EventsShowcase() {
               about what you have in mind. A member of the family will reply within the
               business day.
             </p>
-            <a href="#book" className="btn-primary">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
               Enquire About an Event
             </a>
           </div>

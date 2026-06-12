@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
 interface ConferenceRoomCard {
   id: string;
@@ -140,7 +141,9 @@ export function Conference() {
                 </div>
 
                 <a
-                  href="#book"
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-8 inline-flex items-center gap-2 self-start text-[11px] font-medium uppercase tracking-[0.22em]"
                   style={{ color: "var(--color-emerald-deep)" }}
                 >

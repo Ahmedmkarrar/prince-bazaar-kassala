@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Reveal } from "./Reveal";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
 interface Node {
   id: string;
@@ -378,7 +379,9 @@ export function ComplexMap() {
               </div>
 
               <a
-                href="#book"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em]"
                 style={{ color: "var(--color-emerald-deep)" }}
               >
