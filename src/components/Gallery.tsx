@@ -3,8 +3,12 @@
 import { useEffect, useState } from "react";
 import { GALLERY } from "@/lib/content";
 import { Reveal } from "./Reveal";
+import { useI18n } from "@/lib/i18n";
 
 export function Gallery() {
+  const { t } = useI18n();
+  const { language } = useI18n();
+  const isAr = language === "ar";
   const [active, setActive] = useState<number | null>(null);
 
   useEffect(() => {
@@ -19,21 +23,21 @@ export function Gallery() {
   }, [active]);
 
   return (
-    <section className="relative px-6 py-32 lg:px-12 lg:py-44">
+    <section className="relative px-6 py-32 lg:px-12 lg:py-44" dir={isAr ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="mb-16 flex items-end justify-between">
           <div>
             <div className="flex items-center gap-3">
               <span className="h-px w-10" style={{ background: "var(--color-gold)" }} />
               <span
-                className="text-[10px] font-medium uppercase tracking-[0.42em]"
+                className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
                 style={{ color: "var(--color-mist)" }}
               >
-                In Frame
+                {t("In Frame", "في الإطار")}
               </span>
             </div>
             <h2
-              className="mt-8 font-display tracking-[-0.015em]"
+              className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "var(--color-charcoal)",
                 lineHeight: 1.02,
@@ -41,7 +45,11 @@ export function Gallery() {
                 fontWeight: 400,
               }}
             >
-              Moments at <em style={{ color: "var(--color-emerald-deep)" }}>Prince Plaza</em>.
+              {isAr ? (
+                <>لحظات في <em className="not-italic" style={{ color: "var(--color-emerald-deep)" }}>برنس بلازا</em>.</>
+              ) : (
+                <>Moments at <em style={{ color: "var(--color-emerald-deep)" }}>Prince Plaza</em>.</>
+              )}
             </h2>
           </div>
         </Reveal>

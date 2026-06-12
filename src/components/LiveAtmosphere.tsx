@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/lib/i18n";
+
+type L = { en: string; ar: string };
 
 export function LiveAtmosphere() {
+  const { language, t } = useI18n();
+  const isAr = language === "ar";
   const [hour, setHour] = useState<number | null>(null);
 
   useEffect(() => {
@@ -27,6 +32,7 @@ export function LiveAtmosphere() {
     <section
       className="border-y px-6 py-8 lg:px-12"
       style={{ borderColor: "var(--color-line)", background: "var(--color-bone-soft)" }}
+      dir={isAr ? "rtl" : "ltr"}
     >
       <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 items-center gap-6 sm:grid-cols-12">
@@ -40,28 +46,28 @@ export function LiveAtmosphere() {
                 <span className="relative h-2 w-2 rounded-full" style={{ background: "#5FCB8B" }} />
               </span>
               <span
-                className="text-[10px] font-medium uppercase tracking-[0.42em]"
+                className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
                 style={{ color: "var(--color-charcoal)" }}
               >
-                Live · Right Now in Kassala
+                {t("Live · Right Now in Kassala", "مباشر · الآن في كسلا")}
               </span>
             </div>
           </div>
           <div className="sm:col-span-9">
             <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
               {items.map((it, i) => (
-                <li key={it.label} className="flex items-center gap-3">
+                <li key={it.label.en} className="flex items-center gap-3">
                   <span
-                    className="text-[11px]"
-                    style={{ color: "var(--color-charcoal)", fontFamily: "var(--font-display)", fontSize: "15px" }}
+                    className={`text-[11px] ${isAr ? "font-arabic" : ""}`}
+                    style={{ color: "var(--color-charcoal)", fontFamily: isAr ? undefined : "var(--font-display)", fontSize: "15px" }}
                   >
-                    {it.label}
+                    {it.label[language]}
                   </span>
                   <span
-                    className="text-[10px] font-medium uppercase tracking-[0.28em]"
+                    className={`text-[10px] font-medium uppercase tracking-[0.28em] ${isAr ? "font-arabic" : ""}`}
                     style={{ color: it.status === "open" ? "var(--color-emerald-deep)" : "var(--color-mist)" }}
                   >
-                    · {it.value}
+                    · {it.value[language]}
                   </span>
                   {i < items.length - 1 ? (
                     <span className="hidden h-1 w-1 rounded-full sm:inline-block" style={{ background: "var(--color-gold)" }} />
@@ -76,27 +82,27 @@ export function LiveAtmosphere() {
   );
 }
 
-function currentlyHappening(hour: number): { label: string; value: string; status: "open" | "info" }[] {
-  const out: { label: string; value: string; status: "open" | "info" }[] = [];
+function currentlyHappening(hour: number): { label: L; value: L; status: "open" | "info" }[] {
+  const out: { label: L; value: L; status: "open" | "info" }[] = [];
 
   // Weather (seasonally inflected, but simple)
-  out.push({ label: "32° clear", value: "Desert evening", status: "info" });
+  out.push({ label: { en: "32° clear", ar: "٣٢° صافٍ" }, value: { en: "Desert evening", ar: "أمسية صحراوية" }, status: "info" });
 
   if (hour >= 6 && hour < 10) {
-    out.push({ label: "Courtyard", value: "Breakfast served", status: "open" });
-    out.push({ label: "Wellness", value: "Hammam open", status: "open" });
+    out.push({ label: { en: "Courtyard", ar: "الفناء" }, value: { en: "Breakfast served", ar: "الإفطار يُقدَّم" }, status: "open" });
+    out.push({ label: { en: "Wellness", ar: "العافية" }, value: { en: "Hammam open", ar: "الحمّام مفتوح" }, status: "open" });
   } else if (hour >= 10 && hour < 14) {
-    out.push({ label: "Bazaar", value: "Open", status: "open" });
-    out.push({ label: "Café", value: "Lunch served", status: "open" });
+    out.push({ label: { en: "Bazaar", ar: "السوق" }, value: { en: "Open", ar: "مفتوح" }, status: "open" });
+    out.push({ label: { en: "Café", ar: "المقهى" }, value: { en: "Lunch served", ar: "الغداء يُقدَّم" }, status: "open" });
   } else if (hour >= 14 && hour < 18) {
-    out.push({ label: "Wellness", value: "Treatments available", status: "open" });
-    out.push({ label: "Pool", value: "Open", status: "open" });
+    out.push({ label: { en: "Wellness", ar: "العافية" }, value: { en: "Treatments available", ar: "الجلسات متاحة" }, status: "open" });
+    out.push({ label: { en: "Pool", ar: "المسبح" }, value: { en: "Open", ar: "مفتوح" }, status: "open" });
   } else if (hour >= 18 && hour < 23) {
-    out.push({ label: "Rooftop", value: "Dinner service", status: "open" });
-    out.push({ label: "Lounge", value: "Live oud at 21:00", status: "info" });
+    out.push({ label: { en: "Rooftop", ar: "السطح" }, value: { en: "Dinner service", ar: "خدمة العشاء" }, status: "open" });
+    out.push({ label: { en: "Lounge", ar: "الصالة" }, value: { en: "Live oud at 21:00", ar: "عود مباشر ٢١:٠٠" }, status: "info" });
   } else {
-    out.push({ label: "Night Concierge", value: "On duty", status: "open" });
-    out.push({ label: "Dawn tour", value: "Departs 05:30", status: "info" });
+    out.push({ label: { en: "Night Concierge", ar: "كونسيرج الليل" }, value: { en: "On duty", ar: "في الخدمة" }, status: "open" });
+    out.push({ label: { en: "Dawn tour", ar: "جولة الفجر" }, value: { en: "Departs 05:30", ar: "تنطلق ٠٥:٣٠" }, status: "info" });
   }
 
   return out;

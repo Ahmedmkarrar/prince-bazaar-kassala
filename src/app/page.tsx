@@ -38,9 +38,9 @@ export default function Home() {
       <Story />
       <Interstitial
         image="/hotel/room-king-sunset.jpg"
-        eyebrow="The Plaza"
-        line1="Quiet comfort, climate-controlled."
-        line2="Considered details, throughout."
+        eyebrow={{ en: "The Plaza", ar: "البلازا" }}
+        line1={{ en: "Quiet comfort, climate-controlled.", ar: "راحة هادئة، بتكييف كامل." }}
+        line2={{ en: "Considered details, throughout.", ar: "تفاصيل مدروسة، في كل ركن." }}
       />
       <HorizontalPan />
       <ComplexShowcase />

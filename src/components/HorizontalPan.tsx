@@ -1,48 +1,68 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/lib/i18n";
+
+type L = { en: string; ar: string };
 
 interface Vignette {
   image: string;
-  eyebrow: string;
-  caption: string;
+  eyebrow: L;
+  caption: L;
   number: string;
 }
 
 const VIGNETTES: Vignette[] = [
   {
     number: "i",
-    eyebrow: "The King Suite",
-    caption: "Climate-controlled comfort, hardwood floors, and a quiet that feels rare.",
+    eyebrow: { en: "The King Suite", ar: "جناح بسرير كبير" },
+    caption: {
+      en: "Climate-controlled comfort, hardwood floors, and a quiet that feels rare.",
+      ar: "راحة بتكييف كامل، أرضيات خشبية، وهدوء نادر.",
+    },
     image: "/hotel/room-king-warm.jpg",
   },
   {
     number: "ii",
-    eyebrow: "The Presidential",
-    caption: "Spacious king-bed suite with extended living area and premium furnishings.",
+    eyebrow: { en: "The Double", ar: "الغرفة المزدوجة" },
+    caption: {
+      en: "Spacious double room with an extended living area and premium furnishings.",
+      ar: "غرفة مزدوجة واسعة بمساحة معيشة ممتدة وأثاث فاخر.",
+    },
     image: "/hotel/room-presidential.jpg",
   },
   {
     number: "iii",
-    eyebrow: "The Twin",
-    caption: "Two beds, considered details, and the same uncompromised standard.",
+    eyebrow: { en: "The Twin", ar: "الجناح بسريرين" },
+    caption: {
+      en: "Two beds, considered details, and the same uncompromised standard.",
+      ar: "سريران، تفاصيل مدروسة، والمعيار ذاته دون تنازل.",
+    },
     image: "/hotel/room-twin-cream.jpg",
   },
   {
     number: "iv",
-    eyebrow: "Family Suite",
-    caption: "Triple-bed layout, in-room television, ideal for families and small groups.",
+    eyebrow: { en: "Three Bed Suite", ar: "جناح بثلاثة أسرّة" },
+    caption: {
+      en: "Triple-bed layout, in-room television, ideal for families and small groups.",
+      ar: "ثلاثة أسرّة، تلفاز في الغرفة، مثالي للعائلات والمجموعات الصغيرة.",
+    },
     image: "/hotel/room-family.jpg",
   },
   {
     number: "v",
-    eyebrow: "Sunset Room",
-    caption: "Warm evening light through the curtains. Quiet, considered, ours.",
+    eyebrow: { en: "Sunset Room", ar: "غرفة الغروب" },
+    caption: {
+      en: "Warm evening light through the curtains. Quiet, considered, ours.",
+      ar: "ضوء مسائي دافئ عبر الستائر. هادئة، مدروسة، خاصّة بنا.",
+    },
     image: "/hotel/room-king-sunset.jpg",
   },
 ];
 
 export function HorizontalPan() {
+  const { language, t } = useI18n();
+  const isAr = language === "ar";
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -113,13 +133,13 @@ export function HorizontalPan() {
                     {v.number}
                   </div>
                   <div
-                    className="mt-6 text-[10px] font-medium uppercase tracking-[0.42em]"
+                    className={`mt-6 text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
                     style={{ color: "rgba(255,255,255,0.78)" }}
                   >
-                    {v.eyebrow}
+                    {v.eyebrow[language]}
                   </div>
                   <p
-                    className="mt-5 font-display tracking-[-0.01em]"
+                    className={`mt-5 tracking-[-0.01em] ${isAr ? "font-arabic" : "font-display"}`}
                     style={{
                       color: "#FFFFFF",
                       fontSize: "clamp(28px, 3.4vw, 52px)",
@@ -127,15 +147,15 @@ export function HorizontalPan() {
                       fontWeight: 400,
                     }}
                   >
-                    {v.caption}
+                    {v.caption[language]}
                   </p>
                 </div>
               </div>
               <div
-                className="absolute bottom-12 right-12 text-[10px] font-medium uppercase tracking-[0.42em]"
+                className={`absolute bottom-12 right-12 text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
-                Plate {i + 1} of {VIGNETTES.length}
+                {isAr ? `اللوحة ${i + 1} من ${VIGNETTES.length}` : `Plate ${i + 1} of ${VIGNETTES.length}`}
               </div>
             </div>
           ))}
@@ -145,10 +165,10 @@ export function HorizontalPan() {
         <div className="absolute bottom-8 left-12 right-12 z-20">
           <div className="flex items-center gap-4">
             <span
-              className="text-[10px] font-medium uppercase tracking-[0.42em]"
+              className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
-              The Property
+              {t("The Property", "المنشأة")}
             </span>
             <div className="relative h-px flex-1" style={{ background: "rgba(255,255,255,0.2)" }}>
               <div

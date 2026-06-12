@@ -1,41 +1,67 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/lib/i18n";
+
+type L = { en: string; ar: string };
 
 interface Turn {
   role: "user" | "assistant";
-  text: string;
+  text: L;
   tool?: string;
 }
 
 const SCRIPT: Turn[] = [
   {
     role: "user",
-    text: "We're a family of four arriving from London, 14–18 December. We'd love a sunrise tour and a quiet dinner.",
+    text: {
+      en: "We're a family of four arriving from London, 14–18 December. We'd love a sunrise tour and a quiet dinner.",
+      ar: "نحن عائلة من أربعة أفراد، نصل من لندن من ١٤ إلى ١٨ ديسمبر. نودّ جولة عند الشروق وعشاءً هادئًا.",
+    },
   },
   {
     role: "assistant",
-    text: "A pleasure — let me put together something quietly extraordinary for those December dates.",
+    text: {
+      en: "A pleasure — let me put together something quietly extraordinary for those December dates.",
+      ar: "بكل سرور — دعني أرتّب لكم شيئًا استثنائيًا بهدوء في تواريخ ديسمبر تلك.",
+    },
     tool: "recommend_experience",
   },
   {
     role: "assistant",
-    text: "I can offer a Presidential Suite with a connecting Royal Suite — both with mountain views. For your sunrise, our 4×4 leaves at 05:30 with cardamom coffee and a Beja guide. Dinner at the rooftop, a quiet table near the corner. Shall I hold these dates?",
+    text: {
+      en: "I can offer a Three Bed Suite with mountain views — perfect for a family of four. For your sunrise, our 4×4 leaves at 05:30 with cardamom coffee and a Beja guide. Dinner at the rooftop, a quiet table near the corner. Shall I hold these dates?",
+      ar: "أقترح جناحًا بثلاثة أسرّة بإطلالة على الجبال — مثالي لعائلة من أربعة. ولشروقكم، تنطلق سيارتنا الرباعية في ٠٥:٣٠ مع قهوة بالهيل ومرشد من البجا. والعشاء على السطح، طاولة هادئة في الزاوية. هل أحجز هذه التواريخ؟",
+    },
   },
   {
     role: "user",
-    text: "Yes please. Anything special for our daughter's birthday on the 16th?",
+    text: {
+      en: "Yes please. Anything special for our daughter's birthday on the 16th?",
+      ar: "نعم من فضلك. هل من شيء مميّز لعيد ميلاد ابنتنا في السادس عشر؟",
+    },
   },
   {
     role: "assistant",
-    text: "Of course. A private cake from our pastry chef, a candle-lit corner of the courtyard, and an oud player at sunset. I've prepared your brief — tap through to WhatsApp and our front office will confirm every detail.",
+    text: {
+      en: "Of course. A private cake from our pastry chef, a candle-lit corner of the courtyard, and an oud player at sunset. I've prepared your brief — tap through to WhatsApp and our front office will confirm every detail.",
+      ar: "بالطبع. كعكة خاصة من طاهي الحلويات لدينا، وركن مضاء بالشموع في الفناء، وعازف عود عند الغروب. لقد جهّزت طلبكم — انتقلوا عبر واتساب وسيؤكّد مكتب الاستقبال كل التفاصيل.",
+    },
     tool: "whatsapp_handoff",
   },
 ];
 
 export function ConciergeDemo() {
+  const { language, t } = useI18n();
+  const isAr = language === "ar";
   const [step, setStep] = useState(0);
   const [typed, setTyped] = useState<string[]>([""]);
+
+  // Restart the demo whenever the language switches.
+  useEffect(() => {
+    setStep(0);
+    setTyped([""]);
+  }, [language]);
 
   useEffect(() => {
     const current = SCRIPT[step];
@@ -43,7 +69,7 @@ export function ConciergeDemo() {
 
     let i = 0;
     const speed = current.role === "user" ? 30 : 18;
-    const text = current.text;
+    const text = current.text[language];
 
     setTyped((prev) => {
       const out = [...prev];
@@ -76,7 +102,7 @@ export function ConciergeDemo() {
     }, speed);
 
     return () => clearInterval(id);
-  }, [step]);
+  }, [step, language]);
 
   return (
     <div
@@ -86,6 +112,7 @@ export function ConciergeDemo() {
         border: "1px solid rgba(233, 199, 123, 0.18)",
         backdropFilter: "blur(8px)",
       }}
+      dir={isAr ? "rtl" : "ltr"}
     >
       <div
         className="flex items-center justify-between border-b px-5 py-4"
@@ -103,22 +130,22 @@ export function ConciergeDemo() {
           </span>
           <div>
             <div
-              className="text-[9px] font-medium uppercase tracking-[0.32em]"
+              className={`text-[9px] font-medium uppercase tracking-[0.32em] ${isAr ? "font-arabic" : ""}`}
               style={{ color: "rgba(233, 199, 123, 0.65)" }}
             >
-              A Sample Conversation
+              {t("A Sample Conversation", "محادثة نموذجية")}
             </div>
             <div
-              className="text-[14px]"
-              style={{ color: "#FFFFFF", fontFamily: "var(--font-display)", fontWeight: 400 }}
+              className={`text-[14px] ${isAr ? "font-arabic" : ""}`}
+              style={{ color: "#FFFFFF", fontFamily: isAr ? undefined : "var(--font-display)", fontWeight: 400 }}
             >
-              Taka AI · Live preview
+              {t("Taka AI · Live preview", "تاكا AI · معاينة مباشرة")}
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.28em]" style={{ color: "rgba(255,255,255,0.5)" }}>
+        <div className={`flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.28em] ${isAr ? "font-arabic" : ""}`} style={{ color: "rgba(255,255,255,0.5)" }}>
           <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#5FCB8B" }} />
-          Replay
+          {t("Replay", "إعادة")}
         </div>
       </div>
 
@@ -127,12 +154,13 @@ export function ConciergeDemo() {
           const turn = SCRIPT[i];
           if (!turn) return null;
           const isUser = turn.role === "user";
-          const showCursor = i === step && text.length < turn.text.length;
+          const full = turn.text[language];
+          const showCursor = i === step && text.length < full.length;
           return (
             <div key={i} className="space-y-2">
               <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
                 <div
-                  className="max-w-[85%] rounded-2xl px-4 py-3 text-[14px] leading-[1.55]"
+                  className={`max-w-[85%] rounded-2xl px-4 py-3 text-[14px] leading-[1.55] ${isAr ? "font-arabic" : ""}`}
                   style={
                     isUser
                       ? {
@@ -160,18 +188,18 @@ export function ConciergeDemo() {
                   ) : null}
                 </div>
               </div>
-              {turn.tool && text.length === turn.text.length ? (
+              {turn.tool && text.length === full.length ? (
                 <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
                   <span
-                    className="text-[10px] font-medium uppercase tracking-[0.28em]"
+                    className={`text-[10px] font-medium uppercase tracking-[0.28em] ${isAr ? "font-arabic" : ""}`}
                     style={{ color: "rgba(233, 199, 123, 0.7)" }}
                   >
                     ◇{" "}
                     {turn.tool === "recommend_experience"
-                      ? "Curated · sunrise tour + dinner"
+                      ? t("Curated · sunrise tour + dinner", "منسّق · جولة شروق + عشاء")
                       : turn.tool === "whatsapp_handoff"
-                      ? "Handed to our team · WhatsApp"
-                      : "Tool used"}
+                      ? t("Handed to our team · WhatsApp", "أُحيل إلى فريقنا · واتساب")
+                      : t("Tool used", "أداة مُستخدَمة")}
                   </span>
                 </div>
               ) : null}

@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useI18n } from "@/lib/i18n";
+
+type L = { en: string; ar: string };
 
 interface InterstitialProps {
   image: string;
-  eyebrow: string;
-  line1: string;
-  line2: string;
-  attribution?: string;
+  eyebrow: L;
+  line1: L;
+  line2: L;
+  attribution?: L;
   align?: "left" | "right" | "center";
 }
 
@@ -19,6 +22,8 @@ export function Interstitial({
   attribution,
   align = "left",
 }: InterstitialProps) {
+  const { language } = useI18n();
+  const isAr = language === "ar";
   const imgRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -37,11 +42,12 @@ export function Interstitial({
   }, []);
 
   const alignmentClass =
-    align === "right" ? "items-end text-right" : align === "center" ? "items-center text-center" : "items-start text-left";
+    align === "right" ? "items-end text-end" : align === "center" ? "items-center text-center" : "items-start text-start";
 
   return (
     <section
       ref={sectionRef}
+      dir={isAr ? "rtl" : "ltr"}
       className="relative h-[80vh] min-h-[640px] w-full overflow-hidden"
       data-cursor="image"
     >
@@ -66,14 +72,14 @@ export function Interstitial({
           <div className="flex items-center gap-3">
             <span className="h-px w-10" style={{ background: "rgba(255,255,255,0.55)" }} />
             <span
-              className="text-[10px] font-medium uppercase tracking-[0.42em]"
+              className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
               style={{ color: "rgba(255,255,255,0.78)" }}
             >
-              {eyebrow}
+              {eyebrow[language]}
             </span>
           </div>
           <h2
-            className="font-display tracking-[-0.015em]"
+            className={`tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
             style={{
               color: "#FFFFFF",
               fontSize: "clamp(40px, 6vw, 92px)",
@@ -81,18 +87,18 @@ export function Interstitial({
               fontWeight: 400,
             }}
           >
-            {line1}
+            {line1[language]}
             <br />
-            <em style={{ color: "#E9C77B", fontWeight: 300 }}>{line2}</em>
+            <em className={isAr ? "not-italic" : ""} style={{ color: "#E9C77B", fontWeight: 300 }}>{line2[language]}</em>
           </h2>
           {attribution ? (
             <div className="mt-4 flex items-center gap-3">
               <span className="h-px w-8" style={{ background: "rgba(233, 199, 123, 0.7)" }} />
               <span
-                className="text-[11px] font-medium uppercase tracking-[0.32em]"
+                className={`text-[11px] font-medium uppercase tracking-[0.32em] ${isAr ? "font-arabic" : ""}`}
                 style={{ color: "rgba(255,255,255,0.65)" }}
               >
-                {attribution}
+                {attribution[language]}
               </span>
             </div>
           ) : null}

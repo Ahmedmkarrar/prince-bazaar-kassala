@@ -1,34 +1,58 @@
+"use client";
+
 import { Reveal } from "./Reveal";
 import { WHATSAPP_URL } from "@/lib/whatsapp";
+import { useI18n } from "@/lib/i18n";
 
-const SUITES = [
+type L = { en: string; ar: string };
+interface Suite {
+  name: L;
+  capacity: L;
+  view: L;
+  image: string;
+  detail: L;
+}
+
+const SUITES: Suite[] = [
   {
-    name: "Single Suite",
-    capacity: "1 bed · 1 guest · 10 rooms",
-    view: "Refrigerator, seating & amenities",
+    name: { en: "Single Suite", ar: "جناح فردي" },
+    capacity: { en: "1 bed · 1 guest · 10 rooms", ar: "سرير واحد · ضيف واحد · ١٠ غرف" },
+    view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
     image: "/hotel/room-single-padded.jpg",
-    detail: "A comfortable single-bed suite. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+    detail: {
+      en: "A comfortable single-bed suite. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+      ar: "جناح مريح بسرير فردي. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
+    },
   },
   {
-    name: "Double Room",
-    capacity: "1 double bed · 2 guests · 13 rooms",
-    view: "Refrigerator, seating & amenities",
+    name: { en: "Double Room", ar: "غرفة مزدوجة" },
+    capacity: { en: "1 double bed · 2 guests · 13 rooms", ar: "سرير مزدوج · ضيفان · ١٣ غرفة" },
+    view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
     image: "/hotel/room-king-warm.jpg",
-    detail: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+    detail: {
+      en: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+      ar: "غرفة مزدوجة بسرير واحد. تشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
+    },
   },
   {
-    name: "Twin Suite",
-    capacity: "2 beds · 2 guests · 22 rooms",
-    view: "Refrigerator, seating & amenities",
+    name: { en: "Twin Suite", ar: "جناح بسريرين" },
+    capacity: { en: "2 beds · 2 guests · 22 rooms", ar: "سريران · ضيفان · ٢٢ غرفة" },
+    view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
     image: "/hotel/room-twin-gray.jpg",
-    detail: "A twin suite with two separate beds. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+    detail: {
+      en: "A twin suite with two separate beds. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+      ar: "جناح بسريرين منفصلين. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
+    },
   },
   {
-    name: "Three Bed Suite",
-    capacity: "3 beds · up to 6 · 4 rooms",
-    view: "Refrigerator, seating & amenities",
+    name: { en: "Three Bed Suite", ar: "جناح بثلاثة أسرّة" },
+    capacity: { en: "3 beds · up to 6 · 4 rooms", ar: "ثلاثة أسرّة · حتى ٦ ضيوف · ٤ غرف" },
+    view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
     image: "/hotel/room-triple.jpg",
-    detail: "A spacious three-bed suite for families and groups. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+    detail: {
+      en: "A spacious three-bed suite for families and groups. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
+      ar: "جناح واسع بثلاثة أسرّة للعائلات والمجموعات. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
+    },
   },
 ];
 
@@ -58,22 +82,25 @@ function SealMark({ id }: { id: string }) {
 }
 
 export function Suites() {
+  const { language, t } = useI18n();
+  const isAr = language === "ar";
+
   return (
-    <section id="suites" className="px-6 py-32 lg:px-12 lg:py-44">
+    <section id="suites" className="px-6 py-32 lg:px-12 lg:py-44" dir={isAr ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="mb-20 flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <div>
             <div className="flex items-center gap-3">
               <span className="h-px w-10" style={{ background: "var(--color-gold)" }} />
               <span
-                className="text-[10px] font-medium uppercase tracking-[0.42em]"
+                className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
                 style={{ color: "var(--color-mist)" }}
               >
-                The Stay
+                {t("The Stay", "الإقامة")}
               </span>
             </div>
             <h2
-              className="mt-8 max-w-2xl font-display tracking-[-0.015em]"
+              className={`mt-8 max-w-2xl tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "var(--color-charcoal)",
                 fontSize: "clamp(40px, 5.5vw, 76px)",
@@ -81,17 +108,28 @@ export function Suites() {
                 fontWeight: 400,
               }}
             >
-              Sanctuaries with a <em style={{ color: "var(--color-emerald-deep)" }}>view of the spires</em>.
+              {isAr ? (
+                <>
+                  ملاذات <em className="not-italic" style={{ color: "var(--color-emerald-deep)" }}>تطلّ على القمم</em>.
+                </>
+              ) : (
+                <>
+                  Sanctuaries with a <em style={{ color: "var(--color-emerald-deep)" }}>view of the spires</em>.
+                </>
+              )}
             </h2>
           </div>
-          <p className="max-w-md text-[16px] leading-[1.8]" style={{ color: "var(--color-stone)" }}>
-            Flagship layouts, plush interiors, and the same impeccable service across each. Tell us your dates — we&apos;ll match you to the right one.
+          <p className={`max-w-md text-[16px] leading-[1.8] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-stone)" }}>
+            {t(
+              "Flagship layouts, plush interiors, and the same impeccable service across each. Tell us your dates — we'll match you to the right one.",
+              "تصاميم مميّزة، وديكورات فاخرة، والخدمة المتقنة ذاتها في كلٍّ منها. أخبرنا بتواريخك — وسنرشدك إلى الأنسب لك.",
+            )}
           </p>
         </Reveal>
 
         <div className="mx-auto grid max-w-[920px] grid-cols-1 gap-x-16 gap-y-24 sm:grid-cols-2">
           {SUITES.map((s, i) => (
-            <Reveal key={s.name} delay={i * 120}>
+            <Reveal key={s.name.en} delay={i * 120}>
               <article className="group flex flex-col items-center text-center">
                 <div className="photo-arch relative w-full max-w-[340px]" data-cursor="image">
                   <div className="photo-arch-inner photo-warm photo-grain aspect-[3/4]">
@@ -104,27 +142,27 @@ export function Suites() {
                 </div>
 
                 <div className="mt-12 flex flex-col items-center">
-                  <div className="text-[10px] font-medium uppercase tracking-[0.28em]" style={{ color: "var(--color-gold)" }}>
-                    {s.view}
+                  <div className={`text-[10px] font-medium uppercase tracking-[0.28em] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-gold)" }}>
+                    {s.view[language]}
                   </div>
-                  <h3 className="mt-3 font-display text-[30px] leading-tight" style={{ color: "var(--color-charcoal)" }}>
-                    {s.name}
+                  <h3 className={`mt-3 text-[30px] leading-tight ${isAr ? "font-arabic" : "font-display"}`} style={{ color: "var(--color-charcoal)" }}>
+                    {s.name[language]}
                   </h3>
-                  <div className="mt-1 text-[12px]" style={{ color: "var(--color-mist)" }}>
-                    {s.capacity}
+                  <div className={`mt-1 text-[12px] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-mist)" }}>
+                    {s.capacity[language]}
                   </div>
-                  <p className="mt-5 max-w-[360px] text-[14px] leading-[1.75]" style={{ color: "var(--color-stone)" }}>
-                    {s.detail}
+                  <p className={`mt-5 max-w-[360px] text-[14px] leading-[1.75] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-stone)" }}>
+                    {s.detail[language]}
                   </p>
                   <a
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-7 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.2em]"
+                    className={`mt-7 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.2em] ${isAr ? "font-arabic" : ""}`}
                     style={{ color: "var(--color-emerald-deep)" }}
                   >
-                    Inquire rates
-                    <span aria-hidden>→</span>
+                    {t("Inquire rates", "استفسر عن الأسعار")}
+                    <span aria-hidden>{isAr ? "←" : "→"}</span>
                   </a>
                 </div>
               </article>
