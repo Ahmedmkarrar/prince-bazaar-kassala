@@ -90,36 +90,19 @@ export function ComplexShowcase() {
 
           {/* Detail */}
           <div className="lg:col-span-8">
-            <div key={current.id} className="grid grid-cols-1 gap-8 sm:grid-cols-5">
-              <div className="sm:col-span-3">
-                <div
-                  className="relative aspect-[4/5] overflow-hidden rounded-sm"
-                  style={{
-                    background: current.image
-                      ? `url(${current.image}) center/cover no-repeat`
-                      : "linear-gradient(135deg, var(--color-royal-deep) 0%, #14101C 55%, var(--color-charcoal) 100%)",
-                    boxShadow: "var(--shadow-card)",
-                  }}
-                >
-                  {!current.image ? (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-                      <span
-                        className="font-display text-[88px] leading-none sm:text-[120px]"
-                        style={{ color: "var(--color-gold)", opacity: 0.5 }}
-                      >
-                        {current.number}
-                      </span>
-                      <span
-                        className={`mt-6 text-[11px] font-medium uppercase tracking-[0.4em] ${isAr ? "font-arabic" : ""}`}
-                        style={{ color: "var(--color-gold-soft)" }}
-                      >
-                        {current.name[language]}
-                      </span>
-                    </div>
-                  ) : null}
+            <div key={current.id} className={`grid grid-cols-1 gap-8 ${current.image ? "sm:grid-cols-5" : ""}`}>
+              {current.image ? (
+                <div className="sm:col-span-3">
+                  <div
+                    className="relative aspect-[4/5] overflow-hidden rounded-sm"
+                    style={{
+                      background: `url(${current.image}) center/cover no-repeat`,
+                      boxShadow: "var(--shadow-card)",
+                    }}
+                  />
                 </div>
-              </div>
-              <div className="flex flex-col justify-between sm:col-span-2">
+              ) : null}
+              <div className={`flex flex-col justify-between ${current.image ? "sm:col-span-2" : ""}`}>
                 <div>
                   <div className="eyebrow" style={{ color: "var(--color-gold)" }}>
                     {isAr ? `مجمّع ${current.number}` : `Complex ${current.number}`}
