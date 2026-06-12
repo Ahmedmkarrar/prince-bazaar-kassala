@@ -51,7 +51,10 @@ export const COMPLEXES: ComplexNode[] = [
       en: "State-of-the-art meeting rooms and coworking spaces for the modern professional.",
       ar: "قاعات اجتماعات ومساحات عمل مشتركة بأحدث المعايير للمحترف العصري.",
     },
-    image: "/hotel/room-single-desk.jpg",
+    // Blank until the client provides a real Business Center photo — the room
+    // photo previously here was a mismatch. Component renders an elegant
+    // number/name placeholder when image is null.
+    image: null,
   },
   {
     id: "culinary",
