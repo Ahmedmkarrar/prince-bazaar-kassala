@@ -52,10 +52,8 @@ export function Concierge({ embedded = false }: ConciergeProps) {
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
-  const [listening, setListening] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const recognitionRef = useRef<unknown>(null);
 
   // Hydration-safe: swap to time-aware greeting + load persisted convo on client
   useEffect(() => {
@@ -94,43 +92,6 @@ export function Concierge({ embedded = false }: ConciergeProps) {
       return () => clearTimeout(t);
     }
   }, [open, embedded]);
-
-  function startVoice() {
-    if (typeof window === "undefined") return;
-    const W = window as unknown as {
-      SpeechRecognition?: new () => SpeechRecognitionLike;
-      webkitSpeechRecognition?: new () => SpeechRecognitionLike;
-    };
-    const Ctor = W.SpeechRecognition ?? W.webkitSpeechRecognition;
-    if (!Ctor) {
-      alert("Voice input isn't supported in this browser. Try Safari or Chrome on desktop.");
-      return;
-    }
-    const rec = new Ctor();
-    rec.continuous = false;
-    rec.interimResults = true;
-    rec.lang = "en-US";
-    rec.onstart = () => setListening(true);
-    rec.onend = () => setListening(false);
-    rec.onerror = () => setListening(false);
-    rec.onresult = (event: SpeechRecognitionEventLike) => {
-      const last = event.results[event.results.length - 1];
-      const transcript = last[0].transcript;
-      setInput(transcript);
-      if (last.isFinal) {
-        rec.stop();
-        setTimeout(() => void send(transcript), 120);
-      }
-    };
-    recognitionRef.current = rec;
-    rec.start();
-  }
-
-  function stopVoice() {
-    const rec = recognitionRef.current as SpeechRecognitionLike | null;
-    rec?.stop();
-    setListening(false);
-  }
 
   function clearConversation() {
     setMessages([{ role: "assistant", content: timeAwareGreeting() }]);
@@ -286,9 +247,6 @@ export function Concierge({ embedded = false }: ConciergeProps) {
           onSuggestion={send}
           isStreaming={isStreaming}
           activeTool={activeTool}
-          listening={listening}
-          startVoice={startVoice}
-          stopVoice={stopVoice}
           clearConversation={clearConversation}
         />
       </>
@@ -306,28 +264,9 @@ export function Concierge({ embedded = false }: ConciergeProps) {
       onSuggestion={send}
       isStreaming={isStreaming}
       activeTool={activeTool}
-      listening={listening}
-      startVoice={startVoice}
-      stopVoice={stopVoice}
       clearConversation={clearConversation}
     />
   );
-}
-
-interface SpeechRecognitionLike {
-  continuous: boolean;
-  interimResults: boolean;
-  lang: string;
-  onstart: () => void;
-  onend: () => void;
-  onerror: () => void;
-  onresult: (event: SpeechRecognitionEventLike) => void;
-  start: () => void;
-  stop: () => void;
-}
-
-interface SpeechRecognitionEventLike {
-  results: { isFinal: boolean; [k: number]: { transcript: string } }[];
 }
 
 function ConciergeBubble({ open, onClick, streaming }: { open: boolean; onClick: () => void; streaming: boolean }) {
@@ -386,9 +325,6 @@ interface PanelProps {
   onSuggestion: (text: string) => void;
   isStreaming: boolean;
   activeTool: string | null;
-  listening: boolean;
-  startVoice: () => void;
-  stopVoice: () => void;
   clearConversation: () => void;
 }
 
@@ -457,7 +393,7 @@ function ConciergeHeader({ onClose, clearConversation }: { onClose?: () => void;
             className="text-[10px] font-medium uppercase tracking-[0.32em]"
             style={{ color: "rgba(239,224,191,0.65)" }}
           >
-            AI Concierge · Powered by Claude
+            AI Concierge
           </div>
           <div
             className="text-[15px]"
@@ -727,7 +663,7 @@ function GenCard({
 }
 
 function ConciergeInput(props: PanelProps | Omit<PanelProps, "open" | "onClose">) {
-  const { input, setInput, inputRef, onSubmit, isStreaming, listening, startVoice, stopVoice } = props;
+  const { input, setInput, inputRef, onSubmit, isStreaming } = props;
   return (
     <form
       onSubmit={onSubmit}
@@ -735,30 +671,6 @@ function ConciergeInput(props: PanelProps | Omit<PanelProps, "open" | "onClose">
       style={{ borderColor: "var(--color-line)", background: "var(--color-ivory)" }}
     >
       <div className="flex items-end gap-2">
-        <button
-          type="button"
-          onClick={listening ? stopVoice : startVoice}
-          aria-label={listening ? "Stop voice input" : "Start voice input"}
-          className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border transition-all"
-          style={{
-            background: listening ? "var(--color-terracotta)" : "transparent",
-            color: listening ? "var(--color-ivory)" : "var(--color-charcoal)",
-            borderColor: listening ? "var(--color-terracotta)" : "var(--color-line)",
-          }}
-        >
-          {listening ? (
-            <span className="flex">
-              <span className="typing-dot" />
-              <span className="typing-dot" />
-              <span className="typing-dot" />
-            </span>
-          ) : (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <rect x="9" y="3" width="6" height="12" rx="3" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M5 11 C5 15 8 18 12 18 C16 18 19 15 19 11 M12 18 L12 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          )}
-        </button>
         <textarea
           ref={inputRef}
           value={input}
@@ -770,7 +682,7 @@ function ConciergeInput(props: PanelProps | Omit<PanelProps, "open" | "onClose">
             }
           }}
           rows={1}
-          placeholder={listening ? "Listening…" : "Ask about a stay, a tour, an event…"}
+          placeholder="Ask about a stay, a tour, an event…"
           disabled={isStreaming}
           className="flex-1 resize-none bg-transparent px-2 py-2 text-[14px] outline-none"
           style={{ color: "var(--color-charcoal)", minHeight: "40px", maxHeight: "120px" }}
@@ -792,9 +704,9 @@ function ConciergeInput(props: PanelProps | Omit<PanelProps, "open" | "onClose">
         style={{ color: "var(--color-mist)" }}
       >
         <span className="font-medium uppercase tracking-[0.28em]">
-          Powered by Claude · End-to-end private
+          End-to-end private
         </span>
-        <span>↵ to send · ⌘ for voice</span>
+        <span>↵ to send</span>
       </div>
     </form>
   );

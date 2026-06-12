@@ -40,7 +40,7 @@ export function AISection() {
               className="mt-8 max-w-md text-[16px] leading-[1.8]"
               style={{ color: "rgba(255, 255, 255, 0.72)" }}
             >
-              Powered by Claude, fluent in Arabic and English. Taka AI answers your questions, plans your tour, shapes your wedding brief, then hands you straight to our front office on WhatsApp to confirm everything.
+              Fluent in Arabic and English, Taka AI answers your questions, plans your tour, shapes your wedding brief, then hands you straight to our front office on WhatsApp to confirm everything.
             </p>
 
             <div className="mt-10 space-y-6">
@@ -84,7 +84,7 @@ export function AISection() {
                 className="text-[10px] font-medium uppercase tracking-[0.28em]"
                 style={{ color: "rgba(255,255,255,0.5)" }}
               >
-                Voice · Multilingual · Always private
+                Instant · Multilingual · Always private
               </span>
             </div>
           </Reveal>
