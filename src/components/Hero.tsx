@@ -3,11 +3,13 @@
 import { useEffect, useRef } from "react";
 import { HERO_IMAGE, COPY } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
+import { useMagnetic } from "@/lib/useMagnetic";
 
 export function Hero() {
   const imgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const wordsRef = useRef<HTMLSpanElement[]>([]);
+  const magCta = useMagnetic(0.5);
   const { language, t } = useI18n();
   const isAr = language === "ar";
 
@@ -119,7 +121,7 @@ export function Hero() {
                   <span ref={setWord(2)} className="inline-block">Where Arabic Elegance</span>
                 </span>
                 <span className="block overflow-hidden">
-                  <span ref={setWord(3)} className="inline-block italic" style={{ color: "#E9C77B", fontWeight: 300 }}>
+                  <span ref={setWord(3)} className="text-foil inline-block italic" style={{ fontWeight: 300 }}>
                     Meets the Heart of Sudan.
                   </span>
                 </span>
@@ -130,6 +132,7 @@ export function Hero() {
           <div className="mt-10 flex flex-wrap items-center gap-4 sm:mt-12">
             <span ref={setWord(5)} className="inline-block">
               <button
+                ref={magCta as React.RefObject<HTMLButtonElement>}
                 type="button"
                 onClick={() => window.dispatchEvent(new CustomEvent("pb:open-reservation"))}
                 className={`hero-cta-primary ${isAr ? "font-arabic" : ""}`}
@@ -178,12 +181,13 @@ export function Hero() {
           letter-spacing: 0.22em;
           text-transform: uppercase;
           border-radius: 999px;
-          transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: transform;
         }
         .hero-cta-primary:hover {
           background: #E9C77B;
           color: #0A0A0A;
-          transform: translateY(-1px);
+          box-shadow: 0 18px 40px -14px rgba(233, 199, 123, 0.6);
         }
         .hero-cta-ghost {
           display: inline-flex;

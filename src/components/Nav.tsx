@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { useI18n } from "@/lib/i18n";
 import { WHATSAPP_URL } from "@/lib/whatsapp";
+import { useMagnetic } from "@/lib/useMagnetic";
 
 const LINKS = [
   { href: "#complex", en: "The Complex", ar: "المجمعات" },
@@ -19,6 +20,7 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const { t, language } = useI18n();
   const isAr = language === "ar";
+  const magBtn = useMagnetic(0.4);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -53,7 +55,7 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className={`text-[11px] font-medium uppercase tracking-[0.28em] transition-colors ${isAr ? "font-arabic" : ""}`}
+              className={`link-underline text-[11px] font-medium uppercase tracking-[0.28em] transition-colors hover:text-[var(--color-gold-soft)] ${isAr ? "font-arabic" : ""}`}
               style={{ color: overHero ? "rgba(255,255,255,0.78)" : "var(--color-stone)" }}
             >
               {t(link.en, link.ar)}
@@ -63,8 +65,9 @@ export function Nav() {
 
         <div className="hidden items-center gap-5 lg:flex">
           <button
+            ref={magBtn as React.RefObject<HTMLButtonElement>}
             onClick={() => window.dispatchEvent(new CustomEvent("pb:open-reservation"))}
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] transition-all"
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] transition-[background,color,box-shadow] duration-300 hover:shadow-[0_14px_30px_-12px_rgba(59,22,96,0.5)]"
             style={{
               background: overHero ? "#FFFFFF" : "var(--color-royal-deep)",
               color: overHero ? "#0A0A0A" : "var(--color-gold-pale)",

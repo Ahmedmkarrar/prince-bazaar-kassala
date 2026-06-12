@@ -298,6 +298,86 @@ html { scroll-behavior: smooth; }
   box-shadow: inset 0 0 0 1px rgba(182, 138, 62, 0.35);
 }
 
+/* ── Premium polish layer ───────────────────────────────────────────────── */
+
+/* Gold-foil gradient text — for select emphasis words. A slow light drifts
+   across the letters like leaf gilding catching the light. */
+.text-foil {
+  background: linear-gradient(
+    110deg,
+    var(--color-gold) 0%,
+    var(--color-gold-soft) 22%,
+    #F6E7BE 42%,
+    var(--color-gold-soft) 64%,
+    var(--color-gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+
+/* Sheen sweep across primary buttons on hover. */
+.btn-primary,
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after,
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -160%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.38) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  transition: left 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.btn-primary:hover::after,
+.btn-gold:hover::after {
+  left: 160%;
+}
+
+/* Animated underline for navigation links — grows from the cursor side. */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Refined keyboard-focus ring — gold, offset, never harsh. */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .kenburns, .spin-slow { animation: none; }
+  .text-foil { animation: none; }
+  .btn-primary::after, .btn-gold::after { transition: none; }
 }

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Noto_Naskh_Arabic } from "next/font/google";
 import { I18nProvider } from "@/lib/i18n";
+import { Cursor } from "@/components/Cursor";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -152,6 +155,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <ScrollProgress />
+        <SmoothScroll />
+        <Cursor />
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>
