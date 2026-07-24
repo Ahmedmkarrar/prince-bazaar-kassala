@@ -31,7 +31,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Luxury accommodations featuring panoramic views of the iconic Taka Mountains.",
       ar: "إقامات فاخرة بإطلالات بانورامية على جبال التاكا الشهيرة.",
     },
-    image: "/hotel/room-twin-warm-sm.webp",
+    image: "/hotel/room-twin-sm.webp",
   },
   {
     id: "commercial-plaza",
@@ -152,7 +152,7 @@ export const GALLERY = [
   "/hotel/kitchenette-sm.webp",
   "/hotel/taka-terrace-sm.webp",
   "/hotel/exterior-street-sm.webp",
-  "/hotel/room-twin-tv-sm.webp",
+  "/hotel/room-triple-sm.webp",
 ];
 
 // Hero — the Prince Plaza frontage under a Kassala sky.
