@@ -45,8 +45,8 @@ export function Hero() {
       {/* Photo background */}
       <div ref={imgRef} className="absolute inset-0 will-change-transform">
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMAGE})` }}
+          className="absolute inset-0 bg-cover"
+          style={{ backgroundImage: `url(${HERO_IMAGE})`, backgroundPosition: "62% center" }}
         />
         {/* Top → bottom darkness */}
         <div

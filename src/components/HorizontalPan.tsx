@@ -20,7 +20,7 @@ const VIGNETTES: Vignette[] = [
       en: "Climate-controlled comfort, hardwood floors, and a quiet that feels rare.",
       ar: "راحة بتكييف كامل، أرضيات خشبية، وهدوء نادر.",
     },
-    image: "/hotel/room-single-desk.jpg",
+    image: "/hotel/room-single.webp",
   },
   {
     number: "ii",
@@ -29,7 +29,7 @@ const VIGNETTES: Vignette[] = [
       en: "Spacious double room with an extended living area and premium furnishings.",
       ar: "غرفة مزدوجة واسعة بمساحة معيشة ممتدة وأثاث فاخر.",
     },
-    image: "/hotel/room-lounge.jpg",
+    image: "/hotel/room-lounge.webp",
   },
   {
     number: "iii",
@@ -38,7 +38,7 @@ const VIGNETTES: Vignette[] = [
       en: "Two beds, considered details, and the same uncompromised standard.",
       ar: "سريران، تفاصيل مدروسة، والمعيار ذاته دون تنازل.",
     },
-    image: "/hotel/room-twin.jpg",
+    image: "/hotel/room-twin.webp",
   },
   {
     number: "iv",
@@ -47,7 +47,7 @@ const VIGNETTES: Vignette[] = [
       en: "Triple-bed layout, in-room television, ideal for families and small groups.",
       ar: "ثلاثة أسرّة، تلفاز في الغرفة، مثالي للعائلات والمجموعات الصغيرة.",
     },
-    image: "/hotel/room-triple.jpg",
+    image: "/hotel/room-triple.webp",
   },
   {
     number: "v",
@@ -56,7 +56,7 @@ const VIGNETTES: Vignette[] = [
       en: "Warm evening light through the curtains. Quiet, considered, ours.",
       ar: "ضوء مسائي دافئ عبر الستائر. هادئة، مدروسة، خاصّة بنا.",
     },
-    image: "/hotel/room-twin-warm.jpg",
+    image: "/hotel/room-twin-warm.webp",
   },
 ];
 

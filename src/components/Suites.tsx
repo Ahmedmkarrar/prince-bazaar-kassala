@@ -20,7 +20,7 @@ const SUITES: Suite[] = [
     name: { en: "Single Suite", ar: "جناح فردي" },
     capacity: { en: "1 bed · 1 guest · 10 rooms", ar: "سرير واحد · ضيف واحد · ١٠ غرف" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-single.jpg",
+    image: "/hotel/room-single-desk.webp",
     detail: {
       en: "A comfortable single-bed suite. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "جناح مريح بسرير فردي. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
@@ -30,7 +30,7 @@ const SUITES: Suite[] = [
     name: { en: "Double Room", ar: "غرفة مزدوجة" },
     capacity: { en: "1 double bed · 2 guests · 13 rooms", ar: "سرير مزدوج · ضيفان · ١٣ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-double.jpg",
+    image: "/hotel/room-double.webp",
     focus: "76% center",
     detail: {
       en: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
@@ -41,7 +41,7 @@ const SUITES: Suite[] = [
     name: { en: "Twin Suite", ar: "جناح بسريرين" },
     capacity: { en: "2 beds · 2 guests · 22 rooms", ar: "سريران · ضيفان · ٢٢ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-twin.jpg",
+    image: "/hotel/room-twin.webp",
     detail: {
       en: "A twin suite with two separate beds. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "جناح بسريرين منفصلين. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
@@ -51,7 +51,7 @@ const SUITES: Suite[] = [
     name: { en: "Three Bed Suite", ar: "جناح بثلاثة أسرّة" },
     capacity: { en: "3 beds · up to 6 · 4 rooms", ar: "ثلاثة أسرّة · حتى ٦ ضيوف · ٤ غرف" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-triple.jpg",
+    image: "/hotel/room-triple.webp",
     detail: {
       en: "A spacious three-bed suite for families and groups. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "جناح واسع بثلاثة أسرّة للعائلات والمجموعات. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",

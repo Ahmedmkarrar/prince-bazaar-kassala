@@ -31,7 +31,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Luxury accommodations featuring panoramic views of the iconic Taka Mountains.",
       ar: "إقامات فاخرة بإطلالات بانورامية على جبال التاكا الشهيرة.",
     },
-    image: "/hotel/room-twin-warm.jpg",
+    image: "/hotel/room-twin-warm-sm.webp",
   },
   {
     id: "commercial-plaza",
@@ -41,7 +41,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "A curated selection of retail outlets, bringing modern shopping to your doorstep.",
       ar: "تشكيلة منتقاة من المتاجر تجلب التسوق العصري إلى عتبة دارك.",
     },
-    image: "/hotel/plaza-shops.jpg",
+    image: "/hotel/plaza-shops-sm.webp",
   },
   {
     id: "business",
@@ -51,7 +51,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "State-of-the-art meeting rooms and coworking spaces for the modern professional.",
       ar: "قاعات اجتماعات ومساحات عمل مشتركة بأحدث المعايير للمحترف العصري.",
     },
-    image: "/hotel/conference.jpg",
+    image: "/hotel/conference-sm.webp",
   },
   {
     id: "culinary",
@@ -61,7 +61,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "A functional restaurant for a great dine-in experience, with in-room dining and room service throughout the property.",
       ar: "مطعم متكامل لتجربة طعام رائعة داخل المطعم، مع خدمة الطعام في الغرف على مدار إقامتك.",
     },
-    image: "/hotel/restaurant.jpg",
+    image: "/hotel/restaurant-alt-sm.webp",
   },
   {
     id: "events",
@@ -71,7 +71,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Expansive spaces for weddings, conferences, and cultural celebrations.",
       ar: "فضاءات واسعة للأعراس والمؤتمرات والاحتفالات الثقافية.",
     },
-    image: "/hotel/events-hall.jpg",
+    image: "/hotel/events-hall-sm.webp",
   },
   {
     id: "bazaar",
@@ -81,7 +81,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "From everyday essentials to unique treasures, our diverse range of stores has something for everyone.",
       ar: "من الأساسيات اليومية إلى الكنوز الفريدة، تشكيلتنا المتنوعة من المتاجر تضمّ ما يناسب الجميع.",
     },
-    image: "/hotel/courtyard-bazaar.jpg",
+    image: "/hotel/courtyard-bazaar-sm.webp",
   },
   {
     id: "tourism",
@@ -91,7 +91,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Transport from and to airport plus destination of your dreams.",
       ar: "نقل من وإلى المطار، إلى جانب وجهة أحلامك.",
     },
-    image: "/hotel/taka-rooftop.jpg",
+    image: "/hotel/taka-rooftop-sm.webp",
   },
 ];
 
@@ -137,38 +137,38 @@ export const AMENITIES: AmenityItem[] = [
 // survives a vertical crop (facade elevation, corridor perspective).
 // Sixteen entries fill the four-column grid with no short final row.
 export const GALLERY = [
-  "/hotel/exterior-facade.jpg",
-  "/hotel/lobby.jpg",
-  "/hotel/restaurant.jpg",
-  "/hotel/room-twin-warm.jpg",
-  "/hotel/courtyard-bazaar.jpg",
-  "/hotel/corridor.jpg",
-  "/hotel/conference.jpg",
-  "/hotel/taka-rooftop.jpg",
-  "/hotel/bathroom.jpg",
-  "/hotel/plaza-shops.jpg",
-  "/hotel/room-door.jpg",
-  "/hotel/reception-desk.jpg",
-  "/hotel/kitchenette.jpg",
-  "/hotel/taka-terrace.jpg",
-  "/hotel/exterior-street.jpg",
-  "/hotel/room-twin-tv.jpg",
+  "/hotel/exterior-facade-sm.webp",
+  "/hotel/lobby-sm.webp",
+  "/hotel/restaurant-alt-sm.webp",
+  "/hotel/room-twin-warm-sm.webp",
+  "/hotel/courtyard-bazaar-sm.webp",
+  "/hotel/corridor-sm.webp",
+  "/hotel/conference-sm.webp",
+  "/hotel/taka-rooftop-sm.webp",
+  "/hotel/bathroom-sm.webp",
+  "/hotel/plaza-shops-sm.webp",
+  "/hotel/room-door-sm.webp",
+  "/hotel/reception-desk-sm.webp",
+  "/hotel/kitchenette-sm.webp",
+  "/hotel/taka-terrace-sm.webp",
+  "/hotel/exterior-street-sm.webp",
+  "/hotel/room-twin-tv-sm.webp",
 ];
 
 // Hero — the Prince Plaza frontage under a Kassala sky.
-export const HERO_IMAGE = "/hotel/plaza-sky.jpg";
+export const HERO_IMAGE = "/hotel/plaza-sky.webp";
 
 // Atmospheric secondary image — Kassala's iconic Taka Mountains from the roof.
-export const TAKA_IMAGE = "/hotel/taka-rooftop.jpg";
+export const TAKA_IMAGE = "/hotel/taka-rooftop.webp";
 
 // Architectural detail image — the Prince Hotel arched facade.
-export const ARCHITECTURE_IMAGE = "/hotel/exterior-facade.jpg";
+export const ARCHITECTURE_IMAGE = "/hotel/exterior-facade.webp";
 
 // Piedmont Travel and Tourism — the agency team on site in the hotel.
-export const PIEDMONT_IMAGE = "/hotel/piedmont-team.jpg";
+export const PIEDMONT_IMAGE = "/hotel/piedmont-team.webp";
 
 // Second full-bleed band — the Prince Hotel signage on the Kassala frontage.
-export const ADDRESS_IMAGE = "/hotel/facade-sign.jpg";
+export const ADDRESS_IMAGE = "/hotel/facade-sign.webp";
 
 // The departments that run the complex, each with its own team photograph.
 export interface TeamMember {
@@ -179,7 +179,7 @@ export interface TeamMember {
 
 export const TEAM: TeamMember[] = [
   {
-    image: "/hotel/reception-team.jpg",
+    image: "/hotel/reception-team-sm.webp",
     role: { en: "Front Office", ar: "مكتب الاستقبال" },
     caption: {
       en: "Reception, staffed around the clock.",
@@ -187,7 +187,7 @@ export const TEAM: TeamMember[] = [
     },
   },
   {
-    image: "/hotel/team-housekeeping.jpg",
+    image: "/hotel/team-housekeeping-sm.webp",
     role: { en: "Housekeeping", ar: "التدبير الفندقي" },
     caption: {
       en: "The team that turns over every room.",
@@ -195,7 +195,7 @@ export const TEAM: TeamMember[] = [
     },
   },
   {
-    image: "/hotel/team-security.jpg",
+    image: "/hotel/team-security-sm.webp",
     role: { en: "Security", ar: "الأمن" },
     caption: {
       en: "On the floors and at the gates, day and night.",
@@ -203,7 +203,7 @@ export const TEAM: TeamMember[] = [
     },
   },
   {
-    image: "/hotel/staff-entrance.jpg",
+    image: "/hotel/staff-entrance-sm.webp",
     role: { en: "Guest Relations", ar: "علاقات الضيوف" },
     caption: {
       en: "Arrivals, bookings, and everything after.",
@@ -211,7 +211,7 @@ export const TEAM: TeamMember[] = [
     },
   },
   {
-    image: "/hotel/staff-security.jpg",
+    image: "/hotel/staff-security-sm.webp",
     role: { en: "The Duty Desk", ar: "مكتب المناوبة" },
     caption: {
       en: "One point of contact, whatever the hour.",

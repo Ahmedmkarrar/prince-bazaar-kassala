@@ -51,10 +51,10 @@ export const metadata: Metadata = {
     siteName: "Prince Plaza Kassala",
     images: [
       {
-        url: "/hotel/exterior-facade.jpg",
-        width: 1600,
-        height: 1200,
-        alt: "Prince Plaza Kassala — Twin Suite",
+        url: "/hotel/plaza-sky.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Prince Plaza Kassala — the plaza frontage",
       },
     ],
   },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Prince Plaza Kassala",
     description: "Where Arabic Elegance Meets the Heart of Sudan.",
-    images: ["/hotel/exterior-facade.jpg"],
+    images: ["/hotel/plaza-sky.jpg"],
   },
   alternates: {
     canonical: "/",
@@ -85,7 +85,7 @@ const HOTEL_LD = {
   image: [
     "https://prince-bazaar.vercel.app/hotel/exterior-facade.jpg",
     "https://prince-bazaar.vercel.app/hotel/lobby.jpg",
-    "https://prince-bazaar.vercel.app/hotel/restaurant.jpg",
+    "https://prince-bazaar.vercel.app/hotel/restaurant-alt.jpg",
     "https://prince-bazaar.vercel.app/hotel/plaza-sky.jpg",
     "https://prince-bazaar.vercel.app/hotel/taka-rooftop.jpg",
   ],
@@ -143,7 +143,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/hotel/plaza-sky.jpg"
+          href="/hotel/plaza-sky.webp"
           fetchPriority="high"
         />
         {/* Schema.org structured data for rich Google results. */}

@@ -158,7 +158,7 @@ export function Gallery() {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={GALLERY[active]} alt="" className="block h-auto max-h-[80vh] w-full rounded-[3px] object-cover" />
+            <img src={GALLERY[active].replace("-sm.webp", ".webp")} alt="" className="block h-auto max-h-[80vh] w-full rounded-[3px] object-cover" />
             <div
               className="absolute bottom-4 left-4 text-[10px] font-medium uppercase tracking-[0.32em]"
               style={{ color: "var(--color-gold-pale)" }}

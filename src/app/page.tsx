@@ -39,7 +39,7 @@ export default function Home() {
       <LiveAtmosphere />
       <Story />
       <Interstitial
-        image="/hotel/atrium.jpg"
+        image="/hotel/atrium.webp"
         eyebrow={{ en: "The Plaza", ar: "البلازا" }}
         line1={{ en: "Quiet comfort, climate-controlled.", ar: "راحة هادئة، بتكييف كامل." }}
         line2={{ en: "Considered details, throughout.", ar: "تفاصيل مدروسة، في كل ركن." }}
