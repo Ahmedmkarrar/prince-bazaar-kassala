@@ -31,7 +31,7 @@ const SUITES: Suite[] = [
     capacity: { en: "1 double bed · 2 guests · 13 rooms", ar: "سرير مزدوج · ضيفان · ١٣ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
     image: "/hotel/room-double.webp",
-    focus: "76% center",
+    focus: "60% center",
     detail: {
       en: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "غرفة مزدوجة بسرير واحد. تشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
