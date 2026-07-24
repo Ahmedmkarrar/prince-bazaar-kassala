@@ -2,7 +2,7 @@
 
 import { Reveal } from "./Reveal";
 import { useI18n } from "@/lib/i18n";
-import { COPY, PIEDMONT_SERVICES, PIEDMONT_WHY } from "@/lib/content";
+import { COPY, PIEDMONT_IMAGE, PIEDMONT_SERVICES, PIEDMONT_WHY } from "@/lib/content";
 
 export function Piedmont() {
   const { language } = useI18n();
@@ -50,6 +50,23 @@ export function Piedmont() {
               >
                 {COPY.piedmont_intro[language]}
               </p>
+              <div
+                className="relative mt-10 aspect-[16/9] overflow-hidden rounded-sm"
+                data-cursor="image"
+                style={{ boxShadow: "0 30px 70px -24px rgba(0,0,0,0.65)" }}
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[1200ms] hover:scale-[1.04]"
+                  style={{ backgroundImage: `url(${PIEDMONT_IMAGE})` }}
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 55%, rgba(20,12,30,0.72) 100%)",
+                  }}
+                />
+              </div>
             </div>
           </div>
         </Reveal>

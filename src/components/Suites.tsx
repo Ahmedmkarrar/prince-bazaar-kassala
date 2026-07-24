@@ -10,6 +10,8 @@ interface Suite {
   capacity: L;
   view: L;
   image: string;
+  /** Focal point for the tall arch crop — defaults to centre. */
+  focus?: string;
   detail: L;
 }
 
@@ -18,7 +20,7 @@ const SUITES: Suite[] = [
     name: { en: "Single Suite", ar: "جناح فردي" },
     capacity: { en: "1 bed · 1 guest · 10 rooms", ar: "سرير واحد · ضيف واحد · ١٠ غرف" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-single-padded.jpg",
+    image: "/hotel/room-single.jpg",
     detail: {
       en: "A comfortable single-bed suite. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "جناح مريح بسرير فردي. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
@@ -28,7 +30,8 @@ const SUITES: Suite[] = [
     name: { en: "Double Room", ar: "غرفة مزدوجة" },
     capacity: { en: "1 double bed · 2 guests · 13 rooms", ar: "سرير مزدوج · ضيفان · ١٣ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-king-warm.jpg",
+    image: "/hotel/room-double.jpg",
+    focus: "76% center",
     detail: {
       en: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "غرفة مزدوجة بسرير واحد. تشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
@@ -38,7 +41,7 @@ const SUITES: Suite[] = [
     name: { en: "Twin Suite", ar: "جناح بسريرين" },
     capacity: { en: "2 beds · 2 guests · 22 rooms", ar: "سريران · ضيفان · ٢٢ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-twin-gray.jpg",
+    image: "/hotel/room-twin.jpg",
     detail: {
       en: "A twin suite with two separate beds. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "جناح بسريرين منفصلين. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
@@ -134,8 +137,8 @@ export function Suites() {
                 <div className="photo-arch relative w-full max-w-[340px]" data-cursor="image">
                   <div className="photo-arch-inner photo-warm photo-grain aspect-[3/4]">
                     <div
-                      className="kenburns absolute inset-0 bg-cover bg-center transition-transform duration-[1200ms] group-hover:scale-[1.06]"
-                      style={{ backgroundImage: `url(${s.image})` }}
+                      className="kenburns absolute inset-0 bg-cover transition-transform duration-[1200ms] group-hover:scale-[1.06]"
+                      style={{ backgroundImage: `url(${s.image})`, backgroundPosition: s.focus ?? "center" }}
                     />
                   </div>
                   <SealMark id={`seal-${i}`} />

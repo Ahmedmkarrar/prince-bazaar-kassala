@@ -31,7 +31,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Luxury accommodations featuring panoramic views of the iconic Taka Mountains.",
       ar: "إقامات فاخرة بإطلالات بانورامية على جبال التاكا الشهيرة.",
     },
-    image: "/hotel/room-king-warm.jpg",
+    image: "/hotel/room-twin-warm.jpg",
   },
   {
     id: "commercial-plaza",
@@ -41,7 +41,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "A curated selection of retail outlets, bringing modern shopping to your doorstep.",
       ar: "تشكيلة منتقاة من المتاجر تجلب التسوق العصري إلى عتبة دارك.",
     },
-    image: null,
+    image: "/hotel/plaza-shops.jpg",
   },
   {
     id: "business",
@@ -51,10 +51,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "State-of-the-art meeting rooms and coworking spaces for the modern professional.",
       ar: "قاعات اجتماعات ومساحات عمل مشتركة بأحدث المعايير للمحترف العصري.",
     },
-    // Blank until the client provides a real Business Center photo — the room
-    // photo previously here was a mismatch. Component renders an elegant
-    // number/name placeholder when image is null.
-    image: null,
+    image: "/hotel/conference.jpg",
   },
   {
     id: "culinary",
@@ -64,7 +61,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "A functional restaurant for a great dine-in experience, with in-room dining and room service throughout the property.",
       ar: "مطعم متكامل لتجربة طعام رائعة داخل المطعم، مع خدمة الطعام في الغرف على مدار إقامتك.",
     },
-    image: null,
+    image: "/hotel/restaurant.jpg",
   },
   {
     id: "events",
@@ -74,7 +71,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Expansive spaces for weddings, conferences, and cultural celebrations.",
       ar: "فضاءات واسعة للأعراس والمؤتمرات والاحتفالات الثقافية.",
     },
-    image: null,
+    image: "/hotel/events-hall.jpg",
   },
   {
     id: "bazaar",
@@ -84,7 +81,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "From everyday essentials to unique treasures, our diverse range of stores has something for everyone.",
       ar: "من الأساسيات اليومية إلى الكنوز الفريدة، تشكيلتنا المتنوعة من المتاجر تضمّ ما يناسب الجميع.",
     },
-    image: null,
+    image: "/hotel/courtyard-bazaar.jpg",
   },
   {
     id: "tourism",
@@ -94,7 +91,7 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Transport from and to airport plus destination of your dreams.",
       ar: "نقل من وإلى المطار، إلى جانب وجهة أحلامك.",
     },
-    image: null,
+    image: "/hotel/taka-rooftop.jpg",
   },
 ];
 
@@ -135,26 +132,93 @@ export const AMENITIES: AmenityItem[] = [
   },
 ];
 
-// Gallery — only Prince Plaza photography supplied by the client.
+// Gallery — real Prince Plaza Kassala photography supplied by the client.
+// Indexes 0 and 5 render tall (portrait) — both hold images whose subject
+// survives a vertical crop (facade elevation, corridor perspective).
+// Sixteen entries fill the four-column grid with no short final row.
 export const GALLERY = [
-  "/hotel/room-king-warm.jpg",
-  "/hotel/room-presidential.jpg",
-  "/hotel/room-king-sunset.jpg",
-  "/hotel/room-family.jpg",
-  "/hotel/room-twin-gray.jpg",
-  "/hotel/room-twin-cream.jpg",
-  "/hotel/room-triple.jpg",
-  "/hotel/room-single-padded.jpg",
+  "/hotel/exterior-facade.jpg",
+  "/hotel/lobby.jpg",
+  "/hotel/restaurant.jpg",
+  "/hotel/room-twin-warm.jpg",
+  "/hotel/courtyard-bazaar.jpg",
+  "/hotel/corridor.jpg",
+  "/hotel/conference.jpg",
+  "/hotel/taka-rooftop.jpg",
+  "/hotel/bathroom.jpg",
+  "/hotel/plaza-shops.jpg",
+  "/hotel/room-door.jpg",
+  "/hotel/reception-desk.jpg",
+  "/hotel/kitchenette.jpg",
+  "/hotel/taka-terrace.jpg",
+  "/hotel/exterior-street.jpg",
+  "/hotel/room-twin-tv.jpg",
 ];
 
-// Hero — Prince Plaza king-bed suite.
-export const HERO_IMAGE = "/hotel/room-king-warm.jpg";
+// Hero — the Prince Plaza frontage under a Kassala sky.
+export const HERO_IMAGE = "/hotel/plaza-sky.jpg";
 
-// Atmospheric secondary image — Prince Plaza presidential.
-export const TAKA_IMAGE = "/hotel/room-king-sunset.jpg";
+// Atmospheric secondary image — Kassala's iconic Taka Mountains from the roof.
+export const TAKA_IMAGE = "/hotel/taka-rooftop.jpg";
 
-// Architectural detail image — used by Tourism / interstitial elsewhere.
-export const ARCHITECTURE_IMAGE = "/hotel/room-presidential.jpg";
+// Architectural detail image — the Prince Hotel arched facade.
+export const ARCHITECTURE_IMAGE = "/hotel/exterior-facade.jpg";
+
+// Piedmont Travel and Tourism — the agency team on site in the hotel.
+export const PIEDMONT_IMAGE = "/hotel/piedmont-team.jpg";
+
+// Second full-bleed band — the Prince Hotel signage on the Kassala frontage.
+export const ADDRESS_IMAGE = "/hotel/facade-sign.jpg";
+
+// The departments that run the complex, each with its own team photograph.
+export interface TeamMember {
+  image: string;
+  role: LocalisedText;
+  caption: LocalisedText;
+}
+
+export const TEAM: TeamMember[] = [
+  {
+    image: "/hotel/reception-team.jpg",
+    role: { en: "Front Office", ar: "مكتب الاستقبال" },
+    caption: {
+      en: "Reception, staffed around the clock.",
+      ar: "الاستقبال، بطاقم على مدار الساعة.",
+    },
+  },
+  {
+    image: "/hotel/team-housekeeping.jpg",
+    role: { en: "Housekeeping", ar: "التدبير الفندقي" },
+    caption: {
+      en: "The team that turns over every room.",
+      ar: "الفريق الذي يهيّئ كل غرفة.",
+    },
+  },
+  {
+    image: "/hotel/team-security.jpg",
+    role: { en: "Security", ar: "الأمن" },
+    caption: {
+      en: "On the floors and at the gates, day and night.",
+      ar: "في الطوابق وعلى البوابات، ليلًا ونهارًا.",
+    },
+  },
+  {
+    image: "/hotel/staff-entrance.jpg",
+    role: { en: "Guest Relations", ar: "علاقات الضيوف" },
+    caption: {
+      en: "Arrivals, bookings, and everything after.",
+      ar: "الوصول والحجوزات وكل ما يليها.",
+    },
+  },
+  {
+    image: "/hotel/staff-security.jpg",
+    role: { en: "The Duty Desk", ar: "مكتب المناوبة" },
+    caption: {
+      en: "One point of contact, whatever the hour.",
+      ar: "نقطة تواصل واحدة، في أي ساعة.",
+    },
+  },
+];
 
 // Centralised, verbatim docx copy used across the site.
 export const COPY = {

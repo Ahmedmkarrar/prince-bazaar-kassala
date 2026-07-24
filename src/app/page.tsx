@@ -6,6 +6,7 @@ import { Press } from "@/components/Press";
 import { LiveAtmosphere } from "@/components/LiveAtmosphere";
 import { Story } from "@/components/Story";
 import { Loader } from "@/components/Loader";
+import { ADDRESS_IMAGE } from "@/lib/content";
 
 // Below-the-fold sections — load on demand to keep the initial bundle slim.
 const Interstitial = dynamic(() => import("@/components/Interstitial").then(m => ({ default: m.Interstitial })));
@@ -17,6 +18,7 @@ const Tourism = dynamic(() => import("@/components/Tourism").then(m => ({ defaul
 const Conference = dynamic(() => import("@/components/Conference").then(m => ({ default: m.Conference })));
 const AISection = dynamic(() => import("@/components/AISection").then(m => ({ default: m.AISection })));
 const Amenities = dynamic(() => import("@/components/Amenities").then(m => ({ default: m.Amenities })));
+const Team = dynamic(() => import("@/components/Team").then(m => ({ default: m.Team })));
 const Gallery = dynamic(() => import("@/components/Gallery").then(m => ({ default: m.Gallery })));
 const FAQ = dynamic(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
 const Footer = dynamic(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
@@ -37,7 +39,7 @@ export default function Home() {
       <LiveAtmosphere />
       <Story />
       <Interstitial
-        image="/hotel/room-king-sunset.jpg"
+        image="/hotel/atrium.jpg"
         eyebrow={{ en: "The Plaza", ar: "البلازا" }}
         line1={{ en: "Quiet comfort, climate-controlled.", ar: "راحة هادئة، بتكييف كامل." }}
         line2={{ en: "Considered details, throughout.", ar: "تفاصيل مدروسة، في كل ركن." }}
@@ -47,12 +49,20 @@ export default function Home() {
       <Suites />
       <SudanMap />
       <Tourism />
+      <Interstitial
+        image={ADDRESS_IMAGE}
+        align="right"
+        eyebrow={{ en: "The Address", ar: "العنوان" }}
+        line1={{ en: "Prince Hotel, Kassala.", ar: "فندق برنس، كسلا." }}
+        line2={{ en: "Minutes from the Taka.", ar: "دقائق من التاكا." }}
+      />
       <Piedmont />
       <JourneyPlanner />
       <CeoMessage />
       <Conference />
       <AISection />
       <Amenities />
+      <Team />
       <Gallery />
       <FAQ />
       <Footer />

@@ -54,9 +54,10 @@ export function Gallery() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
+        {/* Dense flow lets the square tiles backfill the gaps the double-height ones leave. */}
+        <div className="grid grid-cols-2 gap-4 [grid-auto-flow:dense] sm:gap-6 md:grid-cols-4">
           {GALLERY.map((src, i) => {
-            const tall = i % 5 === 0;
+            const tall = i === 0 || i === 5;
             return (
               <Reveal key={src} delay={i * 60}>
                 <button

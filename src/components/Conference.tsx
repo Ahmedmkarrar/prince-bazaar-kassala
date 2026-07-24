@@ -30,7 +30,7 @@ const ROOMS: ConferenceRoomCard[] = [
       { en: "Surround sound system", ar: "نظام صوت محيطي" },
       { en: "Wi-Fi throughout", ar: "إنترنت لاسلكي في كل مكان" },
     ],
-    image: null,
+    image: "/hotel/events-hall.jpg",
   },
   {
     id: "conference-room",
@@ -46,7 +46,7 @@ const ROOMS: ConferenceRoomCard[] = [
       { en: "Projector", ar: "جهاز عرض" },
       { en: "Sound system", ar: "نظام صوت" },
     ],
-    image: null,
+    image: "/hotel/conference.jpg",
   },
 ];
 
