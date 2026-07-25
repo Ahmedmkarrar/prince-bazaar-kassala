@@ -187,7 +187,7 @@ export function ThisIsKassala() {
               style={{ color: "var(--color-stone)" }}
             >
               Every visit is curated with a Beja guide, a local historian, or a senior member
-              of the concierge team. Tell us what you want to understand — we'll build the day around it.
+              of the concierge team. Tell us what you want to understand — we&apos;ll build the day around it.
             </p>
             <a href="#concierge" className="btn-primary">
               Plan a Cultural Day

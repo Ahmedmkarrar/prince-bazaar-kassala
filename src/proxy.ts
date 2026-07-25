@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-// Middleware sits in front of every request. We use it for:
+// Proxy sits in front of every request. We use it for:
 //   1. Stripping path-traversal attempts before they reach handlers.
 //   2. Adding a few defence-in-depth headers (CSP nonces / per-route caching
 //      tweaks live in next.config.ts).
@@ -9,8 +9,11 @@ import { NextResponse, type NextRequest } from "next/server";
 //
 // Heavy rate limiting happens INSIDE each API route (so the limit is per
 // endpoint, not global). See `src/lib/rate-limit.ts`.
+//
+// Named `proxy` and living in `src/proxy.ts`: the `middleware` file convention
+// is deprecated as of Next 16.
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const url = new URL(request.url);
 
   // Block obvious path-traversal attempts.

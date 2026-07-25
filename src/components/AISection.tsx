@@ -17,7 +17,7 @@ const FEATURES: { title: L; body: L }[] = [
   },
   {
     title: { en: "Tour curation", ar: "تنسيق الجولات" },
-    body: { en: "Mountain expeditions, cultural walks, wellness rituals — tailored.", ar: "رحلات جبلية، جولات ثقافية، طقوس استجمام — مصمّمة لك." },
+    body: { en: "Mountain expeditions, cultural walks, bazaar afternoons — tailored.", ar: "رحلات جبلية، جولات ثقافية، جولات في السوق — مصمّمة لك." },
   },
   {
     title: { en: "Multilingual hospitality", ar: "ضيافة متعددة اللغات" },

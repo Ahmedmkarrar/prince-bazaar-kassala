@@ -64,9 +64,10 @@ export const metadata: Metadata = {
     description: "Where Arabic Elegance Meets the Heart of Sudan.",
     images: ["/hotel/plaza-sky.jpg"],
   },
+  // No `languages` map: English and Arabic are served from the same URL via the
+  // in-page toggle, so emitting two hreflang links to "/" would contradict itself.
   alternates: {
     canonical: "/",
-    languages: { en: "/", ar: "/" },
   },
 };
 
@@ -80,7 +81,7 @@ const HOTEL_LD = {
   description:
     "A pioneering architectural landmark at the foot of the Taka Mountains in Eastern Sudan. Seven interconnected complexes — Royal Suites, Commercial Plaza, Business Centre, Culinary Hub, Event Pavilions, Bazaar, Tourism.",
   url: "https://prince-bazaar.vercel.app",
-  telephone: "+249-000-000-000",
+  telephone: "+249-96-510-5555",
   email: "Kassala@princehotel-sd.com",
   image: [
     "https://prince-bazaar.vercel.app/hotel/exterior-facade.jpg",
@@ -101,7 +102,9 @@ const HOTEL_LD = {
     longitude: 36.4,
   },
   priceRange: "$$$",
-  starRating: { "@type": "Rating", ratingValue: "5" },
+  // No `starRating` — a star rating in structured data is a claim of official
+  // classification. Restore it only once the property is formally rated;
+  // unverified rich-result markup risks a Google manual action.
   amenityFeature: [
     { "@type": "LocationFeatureSpecification", name: "High-speed Wi-Fi" },
     { "@type": "LocationFeatureSpecification", name: "24/7 Concierge & Security" },
@@ -137,8 +140,22 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${arabic.variable}`}>
+    <html
+      lang="en"
+      dir="ltr"
+      suppressHydrationWarning
+      className={`${display.variable} ${sans.variable} ${arabic.variable}`}
+    >
       <head>
+        {/* The language toggle is client state, so the server always renders
+            English. Apply the stored choice before first paint, otherwise an
+            Arabic visitor sees a flash of English + LTR layout on every load.
+            Must stay in sync with STORAGE_KEY in lib/i18n.tsx. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem("pb_locale_v1");if(!s)return;var l=JSON.parse(s).language;if(l==="ar"){document.documentElement.lang="ar";document.documentElement.dir="rtl";}}catch(e){}})();`,
+          }}
+        />
         {/* Preload the hero image so first paint is fast. */}
         <link
           rel="preload"

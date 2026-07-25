@@ -30,7 +30,7 @@ const SCRIPT: Turn[] = [
   {
     role: "assistant",
     text: {
-      en: "I can offer a Three Bed Suite with mountain views — perfect for a family of four. For your sunrise, our 4×4 leaves at 05:30 with cardamom coffee and a Beja guide. Dinner at the rooftop, a quiet table near the corner. Shall I hold these dates?",
+      en: "I can offer a Three Bed Suite with mountain views — perfect for a family of four. For your sunrise, our 4×4 leaves at 05:30 with cardamom coffee and a Beja guide. Dinner at the Culinary Hub, a quiet table near the corner. Shall I hold these dates?",
       ar: "أقترح جناحًا بثلاثة أسرّة بإطلالة على الجبال — مثالي لعائلة من أربعة. ولشروقكم، تنطلق سيارتنا الرباعية في ٠٥:٣٠ مع قهوة بالهيل ومرشد من البجا. والعشاء على السطح، طاولة هادئة في الزاوية. هل أحجز هذه التواريخ؟",
     },
   },
@@ -56,12 +56,16 @@ export function ConciergeDemo() {
   const isAr = language === "ar";
   const [step, setStep] = useState(0);
   const [typed, setTyped] = useState<string[]>([""]);
+  const [renderedLanguage, setRenderedLanguage] = useState(language);
 
-  // Restart the demo whenever the language switches.
-  useEffect(() => {
+  // Restart the demo whenever the language switches. Adjusting state during
+  // render is React's documented way to reset on a changed value — doing it in
+  // an effect would render one frame of the stale language first.
+  if (renderedLanguage !== language) {
+    setRenderedLanguage(language);
     setStep(0);
     setTyped([""]);
-  }, [language]);
+  }
 
   useEffect(() => {
     const current = SCRIPT[step];
@@ -71,11 +75,9 @@ export function ConciergeDemo() {
     const speed = current.role === "user" ? 30 : 18;
     const text = current.text[language];
 
-    setTyped((prev) => {
-      const out = [...prev];
-      out[step] = "";
-      return out;
-    });
+    // Tracked so an unmount (or a language switch) cannot leave an advance /
+    // restart timer running and stack duplicate demo loops on top of each other.
+    const timers: number[] = [];
 
     const id = setInterval(() => {
       i++;
@@ -84,24 +86,31 @@ export function ConciergeDemo() {
         out[step] = text.slice(0, i);
         return out;
       });
-      if (i >= text.length) {
-        clearInterval(id);
-        setTimeout(() => {
+      if (i < text.length) return;
+
+      clearInterval(id);
+      timers.push(
+        window.setTimeout(() => {
           if (step < SCRIPT.length - 1) {
             setStep((s) => s + 1);
             setTyped((prev) => [...prev, ""]);
-          } else {
-            // restart after a pause
-            setTimeout(() => {
+            return;
+          }
+          // Loop back to the start after a pause.
+          timers.push(
+            window.setTimeout(() => {
               setStep(0);
               setTyped([""]);
-            }, 4000);
-          }
-        }, current.role === "user" ? 600 : 1400);
-      }
+            }, 4000),
+          );
+        }, current.role === "user" ? 600 : 1400),
+      );
     }, speed);
 
-    return () => clearInterval(id);
+    return () => {
+      clearInterval(id);
+      timers.forEach(clearTimeout);
+    };
   }, [step, language]);
 
   return (

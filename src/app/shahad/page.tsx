@@ -63,7 +63,7 @@ function HeroGroup() {
           style={{ color: "rgba(255,252,245,0.85)" }}
         >
           A multi-disciplinary group with deep roots in Sudan. We build infrastructure,
-          steward premium real estate, and host travellers across two of the country's
+          steward premium real estate, and host travellers across two of the country&apos;s
           most important regions — with a quiet, consistent commitment to quality.
         </p>
         <div className="mt-12 flex flex-wrap items-center gap-4">
@@ -115,7 +115,7 @@ function Introduction() {
             <p>
               As Sudan rebuilds, our role becomes both more practical and more meaningful: to
               put up structures that last, to host people who matter, and to invest in places
-              that will define the country's next chapter.
+              that will define the country&apos;s next chapter.
             </p>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
@@ -239,7 +239,7 @@ function CEOMessage() {
             style={{ color: "rgba(255,252,245,0.92)" }}
           >
             &ldquo;Every project we take on — whether a high-rise in Khartoum, a renovated
-            home in a recovering neighbourhood, or a guest's first night at the Prince Hotel —
+            home in a recovering neighbourhood, or a guest&apos;s first night at the Prince Hotel —
             is an opportunity to demonstrate that quality, discipline, and respect are still
             possible at scale in Sudan. That is the only standard worth measuring ourselves
             against.&rdquo;

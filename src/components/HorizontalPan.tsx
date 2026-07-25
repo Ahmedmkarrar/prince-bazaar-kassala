@@ -20,7 +20,7 @@ const VIGNETTES: Vignette[] = [
       en: "Climate-controlled comfort, hardwood floors, and a quiet that feels rare.",
       ar: "راحة بتكييف كامل، أرضيات خشبية، وهدوء نادر.",
     },
-    image: "/hotel/room-single.webp",
+    image: "/hotel/room-single-desk.webp",
   },
   {
     number: "ii",

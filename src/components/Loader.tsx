@@ -8,28 +8,37 @@ export function Loader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && sessionStorage.getItem("pb-loaded") === "1") {
-      setProgress(1);
-      setHidden(true);
-      return;
-    }
+    // Already seen this session: run the same path with a zero-length
+    // animation so it snaps shut. Collapsing the two branches keeps every
+    // setState inside the rAF callback rather than in the effect body.
+    let seen = false;
+    try { seen = sessionStorage.getItem("pb-loaded") === "1"; } catch {}
+
+    const duration = seen ? 0 : 600;
+    const settle = seen ? 0 : 180;
+
     let raf = 0;
+    let timer = 0;
     const start = performance.now();
-    const duration = 600;
+
     const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setProgress(eased);
-      if (t < 1) raf = requestAnimationFrame(tick);
-      else {
-        setTimeout(() => {
-          setHidden(true);
-          try { sessionStorage.setItem("pb-loaded", "1"); } catch {}
-        }, 180);
+      const t = duration === 0 ? 1 : Math.min(1, (now - start) / duration);
+      setProgress(1 - Math.pow(1 - t, 3));
+      if (t < 1) {
+        raf = requestAnimationFrame(tick);
+        return;
       }
+      timer = window.setTimeout(() => {
+        setHidden(true);
+        try { sessionStorage.setItem("pb-loaded", "1"); } catch {}
+      }, settle);
     };
+
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (

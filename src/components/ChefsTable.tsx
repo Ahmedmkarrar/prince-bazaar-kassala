@@ -57,7 +57,7 @@ export function ChefsTable() {
                 className="text-[10px] font-medium uppercase tracking-[0.42em]"
                 style={{ color: "rgba(233, 199, 123, 0.85)" }}
               >
-                The Chef's Table
+                The Chef&apos;s Table
               </span>
             </div>
             <h2
@@ -112,7 +112,7 @@ export function ChefsTable() {
                 className="text-[10px] font-medium uppercase tracking-[0.32em]"
                 style={{ color: "rgba(255,255,255,0.5)" }}
               >
-                Tonight's Menu
+                Tonight&apos;s Menu
               </div>
               <ul className="mt-5 space-y-4">
                 {COURSES.map((c, i) => (

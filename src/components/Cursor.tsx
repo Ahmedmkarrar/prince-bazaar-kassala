@@ -1,20 +1,37 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 type CursorMode = "default" | "image" | "cta" | "drag";
+
+const FINE_POINTER = "(pointer: fine)";
+
+// A media query is external state, so read it through useSyncExternalStore
+// rather than assigning it into state from an effect. The server snapshot is
+// `false` so the bespoke cursor never appears in the SSR markup.
+function subscribeFinePointer(onChange: () => void) {
+  const mql = window.matchMedia(FINE_POINTER);
+  mql.addEventListener("change", onChange);
+  return () => mql.removeEventListener("change", onChange);
+}
+
+function useFinePointer(): boolean {
+  return useSyncExternalStore(
+    subscribeFinePointer,
+    () => window.matchMedia(FINE_POINTER).matches,
+    () => false,
+  );
+}
 
 export function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
   const [mode, setMode] = useState<CursorMode>("default");
-  const [enabled, setEnabled] = useState(false);
+  const enabled = useFinePointer();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    setEnabled(true);
+    if (!enabled) return;
 
     let mx = window.innerWidth / 2;
     let my = window.innerHeight / 2;
@@ -60,7 +77,7 @@ export function Cursor() {
       window.removeEventListener("mousemove", onMove);
       document.documentElement.style.cursor = "";
     };
-  }, []);
+  }, [enabled]);
 
   if (!enabled) return null;
 

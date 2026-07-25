@@ -8,7 +8,6 @@ import { useMagnetic } from "@/lib/useMagnetic";
 export function Hero() {
   const imgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
-  const wordsRef = useRef<HTMLSpanElement[]>([]);
   const magCta = useMagnetic(0.5);
   const { language, t } = useI18n();
   const isAr = language === "ar";
@@ -17,28 +16,38 @@ export function Hero() {
     // Word fade-in is the only Hero animation — it runs once on mount.
     // Scroll/mouse parallax was removed because it was the main cause of
     // janky scroll on lower-end devices.
+    //
+    // The animated spans are collected from the DOM rather than through ref
+    // callbacks: a per-word callback would be created during render, which is
+    // exactly what the refs-during-render rule forbids. Stagger order follows
+    // document order.
+    const root = titleRef.current;
+    if (!root) return;
+
+    const words = Array.from(root.querySelectorAll<HTMLElement>("[data-hero-word]"));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    wordsRef.current.forEach((el, i) => {
-      if (!el) return;
-      if (reduce) {
+    if (reduce) {
+      for (const el of words) {
         el.style.opacity = "1";
         el.style.transform = "translateY(0)";
-        return;
       }
+      return;
+    }
+
+    const timers = words.map((el, i) => {
       el.style.opacity = "0";
       el.style.transform = "translateY(40px)";
-      setTimeout(() => {
-        el.style.transition = "opacity 800ms cubic-bezier(0.22,1,0.36,1), transform 800ms cubic-bezier(0.22,1,0.36,1)";
+      return window.setTimeout(() => {
+        el.style.transition =
+          "opacity 800ms cubic-bezier(0.22,1,0.36,1), transform 800ms cubic-bezier(0.22,1,0.36,1)";
         el.style.opacity = "1";
         el.style.transform = "translateY(0)";
       }, 120 + i * 90);
     });
-  }, []);
 
-  const setWord = (i: number) => (el: HTMLSpanElement | null) => {
-    if (el) wordsRef.current[i] = el;
-  };
+    return () => timers.forEach(clearTimeout);
+  }, [language]);
 
   return (
     <section className="relative h-[100svh] min-h-[760px] w-full overflow-hidden bg-black">
@@ -93,9 +102,9 @@ export function Hero() {
       >
         <div className="max-w-[980px]">
           <div className="mb-8 flex items-center gap-3 overflow-hidden">
-            <span ref={setWord(0)} className="inline-block h-px w-12" style={{ background: "rgba(255,255,255,0.55)" }} />
+            <span data-hero-word className="inline-block h-px w-12" style={{ background: "rgba(255,255,255,0.55)" }} />
             <span
-              ref={setWord(1)}
+              data-hero-word
               className={`inline-block text-[11px] font-medium uppercase tracking-[0.32em] ${isAr ? "font-arabic" : ""}`}
               style={{ color: "rgba(255,255,255,0.78)" }}
             >
@@ -118,10 +127,10 @@ export function Hero() {
             ) : (
               <>
                 <span className="block overflow-hidden">
-                  <span ref={setWord(2)} className="inline-block">Where Arabic Elegance</span>
+                  <span data-hero-word className="inline-block">Where Arabic Elegance</span>
                 </span>
                 <span className="block overflow-hidden">
-                  <span ref={setWord(3)} className="text-foil inline-block italic" style={{ fontWeight: 300 }}>
+                  <span data-hero-word className="text-foil inline-block italic" style={{ fontWeight: 300 }}>
                     Meets the Heart of Sudan.
                   </span>
                 </span>
@@ -130,7 +139,7 @@ export function Hero() {
           </h1>
 
           <div className="mt-10 flex flex-wrap items-center gap-4 sm:mt-12">
-            <span ref={setWord(5)} className="inline-block">
+            <span data-hero-word className="inline-block">
               <button
                 ref={magCta as React.RefObject<HTMLButtonElement>}
                 type="button"
@@ -141,7 +150,7 @@ export function Hero() {
                 <span aria-hidden>{isAr ? "←" : "→"}</span>
               </button>
             </span>
-            <span ref={setWord(6)} className="inline-block">
+            <span data-hero-word className="inline-block">
               <a href="#complex" className={`hero-cta-ghost ${isAr ? "font-arabic" : ""}`}>
                 {COPY.cta_explore[language]}
               </a>

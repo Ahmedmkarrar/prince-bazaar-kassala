@@ -51,8 +51,8 @@ const SECTIONS: { title: L; items: QA[] }[] = [
       {
         q: { en: "What is the dress code?", ar: "ما قواعد اللباس؟" },
         a: {
-          en: "Smart-casual throughout the day. Some restaurants and the rooftop request smart-elegant for dinner — collared shirts, dresses, no athletic wear. Out in Kassala, modest dress (covering shoulders and knees) is appreciated, especially in the bazaar and cultural quarter.",
-          ar: "لباس أنيق-عملي طوال النهار. وتطلب بعض المطاعم والسطح لباسًا أنيقًا للعشاء — قمصان بياقة وفساتين، دون ملابس رياضية. وفي كسلا، يُستحسن اللباس المحتشم (يغطّي الكتفين والركبتين)، خاصةً في السوق والحيّ الثقافي.",
+          en: "Smart-casual throughout the day. The Culinary Hub requests smart-elegant for dinner — collared shirts, dresses, no athletic wear. Out in Kassala, modest dress (covering shoulders and knees) is appreciated, especially in the bazaar and cultural quarter.",
+          ar: "لباس أنيق-عملي طوال النهار. ويطلب المطعم لباسًا أنيقًا للعشاء — قمصان بياقة وفساتين، دون ملابس رياضية. وفي كسلا، يُستحسن اللباس المحتشم (يغطّي الكتفين والركبتين)، خاصةً في السوق والحيّ الثقافي.",
         },
       },
       {

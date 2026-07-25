@@ -92,7 +92,7 @@ function Services() {
               Built for the work this country needs now.
             </h2>
             <p className="mt-6 text-[15px] leading-[1.9]" style={{ color: "var(--color-stone)" }}>
-              Four service lines, calibrated to the realities of Sudan's reconstruction era —
+              Four service lines, calibrated to the realities of Sudan&apos;s reconstruction era —
               from new builds to restoration and the planning that holds them together.
             </p>
           </div>

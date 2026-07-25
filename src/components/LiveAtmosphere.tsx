@@ -88,18 +88,20 @@ function currentlyHappening(hour: number): { label: L; value: L; status: "open" 
   // Weather (seasonally inflected, but simple)
   out.push({ label: { en: "32° clear", ar: "٣٢° صافٍ" }, value: { en: "Desert evening", ar: "أمسية صحراوية" }, status: "info" });
 
+  // Only the seven complexes that actually exist on the property are listed here.
+  // Never advertise a facility the site doesn't sell — guests read this as fact.
   if (hour >= 6 && hour < 10) {
-    out.push({ label: { en: "Courtyard", ar: "الفناء" }, value: { en: "Breakfast served", ar: "الإفطار يُقدَّم" }, status: "open" });
-    out.push({ label: { en: "Wellness", ar: "العافية" }, value: { en: "Hammam open", ar: "الحمّام مفتوح" }, status: "open" });
+    out.push({ label: { en: "Culinary Hub", ar: "المطعم" }, value: { en: "Breakfast served", ar: "الإفطار يُقدَّم" }, status: "open" });
+    out.push({ label: { en: "Reception", ar: "الاستقبال" }, value: { en: "Twenty-four hours", ar: "على مدار الساعة" }, status: "open" });
   } else if (hour >= 10 && hour < 14) {
     out.push({ label: { en: "Bazaar", ar: "السوق" }, value: { en: "Open", ar: "مفتوح" }, status: "open" });
-    out.push({ label: { en: "Café", ar: "المقهى" }, value: { en: "Lunch served", ar: "الغداء يُقدَّم" }, status: "open" });
+    out.push({ label: { en: "Culinary Hub", ar: "المطعم" }, value: { en: "Lunch served", ar: "الغداء يُقدَّم" }, status: "open" });
   } else if (hour >= 14 && hour < 18) {
-    out.push({ label: { en: "Wellness", ar: "العافية" }, value: { en: "Treatments available", ar: "الجلسات متاحة" }, status: "open" });
-    out.push({ label: { en: "Pool", ar: "المسبح" }, value: { en: "Open", ar: "مفتوح" }, status: "open" });
+    out.push({ label: { en: "Commercial Plaza", ar: "البلازا التجارية" }, value: { en: "Open", ar: "مفتوح" }, status: "open" });
+    out.push({ label: { en: "Business Center", ar: "مركز الأعمال" }, value: { en: "Open", ar: "مفتوح" }, status: "open" });
   } else if (hour >= 18 && hour < 23) {
-    out.push({ label: { en: "Rooftop", ar: "السطح" }, value: { en: "Dinner service", ar: "خدمة العشاء" }, status: "open" });
-    out.push({ label: { en: "Lounge", ar: "الصالة" }, value: { en: "Live oud at 21:00", ar: "عود مباشر ٢١:٠٠" }, status: "info" });
+    out.push({ label: { en: "Culinary Hub", ar: "المطعم" }, value: { en: "Dinner service", ar: "خدمة العشاء" }, status: "open" });
+    out.push({ label: { en: "Event Pavilions", ar: "قاعات المناسبات" }, value: { en: "Enquire to reserve", ar: "استفسر للحجز" }, status: "info" });
   } else {
     out.push({ label: { en: "Night Concierge", ar: "كونسيرج الليل" }, value: { en: "On duty", ar: "في الخدمة" }, status: "open" });
     out.push({ label: { en: "Dawn tour", ar: "جولة الفجر" }, value: { en: "Departs 05:30", ar: "تنطلق ٠٥:٣٠" }, status: "info" });

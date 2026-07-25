@@ -33,7 +33,7 @@ function timeAwareGreeting(): string {
   let g: string;
   if (h >= 5 && h < 12) g = "Good morning — I'm Taka AI, your concierge at Prince Plaza Kassala. The Taka spires are catching first light.";
   else if (h >= 12 && h < 17) g = "Good afternoon — I'm Taka AI, your concierge at Prince Plaza Kassala. The courtyard fountains are running and tea is on.";
-  else if (h >= 17 && h < 21) g = "Good evening — I'm Taka AI, your concierge at Prince Plaza Kassala. The rooftop is opening for service.";
+  else if (h >= 17 && h < 21) g = "Good evening — I'm Taka AI, your concierge at Prince Plaza Kassala. Dinner service is opening at the Culinary Hub.";
   else g = "A quiet welcome — I'm Taka AI, your concierge at Prince Plaza Kassala. The lounge is still lit.";
   return g + LANG_PROMPT;
 }
@@ -55,21 +55,25 @@ export function Concierge({ embedded = false }: ConciergeProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Hydration-safe: swap to time-aware greeting + load persisted convo on client
+  // Hydration-safe: swap to time-aware greeting + load persisted convo on client.
+  // The greeting depends on the visitor's clock and the transcript lives in
+  // localStorage, so neither can be produced during the server render — this
+  // has to be a single post-mount state write.
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
+    const restored = (): ChatMessage[] | null => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) return null;
         const parsed = JSON.parse(stored) as ChatMessage[];
-        if (Array.isArray(parsed) && parsed.length > 1) {
-          setMessages(parsed);
-          return;
-        }
+        return Array.isArray(parsed) && parsed.length > 1 ? parsed : null;
+      } catch {
+        return null;
       }
-    } catch {
-      // ignore
-    }
-    setMessages([{ role: "assistant", content: timeAwareGreeting() }]);
+    };
+
+    // Intentional post-mount write — see the comment above this effect.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMessages(restored() ?? [{ role: "assistant", content: timeAwareGreeting() }]);
   }, []);
 
   useEffect(() => {

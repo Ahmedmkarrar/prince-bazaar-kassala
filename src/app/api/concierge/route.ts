@@ -12,23 +12,64 @@ interface ChatMessage {
   content: string;
 }
 
-interface ConciergeRequest {
-  messages: ChatMessage[];
+// The request body is attacker-controlled. Without these caps a single caller
+// could post a megabyte of text per message and run up the API bill within the
+// rate limit's 20-request allowance.
+const MAX_MESSAGES = 24;
+const MAX_MESSAGE_CHARS = 4_000;
+const MAX_TOTAL_CHARS = 24_000;
+
+function parseConversation(body: unknown): ChatMessage[] | null {
+  if (typeof body !== "object" || body === null) return null;
+  const { messages } = body as { messages?: unknown };
+  if (!Array.isArray(messages) || messages.length === 0) return null;
+  if (messages.length > MAX_MESSAGES) return null;
+
+  let total = 0;
+  const parsed: ChatMessage[] = [];
+
+  for (const entry of messages) {
+    if (typeof entry !== "object" || entry === null) return null;
+    const { role, content } = entry as { role?: unknown; content?: unknown };
+    if (role !== "user" && role !== "assistant") return null;
+    if (typeof content !== "string") return null;
+
+    const trimmed = content.trim();
+    if (!trimmed || trimmed.length > MAX_MESSAGE_CHARS) return null;
+
+    total += trimmed.length;
+    if (total > MAX_TOTAL_CHARS) return null;
+
+    parsed.push({ role, content: trimmed });
+  }
+
+  // The Messages API requires the conversation to open with a user turn.
+  if (parsed[0].role !== "user") return null;
+  return parsed;
 }
 
+function badRequest(message: string): Response {
+  return new Response(JSON.stringify({ error: "invalid_request", message }), {
+    status: 400,
+    headers: { "content-type": "application/json" },
+  });
+}
+
+// Every entry must map to a complex that actually exists on the property.
+// There is no spa, pool, or rooftop lounge — do not reintroduce them here.
 const EXPERIENCE_LIBRARY: Record<string, string> = {
   nature:
     "The Taka Mountains at sunrise — a private 4×4 expedition with a local guide, traditional breakfast at the foot of the spires, and a return via the rural villages along the Gash river.",
   culture:
     "Old Kassala walking tour — the cultural quarter, the central bazaar, a coffee jebana ceremony with a Beja host, and a private viewing at the regional textile collection.",
-  wellness:
-    "A half-day at the Wellness & Spa — traditional hammam, signature dukhan smoke ritual, deep-tissue massage, and a closing tea ceremony in the courtyard.",
+  business:
+    "A working day at the Business Center — a private meeting room with Wi-Fi and full AV, coffee service throughout, and the Conference Room available for larger sessions of up to sixty.",
   dining:
-    "An evening at the rooftop lounge with a five-course tasting menu — Sudanese flavours reinterpreted by our executive chef, paired with mocktails from regional botanicals.",
+    "An evening at the Culinary Hub — Sudanese flavours prepared to order, served in the restaurant or brought to your suite by room service.",
   shopping:
-    "A guided bazaar afternoon — handpicked artisan stalls, custom-tailored garments, a private spice masterclass, and complimentary delivery to your suite.",
+    "A guided afternoon across the Bazaar and Commercial Plaza — artisan stalls, custom-tailored garments, and complimentary delivery to your suite.",
   family:
-    "A family day across the complex — children's activities at the courtyard, a private cooking class, an early dinner at the casual café, and an evening cinema screening at the pavilion.",
+    "A family day across the complex — an early dinner at the Culinary Hub, an afternoon through the Bazaar, and a Three Bed Suite that sleeps up to six.",
 };
 
 interface RecommendInput {
@@ -67,6 +108,18 @@ export async function POST(req: Request) {
   const limit = rateLimit(`concierge:${ip}`, 20, 10 * 60_000);
   if (!limit.ok) return rateLimitResponse(limit);
 
+  // Validate before looking at the API key, so a malformed request is always a
+  // 400 whether or not the concierge happens to be configured.
+  let raw: unknown;
+  try {
+    raw = await req.json();
+  } catch {
+    return badRequest("Body must be valid JSON.");
+  }
+
+  const messages = parseConversation(raw);
+  if (!messages) return badRequest("Malformed or oversized conversation.");
+
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return new Response(
@@ -78,9 +131,6 @@ export async function POST(req: Request) {
       { status: 200, headers: { "content-type": "application/json" } },
     );
   }
-
-  const body = (await req.json()) as ConciergeRequest;
-  const messages = body.messages ?? [];
 
   const client = new Anthropic({ apiKey });
 
@@ -98,13 +148,27 @@ export async function POST(req: Request) {
         }));
 
         for (let round = 0; round < 3; round++) {
-          const response = await client.messages.create({
-            model: "claude-sonnet-4-5",
-            max_tokens: 1024,
+          // Streamed, so the guest sees the reply build word by word instead of
+          // waiting for the whole turn. `max_tokens` covers thinking + text:
+          // Sonnet 5 thinks by default, so the old 1024 would truncate replies.
+          const stream = client.messages.stream({
+            model: "claude-sonnet-5",
+            max_tokens: 2048,
+            thinking: { type: "adaptive" },
+            output_config: { effort: "low" },
             system: CONCIERGE_SYSTEM,
             tools: CONCIERGE_TOOLS,
             messages: conversation,
           });
+
+          stream.on("text", (delta) => send("delta", { text: delta }));
+
+          const response = await stream.finalMessage();
+
+          if (response.stop_reason === "refusal") {
+            send("error", { message: "That request can't be answered here." });
+            break;
+          }
 
           const toolUses: Anthropic.Messages.ToolUseBlock[] = [];
           let textOut = "";
@@ -112,7 +176,6 @@ export async function POST(req: Request) {
           for (const block of response.content) {
             if (block.type === "text") {
               textOut += block.text;
-              send("delta", { text: block.text });
             } else if (block.type === "tool_use") {
               toolUses.push(block);
               send("tool", { name: block.name, input: block.input });

@@ -1,13 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GALLERY } from "@/lib/content";
 import { Reveal } from "./Reveal";
 import { useI18n } from "@/lib/i18n";
 
 export function Gallery() {
-  const { t } = useI18n();
-  const { language } = useI18n();
+  const { t, language } = useI18n();
   const isAr = language === "ar";
   const [active, setActive] = useState<number | null>(null);
 
@@ -158,7 +158,18 @@ export function Gallery() {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={GALLERY[active].replace("-sm.webp", ".webp")} alt="" className="block h-auto max-h-[80vh] w-full rounded-[3px] object-cover" />
+            <Image
+              src={GALLERY[active].replace("-sm.webp", ".webp")}
+              alt={t(
+                `Prince Plaza Kassala, gallery image ${active + 1} of ${GALLERY.length}`,
+                `برنس بلازا كسلا، صورة ${active + 1} من ${GALLERY.length}`,
+              )}
+              width={1600}
+              height={1067}
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              priority
+              className="block h-auto max-h-[80vh] w-full rounded-[3px] object-cover"
+            />
             <div
               className="absolute bottom-4 left-4 text-[10px] font-medium uppercase tracking-[0.32em]"
               style={{ color: "var(--color-gold-pale)" }}
