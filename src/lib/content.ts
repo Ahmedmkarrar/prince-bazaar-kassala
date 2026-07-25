@@ -71,7 +71,9 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Expansive spaces for weddings, conferences, and cultural celebrations.",
       ar: "فضاءات واسعة للأعراس والمؤتمرات والاحتفالات الثقافية.",
     },
-    image: "/hotel/events-hall-sm.webp",
+    // Wide view of the hall — the only frame that reads at the stated capacity.
+    // The old events-hall crop was 620x500 and rendered soft in this card.
+    image: "/hotel/conference-sm.webp",
   },
   {
     id: "bazaar",

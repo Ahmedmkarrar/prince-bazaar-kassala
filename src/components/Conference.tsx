@@ -30,7 +30,11 @@ const ROOMS: ConferenceRoomCard[] = [
       { en: "Surround sound system", ar: "نظام صوت محيطي" },
       { en: "Wi-Fi throughout", ar: "إنترنت لاسلكي في كل مكان" },
     ],
-    image: "/hotel/events-hall-sm.webp",
+    // The 100-guest venue gets the wide hall shot; the old events-hall frame was
+    // a 620x500 crop (cropped to dodge a blurred microphone), upscaled to 720px
+    // for the -sm variant. These two cards render ~680 CSS px wide, so they use
+    // the full-size files — the -sm ones are visibly soft on a retina display.
+    image: "/hotel/conference.webp",
   },
   {
     id: "conference-room",
@@ -46,7 +50,8 @@ const ROOMS: ConferenceRoomCard[] = [
       { en: "Projector", ar: "جهاز عرض" },
       { en: "Sound system", ar: "نظام صوت" },
     ],
-    image: "/hotel/conference-sm.webp",
+    // Tighter angle on the same space, at a full 1280x720 source.
+    image: "/hotel/conference-alt.webp",
   },
 ];
 
