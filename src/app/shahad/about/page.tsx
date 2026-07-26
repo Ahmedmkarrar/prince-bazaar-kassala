@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main style={{ background: "var(--color-ivory)" }}>
+    <main id="main-content" style={{ background: "var(--color-ivory)" }}>
       <GroupNav />
       <SectorHero
         eyebrow="The Group"

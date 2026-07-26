@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "Shahad Group — Construction, Real Estate, Hospitality",
+    // `absolute`, not `default`: a nested `default` still gets wrapped by the
+    // root template, which suffixed the group's own landing page with
+    // "· Prince Plaza Kassala" — the wrong brand for the umbrella site.
+    absolute: "Shahad Group — Construction, Real Estate, Hospitality",
     template: "%s · Shahad Group",
   },
   description:

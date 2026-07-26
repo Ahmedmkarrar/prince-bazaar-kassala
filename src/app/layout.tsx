@@ -174,6 +174,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        {/* First tab stop on every page. The homepage runs to 13 sections, so
+            without this a keyboard or screen-reader user has to traverse the
+            whole nav on every load (WCAG 2.4.1). Hidden until focused. */}
+        <a href="#main-content" className="pb-skip-link">
+          Skip to content
+        </a>
         <ScrollProgress />
         <SmoothScroll />
         <Cursor />

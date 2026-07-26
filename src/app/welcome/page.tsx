@@ -10,7 +10,7 @@ export default function WelcomePage() {
   const isAr = language === "ar";
 
   return (
-    <main
+    <main id="main-content"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pt-24 lg:px-12"
       style={{
         background:

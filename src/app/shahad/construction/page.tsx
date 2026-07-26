@@ -57,7 +57,7 @@ const STRENGTHS = [
 
 export default function ConstructionPage() {
   return (
-    <main style={{ background: "var(--color-ivory)" }}>
+    <main id="main-content" style={{ background: "var(--color-ivory)" }}>
       <GroupNav />
       <SectorHero
         eyebrow="Shahad Contracting & Construction"

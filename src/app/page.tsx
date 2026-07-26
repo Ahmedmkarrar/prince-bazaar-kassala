@@ -30,7 +30,7 @@ const WhatsAppReserve = dynamic(() => import("@/components/WhatsAppReserve").the
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content">
       <Loader />
       <TopBar />
       <Nav />

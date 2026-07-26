@@ -51,7 +51,7 @@ const CLIENTS = [
 
 export default function RealEstatePage() {
   return (
-    <main style={{ background: "var(--color-ivory)" }}>
+    <main id="main-content" style={{ background: "var(--color-ivory)" }}>
       <GroupNav />
       <SectorHero
         eyebrow="Shahad Real Estate"

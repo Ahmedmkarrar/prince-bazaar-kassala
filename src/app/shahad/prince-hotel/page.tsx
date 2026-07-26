@@ -39,7 +39,7 @@ const ROOMS = [
 
 export default function PrinceHotelPage() {
   return (
-    <main style={{ background: "var(--color-ivory)" }}>
+    <main id="main-content" style={{ background: "var(--color-ivory)" }}>
       <GroupNav />
       <SectorHero
         eyebrow="Prince Hotel Khartoum"

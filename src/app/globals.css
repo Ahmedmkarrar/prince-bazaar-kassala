@@ -364,6 +364,29 @@ html { scroll-behavior: smooth; }
   transform-origin: left center;
 }
 
+/* Skip-to-content link. Off-screen until it takes focus, then pinned top-left
+   above everything (the loader sits at z-100, the cursor at z-9999). */
+.pb-skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  transform: translateY(-120%);
+  padding: 0.9rem 1.5rem;
+  background: var(--color-ivory, #f4efe6);
+  color: #1a0e2e;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+.pb-skip-link:focus {
+  transform: translateY(0);
+}
+
 /* Refined keyboard-focus ring — gold, offset, never harsh. */
 a:focus-visible,
 button:focus-visible,

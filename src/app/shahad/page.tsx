@@ -7,7 +7,7 @@ import { SECTORS, GROUP } from "@/lib/group";
 
 export default function GroupHome() {
   return (
-    <main style={{ background: "var(--color-ivory)" }}>
+    <main id="main-content" style={{ background: "var(--color-ivory)" }}>
       <GroupNav />
       <HeroGroup />
       <Introduction />
