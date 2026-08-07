@@ -57,11 +57,11 @@ function badRequest(message: string): Response {
 
 // Every entry must map to a complex that actually exists on the property.
 // There is no spa, pool, or rooftop lounge — do not reintroduce them here.
+// The nature and culture entries were removed with the tourism sections: they
+// described a guided 4x4 expedition and an Old Kassala walking tour, neither of
+// which the property offers any more. Leaving them here would have let the
+// concierge keep selling them after they came off the site.
 const EXPERIENCE_LIBRARY: Record<string, string> = {
-  nature:
-    "The Taka Mountains at sunrise — a private 4×4 expedition with a local guide, traditional breakfast at the foot of the spires, and a return via the rural villages along the Gash river.",
-  culture:
-    "Old Kassala walking tour — the cultural quarter, the central bazaar, a coffee jebana ceremony with a Beja host, and a private viewing at the regional textile collection.",
   business:
     "A working day at the Business Center — a private meeting room with Wi-Fi and full AV, coffee service throughout, and the Conference Room available for larger sessions of up to sixty.",
   dining:
@@ -84,8 +84,8 @@ interface HandoffInput {
 async function runTool(name: string, input: unknown): Promise<string> {
   if (name === "recommend_experience") {
     const i = input as RecommendInput;
-    const key = i.interest ?? "culture";
-    const body = EXPERIENCE_LIBRARY[key] ?? EXPERIENCE_LIBRARY.culture;
+    const key = i.interest ?? "dining";
+    const body = EXPERIENCE_LIBRARY[key] ?? EXPERIENCE_LIBRARY.dining;
     return JSON.stringify({ recommendation: body, duration: i.duration ?? "half_day" });
   }
 

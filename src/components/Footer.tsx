@@ -40,7 +40,9 @@ export function Footer() {
           <FooterCol title={t("Discover", "اكتشف")} isAr={isAr}>
             <FooterLink href="#story" isAr={isAr}>{t("Our Story", "قصتنا")}</FooterLink>
             <FooterLink href="#complex" isAr={isAr}>{t("The Complex", "المجمّع")}</FooterLink>
-            <FooterLink href="#tourism" isAr={isAr}>{t("Tourism", "السياحة")}</FooterLink>
+            {/* The Tourism link was left pointing at #tourism after that
+                section was removed — a dead control, same as #concierge-live. */}
+            <FooterLink href="#suites" isAr={isAr}>{t("Rooms", "الغرف")}</FooterLink>
             <FooterLink href={WHATSAPP_URL} isAr={isAr}>{t("Reservations", "الحجوزات")}</FooterLink>
           </FooterCol>
 
