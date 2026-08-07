@@ -60,7 +60,7 @@ export function Gallery() {
             these interiors in half. */}
         <div className="grid grid-cols-2 gap-4 [grid-auto-flow:dense] sm:gap-6 md:grid-cols-4">
           {GALLERY.map((src, i) => {
-            const wide = i === 0 || i === 5 || i === 10;
+            const wide = i === 0;
             // The span has to live on Reveal, not the button: Reveal renders the
             // div that is the grid's direct child, so a span class on the button
             // inside it was silently inert.

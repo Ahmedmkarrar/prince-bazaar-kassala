@@ -138,8 +138,8 @@ export function Suites() {
           </div>
           <p className={`max-w-md text-[16px] leading-[1.8] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-stone)" }}>
             {t(
-              "Flagship layouts, plush interiors, and the same impeccable service across each. Tell us your dates — we'll match you to the right one.",
-              "تصاميم مميّزة، وديكورات فاخرة، والخدمة المتقنة ذاتها في كلٍّ منها. أخبرنا بتواريخك — وسنرشدك إلى الأنسب لك.",
+              "Every room includes a refrigerator, seating, towels and bathroom amenities, with reception staffed around the clock. Tell us your dates and we'll match you to the right one.",
+              "كل غرفة تشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار الساعة. أخبرنا بتواريخك وسنرشدك إلى الأنسب لك.",
             )}
           </p>
         </Reveal>
@@ -161,19 +161,20 @@ export function Suites() {
                   <SealMark id={`seal-${i}`} />
                 </div>
 
-                <div className="mt-12 flex flex-col items-center">
-                  <div className={`text-[10px] font-medium uppercase tracking-[0.28em] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-gold)" }}>
-                    {s.view[language]}
-                  </div>
-                  <h3 className={`mt-3 text-[30px] leading-tight ${isAr ? "font-arabic" : "font-display"}`} style={{ color: "var(--color-charcoal)" }}>
+                {/* Name, capacity, rate enquiry. The per-room eyebrow and
+                    paragraph were dropped: every one of the four repeated the
+                    same "inclusive of refrigerator, seating, towel and bathroom
+                    amenities, with twenty-four-hour reception" sentence, so the
+                    section said the same thing four times and ran to three and a
+                    half screens on a phone. The shared inclusions are now stated
+                    once, above. */}
+                <div className="mt-10 flex flex-col items-center">
+                  <h3 className={`text-[28px] leading-tight ${isAr ? "font-arabic" : "font-display"}`} style={{ color: "var(--color-charcoal)" }}>
                     {s.name[language]}
                   </h3>
-                  <div className={`mt-1 text-[12px] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-mist)" }}>
+                  <div className={`mt-1.5 text-[13px] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-mist)" }}>
                     {s.capacity[language]}
                   </div>
-                  <p className={`mt-5 max-w-[360px] text-[14px] leading-[1.75] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-stone)" }}>
-                    {s.detail[language]}
-                  </p>
                   <a
                     href={WHATSAPP_URL}
                     target="_blank"

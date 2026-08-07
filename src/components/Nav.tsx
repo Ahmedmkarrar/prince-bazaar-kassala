@@ -77,12 +77,18 @@ export function Nav() {
           </button>
         </div>
 
+        {/* Labelled, not just an icon. Client feedback was "there is no clear
+            menu" — two unlabelled hairlines in a 40px circle read as decoration
+            rather than navigation, especially for visitors who are not daily
+            users of Western app conventions. */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border lg:hidden"
+          className="flex h-10 items-center gap-2.5 rounded-full border px-4 lg:hidden"
           aria-label="Toggle menu"
+          aria-expanded={open}
           style={{
-            borderColor: overHero ? "rgba(255,255,255,0.3)" : "var(--color-line)",
+            borderColor: overHero ? "rgba(255,255,255,0.45)" : "var(--color-line)",
+            background: overHero ? "rgba(0,0,0,0.22)" : "var(--color-ivory)",
           }}
         >
           <span className="relative block h-2.5 w-5">
@@ -94,6 +100,12 @@ export function Nav() {
               className={`absolute inset-x-0 bottom-0 h-px transition-transform ${open ? "-translate-y-[5px] -rotate-45" : ""}`}
               style={{ background: overHero ? "#FFFFFF" : "var(--color-charcoal)" }}
             />
+          </span>
+          <span
+            className={`text-[11px] font-medium uppercase tracking-[0.22em] ${isAr ? "font-arabic" : ""}`}
+            style={{ color: overHero ? "#FFFFFF" : "var(--color-charcoal)" }}
+          >
+            {open ? t("Close", "إغلاق") : t("Menu", "القائمة")}
           </span>
         </button>
       </div>

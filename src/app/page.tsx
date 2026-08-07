@@ -38,12 +38,10 @@ export default function Home() {
       <Press />
       <LiveAtmosphere />
       <Story />
-      <Interstitial
-        image="/hotel/atrium.webp"
-        eyebrow={{ en: "The Plaza", ar: "البلازا" }}
-        line1={{ en: "Quiet comfort, climate-controlled.", ar: "راحة هادئة، بتكييف كامل." }}
-        line2={{ en: "Considered details, throughout.", ar: "تفاصيل مدروسة، في كل ركن." }}
-      />
+      {/* The "Quiet comfort, climate-controlled" band sat here: a full-screen
+          photograph carrying a slogan and no information. Removed on client
+          feedback that the page ran long — of the two decorative bands, the
+          Address one below at least tells you where the hotel is. */}
       <HorizontalPan />
       <ComplexShowcase />
       <Suites />

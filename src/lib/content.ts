@@ -148,25 +148,21 @@ export const AMENITIES: AmenityItem[] = [
 ];
 
 // Gallery — real Prince Plaza Kassala photography supplied by the client.
-// Indexes 0, 5 and 10 render as 2x2 feature tiles; every cell is 4:3, matching
-// the 16:9 sources closely enough to avoid a portrait crop. Sixteen entries
-// fill the four-column dense grid with no short final row.
+// Index 0 renders as a 2x2 feature tile; every cell is 4:3, matching the 16:9
+// sources closely enough to avoid a portrait crop. Nine entries fill three
+// clean rows of the four-column dense grid (8 single cells + one 2x2 = 12).
+// Trimmed from sixteen on client feedback that the page ran long — the
+// property is already shown in the complex index, the suites and the property
+// panels, so a sixteen-frame gallery was the most repetitive stretch of it.
 export const GALLERY = [
   "/hotel/exterior-facade-sm.webp",
   "/hotel/lobby-sm.webp",
   "/hotel/restaurant-alt-sm.webp",
   "/hotel/room-twin-warm-sm.webp",
-  "/hotel/courtyard-bazaar-sm.webp",
   "/hotel/corridor-sm.webp",
   "/hotel/conference-sm.webp",
-  "/hotel/taka-rooftop-sm.webp",
-  "/hotel/atrium-sm.webp",
-  "/hotel/plaza-shops-sm.webp",
-  "/hotel/restaurant-sm.webp",
-  "/hotel/reception-desk-sm.webp",
-  "/hotel/room-twin-tv-sm.webp",
   "/hotel/taka-terrace-sm.webp",
-  "/hotel/exterior-street-sm.webp",
+  "/hotel/plaza-shops-sm.webp",
   "/hotel/room-triple-sm.webp",
 ];
 

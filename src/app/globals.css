@@ -267,15 +267,19 @@ html { scroll-behavior: smooth; }
 
 /* ── Vertical rhythm ────────────────────────────────────────────────────
    Eleven sections shared one padding value, which reads as a stack rather
-   than a sequence. Three bands give the page pace. */
-.band { padding-top: 6rem; padding-bottom: 6rem; }
-.band-tight { padding-top: 4rem; padding-bottom: 4rem; }
-.band-open { padding-top: 7rem; padding-bottom: 7rem; }
+   than a sequence. Three bands give the page pace.
+
+   Tightened after client feedback that the page ran long. Editorial
+   whitespace reads as luxury to a design audience and as wasted scrolling to
+   someone who came to find a room, and the latter is who this is for. */
+.band { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+.band-tight { padding-top: 3rem; padding-bottom: 3rem; }
+.band-open { padding-top: 5.5rem; padding-bottom: 5.5rem; }
 
 @media (min-width: 1024px) {
-  .band { padding-top: 8rem; padding-bottom: 8rem; }
-  .band-tight { padding-top: 5.5rem; padding-bottom: 5.5rem; }
-  .band-open { padding-top: 11rem; padding-bottom: 11rem; }
+  .band { padding-top: 6rem; padding-bottom: 6rem; }
+  .band-tight { padding-top: 4rem; padding-bottom: 4rem; }
+  .band-open { padding-top: 7.5rem; padding-bottom: 7.5rem; }
 }
 
 /* Frame ratios.
