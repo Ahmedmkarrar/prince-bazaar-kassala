@@ -2,6 +2,7 @@
 
 import { TAKA_IMAGE, COPY } from "@/lib/content";
 import { Reveal } from "./Reveal";
+import { Photo } from "./Photo";
 import { useI18n } from "@/lib/i18n";
 
 export function Tourism() {
@@ -11,7 +12,7 @@ export function Tourism() {
   return (
     <section
       id="tourism"
-      className="relative px-6 py-32 lg:px-12 lg:py-44"
+      className="relative px-6 lg:px-12 band-tight"
       dir={isAr ? "rtl" : "ltr"}
     >
       <div className="mx-auto max-w-[1400px]">
@@ -53,15 +54,17 @@ export function Tourism() {
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-7">
+            {/* 16:9, matching the source. The old 21:9 cinema crop cut a third
+                of the frame height off a mountain landscape — the subject. */}
             <div
-              className="relative aspect-cinema overflow-hidden rounded-sm"
-              style={{
-                backgroundImage: `url(${TAKA_IMAGE})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                boxShadow: "var(--shadow-card)",
-              }}
+              className="photo-warm relative aspect-frame overflow-hidden rounded-sm"
+              style={{ boxShadow: "var(--shadow-card)" }}
             >
+              <Photo
+                src={TAKA_IMAGE}
+                alt="The Taka Mountains seen from Prince Plaza Kassala"
+                sizes="(max-width: 1024px) 92vw, 760px"
+              />
               <div
                 className="absolute inset-0"
                 style={{ background: "linear-gradient(180deg, transparent 40%, rgba(14,59,46,0.8) 100%)" }}

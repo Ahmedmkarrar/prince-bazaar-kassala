@@ -9,7 +9,7 @@ export function CeoMessage() {
 
   return (
     <section
-      className="px-6 py-24 lg:px-12 lg:py-36"
+      className="px-6 lg:px-12 band"
       style={{ background: "var(--color-ivory)" }}
       dir={isAr ? "rtl" : "ltr"}
     >

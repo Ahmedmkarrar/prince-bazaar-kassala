@@ -42,3 +42,7 @@ next-env.d.ts
 
 # client photo drop — originals kept locally, deduped copies live in public/hotel
 /incoming
+
+# Agent skills installed via `npx skills add` — tooling, not app source
+.claude/skills/
+skills-lock.json

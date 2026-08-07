@@ -39,7 +39,7 @@ export function SudanMap() {
 
   return (
     <section
-      className="relative px-6 py-32 lg:px-12 lg:py-44"
+      className="relative px-6 lg:px-12 band"
       style={{ background: "var(--color-charcoal)", color: "#FFFFFF" }}
       dir={isAr ? "rtl" : "ltr"}
     >
@@ -56,10 +56,9 @@ export function SudanMap() {
               </span>
             </div>
             <h2
-              className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+              className={`mt-8 t-chapter ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "#FFFFFF",
-                fontSize: "clamp(40px, 5.5vw, 72px)",
                 lineHeight: 1.02,
                 fontWeight: 400,
               }}

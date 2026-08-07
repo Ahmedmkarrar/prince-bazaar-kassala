@@ -18,6 +18,8 @@ export interface ComplexNode {
   name: LocalisedText;
   description: LocalisedText;
   image: string | null;
+  /** Focal point for the 4:3 crop. Defaults to centre. */
+  focus?: string;
 }
 
 // Complex listing follows the docx order and uses the docx descriptions verbatim.
@@ -31,7 +33,10 @@ export const COMPLEXES: ComplexNode[] = [
       en: "Luxury accommodations featuring panoramic views of the iconic Taka Mountains.",
       ar: "إقامات فاخرة بإطلالات بانورامية على جبال التاكا الشهيرة.",
     },
-    image: "/hotel/room-twin-sm.webp",
+    // The warmest room frame in the library — curtains, seating and a made bed.
+    // The previous twin-room shot was a flat, windowless wall that read as
+    // budget lodging directly under the word "luxury".
+    image: "/hotel/room-lounge-sm.webp",
   },
   {
     id: "commercial-plaza",
@@ -51,7 +56,12 @@ export const COMPLEXES: ComplexNode[] = [
       en: "State-of-the-art meeting rooms and coworking spaces for the modern professional.",
       ar: "قاعات اجتماعات ومساحات عمل مشتركة بأحدث المعايير للمحترف العصري.",
     },
-    image: "/hotel/conference-sm.webp",
+    // The alternate frame — Event Pavilions (05) holds the wide hall view, so
+    // the two conference complexes no longer show an identical photograph.
+    image: "/hotel/conference-alt-sm.webp",
+    // Weighted right: a large out-of-focus houseplant sits on the left edge of
+    // this frame and, at centre, occupied roughly a third of the card.
+    focus: "72% center",
   },
   {
     id: "culinary",
@@ -83,7 +93,10 @@ export const COMPLEXES: ComplexNode[] = [
       en: "From everyday essentials to unique treasures, our diverse range of stores has something for everyone.",
       ar: "من الأساسيات اليومية إلى الكنوز الفريدة، تشكيلتنا المتنوعة من المتاجر تضمّ ما يناسب الجميع.",
     },
-    image: "/hotel/courtyard-bazaar-sm.webp",
+    // Shopfronts under awnings along the frontage. The courtyard frame this
+    // replaces showed residential balconies over an astroturf yard — no stores
+    // visible at all, directly under copy about a diverse range of them.
+    image: "/hotel/exterior-street-sm.webp",
   },
   {
     id: "tourism",
@@ -135,9 +148,9 @@ export const AMENITIES: AmenityItem[] = [
 ];
 
 // Gallery — real Prince Plaza Kassala photography supplied by the client.
-// Indexes 0 and 5 render tall (portrait) — both hold images whose subject
-// survives a vertical crop (facade elevation, corridor perspective).
-// Sixteen entries fill the four-column grid with no short final row.
+// Indexes 0, 5 and 10 render as 2x2 feature tiles; every cell is 4:3, matching
+// the 16:9 sources closely enough to avoid a portrait crop. Sixteen entries
+// fill the four-column dense grid with no short final row.
 export const GALLERY = [
   "/hotel/exterior-facade-sm.webp",
   "/hotel/lobby-sm.webp",
@@ -147,30 +160,39 @@ export const GALLERY = [
   "/hotel/corridor-sm.webp",
   "/hotel/conference-sm.webp",
   "/hotel/taka-rooftop-sm.webp",
-  "/hotel/bathroom-vanity-sm.webp",
+  "/hotel/atrium-sm.webp",
   "/hotel/plaza-shops-sm.webp",
   "/hotel/restaurant-sm.webp",
   "/hotel/reception-desk-sm.webp",
-  "/hotel/kitchenette-sm.webp",
+  "/hotel/room-twin-tv-sm.webp",
   "/hotel/taka-terrace-sm.webp",
   "/hotel/exterior-street-sm.webp",
   "/hotel/room-triple-sm.webp",
 ];
 
-// Hero — the Prince Plaza frontage under a Kassala sky.
-export const HERO_IMAGE = "/hotel/plaza-sky.webp";
+// Hero — the Taka range from the terrace.
+//
+// Both building frames put the headline's promise of elegance directly above
+// their own weakest material: plaza-sky leads with a debris-strewn forecourt
+// and overhead cabling, exterior-facade with a car park and a large stained
+// wall. This frame leads with the thing Kassala is actually known for, and is
+// the one photograph in the set with genuine depth and colour. Its clutter —
+// a rooftop water heater and parapet — is confined to the bottom strip, which
+// the scrim covers. The property itself carries the Address interstitial, the
+// complex index and the gallery.
+export const HERO_IMAGE = "/hotel/taka-terrace.webp";
 
 // Atmospheric secondary image — Kassala's iconic Taka Mountains from the roof.
 export const TAKA_IMAGE = "/hotel/taka-rooftop.webp";
 
-// Architectural detail image — the Prince Hotel arched facade.
-export const ARCHITECTURE_IMAGE = "/hotel/exterior-facade.webp";
-
 // Piedmont Travel and Tourism — the agency team on site in the hotel.
 export const PIEDMONT_IMAGE = "/hotel/piedmont-team.webp";
 
-// Second full-bleed band — the Prince Hotel signage on the Kassala frontage.
-export const ADDRESS_IMAGE = "/hotel/facade-sign.webp";
+// Second full-bleed band. The signage close-up this replaces was a nameplate
+// on a blank wall — too little information to carry an 80vh band. The wide
+// frontage gives the same "this is the address" reading with the arches,
+// parapet and sky doing the work.
+export const ADDRESS_IMAGE = "/hotel/exterior-facade.webp";
 
 // The departments that run the complex, each with its own team photograph.
 export interface TeamMember {

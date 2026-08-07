@@ -12,7 +12,7 @@ export function Story() {
   return (
     <section
       id="story"
-      className="relative overflow-hidden px-6 py-32 lg:px-12 lg:py-48"
+      className="relative overflow-hidden px-6 lg:px-12 band-open"
       dir={isAr ? "rtl" : "ltr"}
     >
       <div
@@ -37,10 +37,9 @@ export function Story() {
         <div className="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-20">
           <Reveal className="lg:col-span-7">
             <h2
-              className={`tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+              className={`t-chapter ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "var(--color-charcoal)",
-                fontSize: "clamp(36px, 5.2vw, 72px)",
                 lineHeight: 1.1,
                 fontWeight: 400,
               }}

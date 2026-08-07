@@ -89,7 +89,7 @@ export function ChefsTable() {
                   className="font-display"
                   style={{ color: "#FFFFFF", fontSize: "20px", fontWeight: 400 }}
                 >
-                  Hala Al-Tigani
+                  Husna
                 </div>
                 <div
                   className="mt-1 text-[11px] font-medium uppercase tracking-[0.28em]"

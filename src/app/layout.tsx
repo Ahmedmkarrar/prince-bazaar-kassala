@@ -51,10 +51,10 @@ export const metadata: Metadata = {
     siteName: "Prince Plaza Kassala",
     images: [
       {
-        url: "/hotel/plaza-sky.jpg",
+        url: "/hotel/taka-terrace.jpg",
         width: 1280,
         height: 720,
-        alt: "Prince Plaza Kassala — the plaza frontage",
+        alt: "Prince Plaza Kassala — the Taka Mountains from the terrace",
       },
     ],
   },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Prince Plaza Kassala",
     description: "Where Arabic Elegance Meets the Heart of Sudan.",
-    images: ["/hotel/plaza-sky.jpg"],
+    images: ["/hotel/taka-terrace.jpg"],
   },
   // No `languages` map: English and Arabic are served from the same URL via the
   // in-page toggle, so emitting two hreflang links to "/" would contradict itself.
@@ -87,7 +87,7 @@ const HOTEL_LD = {
     "https://prince-bazaar.vercel.app/hotel/exterior-facade.jpg",
     "https://prince-bazaar.vercel.app/hotel/lobby.jpg",
     "https://prince-bazaar.vercel.app/hotel/restaurant-alt.jpg",
-    "https://prince-bazaar.vercel.app/hotel/plaza-sky.jpg",
+    "https://prince-bazaar.vercel.app/hotel/taka-terrace.jpg",
     "https://prince-bazaar.vercel.app/hotel/taka-rooftop.jpg",
   ],
   address: {
@@ -156,13 +156,9 @@ export default function RootLayout({
             __html: `(function(){try{var s=localStorage.getItem("pb_locale_v1");if(!s)return;var l=JSON.parse(s).language;if(l==="ar"){document.documentElement.lang="ar";document.documentElement.dir="rtl";}}catch(e){}})();`,
           }}
         />
-        {/* Preload the hero image so first paint is fast. */}
-        <link
-          rel="preload"
-          as="image"
-          href="/hotel/plaza-sky.webp"
-          fetchPriority="high"
-        />
+        {/* The hero preload is emitted by <Photo priority> via next/image, which
+            preloads the responsive srcset rather than one fixed-size file.
+            A manual <link rel="preload"> here would fetch a second, unused copy. */}
         {/* Schema.org structured data for rich Google results. */}
         <script
           type="application/ld+json"

@@ -91,7 +91,7 @@ export function FAQ() {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <section className="px-6 py-32 lg:px-12 lg:py-44" style={{ background: "var(--color-bone-soft)" }} dir={isAr ? "rtl" : "ltr"}>
+    <section className="px-6 lg:px-12 band" style={{ background: "var(--color-bone-soft)" }} dir={isAr ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="mb-20 max-w-2xl">
           <div className="flex items-center gap-3">
@@ -104,10 +104,9 @@ export function FAQ() {
             </span>
           </div>
           <h2
-            className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+            className={`mt-8 t-chapter ${isAr ? "font-arabic" : "font-display"}`}
             style={{
               color: "var(--color-charcoal)",
-              fontSize: "clamp(40px, 5.5vw, 76px)",
               lineHeight: 1.02,
               fontWeight: 400,
             }}

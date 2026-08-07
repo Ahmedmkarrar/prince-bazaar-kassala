@@ -43,6 +43,18 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   images: {
+    // AVIF first — it holds detail far better than WebP at the low bitrates
+    // these 1280px client photos need, which is most of the sharpness win.
+    formats: ["image/avif", "image/webp"],
+    // The source photography tops out at 1280px, so generating 1920/2048/3840
+    // variants only upscales. Capping the ladder here keeps every served file
+    // at or below native resolution.
+    deviceSizes: [360, 480, 640, 768, 960, 1080, 1280],
+    imageSizes: [96, 128, 192, 256, 320, 384, 480, 640],
+    // Next 16 rejects any quality not listed here (default is [75] only).
+    // 88 is the site-wide value from <Photo>; 92 is the gallery lightbox.
+    qualities: [75, 88, 92],
+    minimumCacheTTL: 60 * 60 * 24 * 365,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },

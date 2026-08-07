@@ -32,7 +32,7 @@ export function AISection() {
   return (
     <section
       id="concierge"
-      className="relative overflow-hidden px-6 py-32 lg:px-12 lg:py-44"
+      className="relative overflow-hidden px-6 lg:px-12 band"
       style={{
         background:
           "linear-gradient(160deg, #1A0E2E 0%, #3B1660 50%, #1A0E2E 100%)",
@@ -52,11 +52,10 @@ export function AISection() {
               </span>
             </div>
             <h2
-              className={`mt-8 tracking-[-0.01em] ${isAr ? "font-arabic" : "font-display"}`}
+              className={`t-chapter mt-8 tracking-[-0.01em] ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "#FFFFFF",
                 lineHeight: 1.02,
-                fontSize: "clamp(40px, 5.5vw, 76px)",
                 fontWeight: 400,
               }}
             >
@@ -108,14 +107,15 @@ export function AISection() {
             </div>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href="#concierge-live"
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("pb:open-concierge"))}
                 className={`inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] transition-all ${isAr ? "font-arabic" : ""}`}
                 style={{ background: "#E9C77B", color: "#1A0E2E" }}
               >
                 {t("Open Taka AI", "افتح تاكا AI")}
                 <span aria-hidden>{isAr ? "←" : "→"}</span>
-              </a>
+              </button>
               <span
                 className={`text-[10px] font-medium uppercase tracking-[0.28em] ${isAr ? "font-arabic" : ""}`}
                 style={{ color: "rgba(255,255,255,0.5)" }}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "./Reveal";
+import { Photo } from "./Photo";
 import { WHATSAPP_URL } from "@/lib/whatsapp";
 import { useI18n } from "@/lib/i18n";
 
@@ -30,8 +31,12 @@ const SUITES: Suite[] = [
     name: { en: "Double Room", ar: "غرفة مزدوجة" },
     capacity: { en: "1 double bed · 2 guests · 13 rooms", ar: "سرير مزدوج · ضيفان · ١٣ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-double.webp",
-    focus: "60% center",
+    // The 1180x430 master is a letterboxed crop; the -sm copy is the intact
+    // 16:9 frame. Photo keeps this one at -sm deliberately.
+    image: "/hotel/room-double-sm.webp",
+    // Centred. The old 60% offset was tuned for the tall arch and, on the wider
+    // plate, pushed the frame off the bed and into the dark wardrobe.
+    focus: "center",
     detail: {
       en: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "غرفة مزدوجة بسرير واحد. تشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
@@ -59,12 +64,22 @@ const SUITES: Suite[] = [
   },
 ];
 
-/** Slowly rotating gold seal — a refined, hospitality-grade rotating accent. */
+/**
+ * Slowly rotating gold seal.
+ *
+ * Sits clear of the plate rather than on it: on the old portrait arch the
+ * overlap read as a wax seal on a tall frame, but on a landscape plate the same
+ * offset covered live image area and looked applied.
+ */
 function SealMark({ id }: { id: string }) {
   return (
     <div
-      className="absolute -bottom-7 right-6 z-10 flex h-[88px] w-[88px] items-center justify-center rounded-full"
-      style={{ background: "var(--color-ivory)", boxShadow: "var(--shadow-card)" }}
+      className="absolute -bottom-9 z-10 flex h-[76px] w-[76px] items-center justify-center rounded-full ltr:right-5 rtl:left-5"
+      style={{
+        background: "var(--color-ivory)",
+        boxShadow: "var(--shadow-card)",
+        border: "1px solid var(--color-line)",
+      }}
       aria-hidden
     >
       <svg viewBox="0 0 100 100" className="spin-slow h-full w-full" style={{ color: "var(--color-gold)" }}>
@@ -89,7 +104,7 @@ export function Suites() {
   const isAr = language === "ar";
 
   return (
-    <section id="suites" className="px-6 py-32 lg:px-12 lg:py-44" dir={isAr ? "rtl" : "ltr"}>
+    <section id="suites" className="px-6 lg:px-12 band-open" dir={isAr ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="mb-20 flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <div>
@@ -103,10 +118,9 @@ export function Suites() {
               </span>
             </div>
             <h2
-              className={`mt-8 max-w-2xl tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+              className={`mt-8 max-w-2xl t-chapter ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "var(--color-charcoal)",
-                fontSize: "clamp(40px, 5.5vw, 76px)",
                 lineHeight: 1.02,
                 fontWeight: 400,
               }}
@@ -134,11 +148,14 @@ export function Suites() {
           {SUITES.map((s, i) => (
             <Reveal key={s.name.en} delay={i * 120}>
               <article className="group flex flex-col items-center text-center">
-                <div className="photo-arch relative w-full max-w-[340px]" data-cursor="image">
-                  <div className="photo-arch-inner photo-warm photo-grain aspect-[3/4]">
-                    <div
-                      className="kenburns absolute inset-0 bg-cover transition-transform duration-[1200ms] group-hover:scale-[1.06]"
-                      style={{ backgroundImage: `url(${s.image})`, backgroundPosition: s.focus ?? "center" }}
+                <div className="photo-arch relative w-full max-w-[440px]" data-cursor="image">
+                  <div className="photo-arch-inner photo-warm photo-grain aspect-plate">
+                    <Photo
+                      src={s.image}
+                      alt={s.name.en}
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 44vw, 420px"
+                      position={s.focus ?? "center"}
+                      className="transition-transform duration-[1200ms] group-hover:scale-[1.05]"
                     />
                   </div>
                   <SealMark id={`seal-${i}`} />

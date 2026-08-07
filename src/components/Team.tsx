@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "./Reveal";
+import { Photo } from "./Photo";
 import { TEAM } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 
@@ -11,7 +12,7 @@ export function Team() {
   return (
     <section
       id="team"
-      className="px-6 py-32 lg:px-12 lg:py-44"
+      className="px-6 lg:px-12 band-tight"
       style={{ background: "var(--color-bone-soft)" }}
       dir={isAr ? "rtl" : "ltr"}
     >
@@ -28,10 +29,9 @@ export function Team() {
               </span>
             </div>
             <h2
-              className={`mt-8 max-w-2xl tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+              className={`mt-8 max-w-2xl t-chapter ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "var(--color-charcoal)",
-                fontSize: "clamp(40px, 5.5vw, 76px)",
                 lineHeight: 1.02,
                 fontWeight: 400,
               }}
@@ -67,9 +67,11 @@ export function Team() {
                   data-cursor="image"
                   style={{ boxShadow: "0 14px 34px -18px rgba(20,12,30,0.4)" }}
                 >
-                  <div
-                    className="photo-warm absolute inset-0 bg-cover bg-center transition-transform duration-[1100ms] group-hover:scale-[1.06]"
-                    style={{ backgroundImage: `url(${m.image})` }}
+                  <Photo
+                    src={m.image}
+                    alt={m.role.en}
+                    sizes="(max-width: 640px) 48vw, (max-width: 1024px) 32vw, 260px"
+                    className="photo-warm transition-transform duration-[1100ms] group-hover:scale-[1.06]"
                   />
                   <span
                     className="absolute inset-0"

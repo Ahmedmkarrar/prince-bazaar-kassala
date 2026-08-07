@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useI18n } from "@/lib/i18n";
+import { Photo } from "./Photo";
 
 type L = { en: string; ar: string };
 
@@ -52,10 +53,7 @@ export function Interstitial({
       data-cursor="image"
     >
       <div ref={imgRef} className="photo-warm photo-grain absolute inset-0 will-change-transform">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${image})` }}
-        />
+        <Photo src={image} alt="" sizes="100vw" />
         <div
           className="absolute inset-0"
           style={{
@@ -79,10 +77,9 @@ export function Interstitial({
             </span>
           </div>
           <h2
-            className={`tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+            className={`t-statement ${isAr ? "font-arabic" : "font-display"}`}
             style={{
               color: "#FFFFFF",
-              fontSize: "clamp(40px, 6vw, 92px)",
               lineHeight: 1.04,
               fontWeight: 400,
             }}

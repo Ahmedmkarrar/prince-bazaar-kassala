@@ -97,6 +97,17 @@ export function Concierge({ embedded = false }: ConciergeProps) {
     }
   }, [open, embedded]);
 
+  // Lets other sections open the panel, mirroring "pb:open-reservation".
+  // The AI section's "Open Taka AI" button previously pointed at an anchor
+  // (#concierge-live) that exists nowhere in the document, so the section's
+  // primary call to action did nothing at all when clicked.
+  useEffect(() => {
+    if (embedded) return;
+    const openPanel = () => setOpen(true);
+    window.addEventListener("pb:open-concierge", openPanel);
+    return () => window.removeEventListener("pb:open-concierge", openPanel);
+  }, [embedded]);
+
   function clearConversation() {
     setMessages([{ role: "assistant", content: timeAwareGreeting() }]);
     setInput("");
@@ -123,11 +134,25 @@ export function Concierge({ embedded = false }: ConciergeProps) {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          messages: nextHistory.map((m) => ({ role: m.role, content: m.content })),
+          // Drop the seeded greeting before sending. It is a presentational
+          // welcome, not part of the model conversation, and it made every
+          // request start with an assistant turn — which the route rejects
+          // outright (`parsed[0].role !== "user"` -> 400). The effect was that
+          // the concierge failed on the first message of every real
+          // conversation and fell back to "momentarily unavailable".
+          messages: nextHistory
+            .slice(nextHistory.findIndex((m) => m.role === "user"))
+            .map((m) => ({ role: m.role, content: m.content })),
         }),
       });
 
-      if (!res.ok || !res.body) {
+      // A 200 is not enough: when the server has no API key it answers 200 with
+      // a JSON {error, fallback} body rather than an event stream. That slipped
+      // past an `!res.ok` check, got read as SSE, yielded no deltas, and left
+      // the guest staring at an empty bubble. Treat anything that is not an
+      // event stream as the non-streaming path.
+      const isStream = (res.headers.get("content-type") ?? "").includes("text/event-stream");
+      if (!res.ok || !res.body || !isStream) {
         const data = await res.json().catch(() => null);
         const fallback =
           data?.fallback ??
@@ -277,7 +302,7 @@ function ConciergeBubble({ open, onClick, streaming }: { open: boolean; onClick:
   return (
     <button
       onClick={onClick}
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-3 rounded-full pl-2 pr-5 py-2 transition-all duration-300 hover:scale-[1.02]"
+      className="fixed bottom-6 right-6 z-40 flex items-center gap-0 rounded-full p-2 transition-all duration-300 hover:scale-[1.02] sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
       style={{
         background: "var(--color-emerald-deep)",
         color: "var(--color-gold-pale)",
@@ -302,7 +327,11 @@ function ConciergeBubble({ open, onClick, streaming }: { open: boolean; onClick:
           </svg>
         )}
       </span>
-      <span className="text-left">
+      {/* Label hidden on phones. As a full pill this floated over body copy on
+          every screen — the accordion description and the closing sections sat
+          underneath it. The icon alone still reads as a launcher, and the
+          aria-label carries the meaning for anyone who can't see it. */}
+      <span className="hidden text-left sm:block">
         <span
           className="block text-[9px] font-medium uppercase tracking-[0.32em]"
           style={{ color: "rgba(239,224,191,0.7)" }}

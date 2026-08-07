@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "./Reveal";
+import { Photo } from "./Photo";
 import { useI18n } from "@/lib/i18n";
 import { COPY, PIEDMONT_IMAGE, PIEDMONT_SERVICES, PIEDMONT_WHY } from "@/lib/content";
 
@@ -11,7 +12,7 @@ export function Piedmont() {
   return (
     <section
       id="piedmont"
-      className="relative px-6 py-32 lg:px-12 lg:py-44"
+      className="relative px-6 lg:px-12 band"
       style={{ background: "var(--color-charcoal)", color: "var(--color-ivory)" }}
       dir={isAr ? "rtl" : "ltr"}
     >
@@ -32,15 +33,19 @@ export function Piedmont() {
                 </span>
               </div>
               <h2
-                className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+                className={`mt-8 t-chapter ${isAr ? "font-arabic" : "font-display"}`}
                 style={{
                   color: "#FFFFFF",
-                  fontSize: "clamp(36px, 5vw, 64px)",
                   lineHeight: 1.08,
                   fontWeight: 400,
                 }}
               >
-                {COPY.piedmont_eyebrow[language]}
+                {/* The eyebrow directly above already carries the agency name;
+                    repeating it verbatim as the heading left the section
+                    introducing itself twice and saying nothing. */}
+                {language === "ar"
+                  ? "رحلتك، مُرتَّبة في البهو."
+                  : "Your journey, arranged in the lobby."}
               </h2>
             </div>
             <div className="lg:col-span-7">
@@ -55,9 +60,11 @@ export function Piedmont() {
                 data-cursor="image"
                 style={{ boxShadow: "0 30px 70px -24px rgba(0,0,0,0.65)" }}
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[1200ms] hover:scale-[1.04]"
-                  style={{ backgroundImage: `url(${PIEDMONT_IMAGE})` }}
+                <Photo
+                  src={PIEDMONT_IMAGE}
+                  alt="The Piedmont Travel and Tourism team at Prince Plaza Kassala"
+                  sizes="(max-width: 1024px) 92vw, 760px"
+                  className="photo-warm transition-transform duration-[1200ms] hover:scale-[1.04]"
                 />
                 <div
                   className="absolute inset-0"

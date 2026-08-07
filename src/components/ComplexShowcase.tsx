@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { COMPLEXES, COPY } from "@/lib/content";
 import { Reveal } from "./Reveal";
+import { Photo } from "./Photo";
 import { useI18n } from "@/lib/i18n";
 
 export function ComplexShowcase() {
@@ -14,7 +15,7 @@ export function ComplexShowcase() {
   return (
     <section
       id="complex"
-      className="relative px-6 py-32 lg:px-12 lg:py-44"
+      className="relative px-6 lg:px-12 band-open"
       style={{ background: "var(--color-bone-soft)" }}
       dir={isAr ? "rtl" : "ltr"}
     >
@@ -30,10 +31,9 @@ export function ComplexShowcase() {
             </span>
           </div>
           <h2
-            className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+            className={`mt-8 t-chapter ${isAr ? "font-arabic" : "font-display"}`}
             style={{
               color: "var(--color-charcoal)",
-              fontSize: "clamp(40px, 5.5vw, 76px)",
               lineHeight: 1.1,
               fontWeight: 400,
             }}
@@ -54,6 +54,9 @@ export function ComplexShowcase() {
                       onClick={() => setActive(i)}
                       className="group flex w-full items-baseline justify-between gap-4 py-5 text-left transition-all"
                       aria-pressed={isActive}
+                      // Below lg this row opens a panel beneath itself, so it is
+                      // an expander to a screen reader, not just a toggle.
+                      aria-expanded={isActive}
                     >
                       <div className="flex items-baseline gap-5">
                         <span
@@ -82,24 +85,59 @@ export function ComplexShowcase() {
                         {isAr ? "←" : "→"}
                       </span>
                     </button>
+
+                    {/* Accordion body — below lg only.
+                        On desktop the detail sits in its own column beside this
+                        list, always in view. Stacked on a phone that column
+                        lands underneath all seven rows, so tapping one changed
+                        a panel that was well off-screen and read as a dead
+                        control. Opening the detail under the row that was
+                        tapped keeps cause and effect together. */}
+                    {isActive ? (
+                      <div className="pb-9 lg:hidden">
+                        {complex.image ? (
+                          <div
+                            className="photo-warm relative aspect-soft overflow-hidden rounded-sm"
+                            style={{ boxShadow: "var(--shadow-card)" }}
+                          >
+                            <Photo
+                              src={complex.image}
+                              alt={complex.name.en}
+                              sizes="92vw"
+                              position={complex.focus}
+                            />
+                          </div>
+                        ) : null}
+                        <p
+                          className={`mt-5 text-[15px] leading-[1.85] ${isAr ? "font-arabic" : ""}`}
+                          style={{ color: "var(--color-stone)" }}
+                        >
+                          {complex.description[language]}
+                        </p>
+                      </div>
+                    ) : null}
                   </li>
                 );
               })}
             </ul>
           </div>
 
-          {/* Detail */}
-          <div className="lg:col-span-8">
+          {/* Detail — desktop only; the accordion above covers small screens. */}
+          <div className="hidden lg:col-span-8 lg:block">
             <div key={current.id} className={`grid grid-cols-1 gap-8 ${current.image ? "sm:grid-cols-5" : ""}`}>
               {current.image ? (
                 <div className="sm:col-span-3">
                   <div
-                    className="relative aspect-[4/5] overflow-hidden rounded-sm"
-                    style={{
-                      background: `url(${current.image}) center/cover no-repeat`,
-                      boxShadow: "var(--shadow-card)",
-                    }}
-                  />
+                    className="photo-warm relative aspect-soft overflow-hidden rounded-sm"
+                    style={{ boxShadow: "var(--shadow-card)" }}
+                  >
+                    <Photo
+                      src={current.image}
+                      alt={current.name.en}
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 55vw, 500px"
+                      position={current.focus}
+                    />
+                  </div>
                 </div>
               ) : null}
               <div className={`flex flex-col justify-between ${current.image ? "sm:col-span-2" : ""}`}>

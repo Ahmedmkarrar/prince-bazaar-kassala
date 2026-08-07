@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n";
+import { Photo } from "./Photo";
 
 type L = { en: string; ar: string };
 
@@ -12,51 +13,58 @@ interface Vignette {
   number: string;
 }
 
+// A walk through the complex, not a second tour of the rooms.
+//
+// These five panels previously showed the Single, Double, Twin and Three Bed
+// rooms — the same four the Suites section covers in full, with prices and
+// enquiry links, a few screens further down. Desktop visitors met every room
+// twice and the shared spaces not at all. Each panel now covers a part of the
+// property that has no other full-bleed moment on the page.
 const VIGNETTES: Vignette[] = [
   {
     number: "i",
-    eyebrow: { en: "The Single Suite", ar: "الجناح الفردي" },
+    eyebrow: { en: "Reception", ar: "الاستقبال" },
     caption: {
-      en: "Climate-controlled comfort, hardwood floors, and a quiet that feels rare.",
-      ar: "راحة بتكييف كامل، أرضيات خشبية، وهدوء نادر.",
+      en: "Someone is at the desk whatever time you arrive.",
+      ar: "هناك من يستقبلك عند المكتب في أي وقت تصل.",
     },
-    image: "/hotel/room-single-desk.webp",
+    image: "/hotel/reception-banner.webp",
   },
   {
     number: "ii",
-    eyebrow: { en: "The Double", ar: "الغرفة المزدوجة" },
+    eyebrow: { en: "The Courtyard", ar: "الفناء" },
     caption: {
-      en: "Spacious double room with an extended living area and premium furnishings.",
-      ar: "غرفة مزدوجة واسعة بمساحة معيشة ممتدة وأثاث فاخر.",
+      en: "The open centre of the complex, with the balconies looking in.",
+      ar: "قلب المجمّع المفتوح، تطلّ عليه الشرفات.",
     },
-    image: "/hotel/room-lounge.webp",
+    image: "/hotel/courtyard-bazaar.webp",
   },
   {
     number: "iii",
-    eyebrow: { en: "The Twin", ar: "الجناح بسريرين" },
+    eyebrow: { en: "The Restaurant", ar: "المطعم" },
     caption: {
-      en: "Two beds, considered details, and the same uncompromised standard.",
-      ar: "سريران، تفاصيل مدروسة، والمعيار ذاته دون تنازل.",
+      en: "Breakfast through dinner, and room service for the hours between.",
+      ar: "من الإفطار حتى العشاء، وخدمة الغرف في ما بينهما.",
     },
-    image: "/hotel/room-twin.webp",
+    image: "/hotel/restaurant.webp",
   },
   {
     number: "iv",
-    eyebrow: { en: "Three Bed Suite", ar: "جناح بثلاثة أسرّة" },
+    eyebrow: { en: "The Commercial Plaza", ar: "البلازا التجارية" },
     caption: {
-      en: "Triple-bed layout, in-room television, ideal for families and small groups.",
-      ar: "ثلاثة أسرّة، تلفاز في الغرفة، مثالي للعائلات والمجموعات الصغيرة.",
+      en: "Shops along the frontage, a short walk from every room.",
+      ar: "متاجر على الواجهة، على بعد خطوات من كل غرفة.",
     },
-    image: "/hotel/room-triple.webp",
+    image: "/hotel/plaza-shops.webp",
   },
   {
     number: "v",
-    eyebrow: { en: "Sunset Room", ar: "غرفة الغروب" },
+    eyebrow: { en: "The Event Pavilion", ar: "جناح المناسبات" },
     caption: {
-      en: "Warm evening light through the curtains. Quiet, considered, ours.",
-      ar: "ضوء مسائي دافئ عبر الستائر. هادئة، مدروسة، خاصّة بنا.",
+      en: "Weddings, conferences and gatherings of up to a hundred.",
+      ar: "أعراس ومؤتمرات ولقاءات تتّسع حتى مئة ضيف.",
     },
-    image: "/hotel/room-twin-warm.webp",
+    image: "/hotel/conference.webp",
   },
 ];
 
@@ -91,10 +99,75 @@ export function HorizontalPan() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative hidden lg:block"
-      style={{ height: `${100 * VIGNETTES.length}vh`, background: "var(--color-charcoal)" }}
+    <>
+      {/* Mobile and tablet.
+          The desktop panel is a scroll-jacked track, which needs a pointer and
+          a wide viewport, so below lg it was simply not rendered — five parts of
+          the property that no other section covers were invisible to phone
+          visitors, who are the majority here. This is the same content as a
+          native scroll-snap carousel: swipeable, no hijacked scrolling, and it
+          costs one screen rather than the five a stacked version would. */}
+      <div
+        className="lg:hidden"
+        style={{ background: "var(--color-charcoal)" }}
+        dir={isAr ? "rtl" : "ltr"}
+      >
+        <div className="px-6 pb-6 pt-20">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10" style={{ background: "rgba(233,199,123,0.6)" }} />
+            <span
+              className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
+              style={{ color: "rgba(255,255,255,0.6)" }}
+            >
+              {t("The Property", "المنشأة")}
+            </span>
+          </div>
+        </div>
+
+        <ul className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-20">
+          {VIGNETTES.map((v) => (
+            <li
+              key={v.number}
+              className="relative w-[82vw] flex-shrink-0 snap-center overflow-hidden rounded-sm"
+            >
+              <div className="photo-warm relative aspect-soft">
+                <Photo src={v.image} alt="" sizes="82vw" />
+                <span
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 40%, rgba(10,7,16,0.88) 100%)",
+                  }}
+                />
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <div
+                  className={`text-[10px] font-medium uppercase tracking-[0.36em] ${isAr ? "font-arabic" : ""}`}
+                  style={{ color: "rgba(233,199,123,0.9)" }}
+                >
+                  {v.eyebrow[language]}
+                </div>
+                <p
+                  className={`mt-2 text-[19px] leading-[1.3] ${isAr ? "font-arabic" : "font-display"}`}
+                  style={{ color: "#FFFFFF" }}
+                >
+                  {v.caption[language]}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <section
+        ref={sectionRef}
+        className="relative hidden lg:block"
+      // 62vh of scroll per panel rather than a full viewport each. The pan is
+      // driven by a ratio of section height, so this only changes how much
+      // wheel travel a panel costs — at 100vh the section alone was 4,500px,
+      // a fifth of the page, and each panel took a full screen of scrolling to
+      // clear.
+      style={{ height: `${62 * VIGNETTES.length}vh`, background: "var(--color-charcoal)" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <div
@@ -108,10 +181,9 @@ export function HorizontalPan() {
               className="relative h-full w-screen flex-shrink-0 overflow-hidden"
               data-cursor="image"
             >
-              <div
-                className="photo-warm absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${v.image})` }}
-              />
+              <div className="photo-warm absolute inset-0">
+                <Photo src={v.image} alt="" sizes="100vw" />
+              </div>
               <div
                 className="absolute inset-0"
                 style={{
@@ -194,5 +266,6 @@ export function HorizontalPan() {
         </div>
       </div>
     </section>
+    </>
   );
 }

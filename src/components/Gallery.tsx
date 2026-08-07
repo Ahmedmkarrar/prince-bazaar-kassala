@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GALLERY } from "@/lib/content";
 import { Reveal } from "./Reveal";
+import { Photo } from "./Photo";
 import { useI18n } from "@/lib/i18n";
 
 export function Gallery() {
@@ -23,7 +24,7 @@ export function Gallery() {
   }, [active]);
 
   return (
-    <section className="relative px-6 py-32 lg:px-12 lg:py-44" dir={isAr ? "rtl" : "ltr"}>
+    <section className="relative px-6 lg:px-12 band" dir={isAr ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="mb-16 flex items-end justify-between">
           <div>
@@ -37,11 +38,10 @@ export function Gallery() {
               </span>
             </div>
             <h2
-              className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+              className={`mt-8 t-chapter ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "var(--color-charcoal)",
                 lineHeight: 1.02,
-                fontSize: "clamp(40px, 5.5vw, 76px)",
                 fontWeight: 400,
               }}
             >
@@ -54,17 +54,23 @@ export function Gallery() {
           </div>
         </Reveal>
 
-        {/* Dense flow lets the square tiles backfill the gaps the double-height ones leave. */}
+        {/* Every source frame is 16:9, so the mosaic is built from landscape
+            cells only — a wide cell spanning two columns, and standard 4:3
+            cells. Nothing is cropped to portrait, which is what was cutting
+            these interiors in half. */}
         <div className="grid grid-cols-2 gap-4 [grid-auto-flow:dense] sm:gap-6 md:grid-cols-4">
           {GALLERY.map((src, i) => {
-            const tall = i === 0 || i === 5;
+            const wide = i === 0 || i === 5 || i === 10;
+            // The span has to live on Reveal, not the button: Reveal renders the
+            // div that is the grid's direct child, so a span class on the button
+            // inside it was silently inert.
             return (
-              <Reveal key={src} delay={i * 60}>
+              <Reveal key={src} delay={i * 60} className={wide ? "col-span-2 row-span-2" : ""}>
                 <button
                   onClick={() => setActive(i)}
                   data-cursor="image"
                   aria-label={`Open image ${i + 1}`}
-                  className={`group relative block w-full ${tall ? "row-span-2" : ""}`}
+                  className="group relative block h-full w-full"
                 >
                   {/* Matted frame */}
                   <div
@@ -74,10 +80,20 @@ export function Gallery() {
                       group-hover:-translate-y-[5px] group-hover:[border-color:var(--color-gold)]
                       group-hover:[box-shadow:0_26px_50px_-18px_rgba(14,59,46,0.34)]"
                   >
-                    <div className={`relative overflow-hidden rounded-[3px] ${tall ? "aspect-portrait" : "aspect-square"}`}>
-                      <div
-                        className="photo-warm absolute inset-0 bg-cover bg-center transition-transform duration-[900ms] group-hover:scale-[1.07]"
-                        style={{ backgroundImage: `url(${src})` }}
+                    {/* Both sizes stay 4:3. A 2x2 cell is (2w + gap) wide and
+                        two 4:3 rows tall, which is itself ~4:3 — so the wide
+                        tile reads bigger without a different crop, and the rows
+                        stay flush. */}
+                    <div className="photo-warm relative aspect-soft overflow-hidden rounded-[3px]">
+                      <Photo
+                        src={src}
+                        alt={`Prince Plaza Kassala — ${wide ? "wide view" : "detail"} ${i + 1}`}
+                        sizes={
+                          wide
+                            ? "(max-width: 768px) 96vw, (max-width: 1400px) 50vw, 700px"
+                            : "(max-width: 768px) 48vw, (max-width: 1400px) 25vw, 340px"
+                        }
+                        className="transition-transform duration-[900ms] group-hover:scale-[1.06]"
                       />
                       {/* Bottom gradient for depth */}
                       <span
@@ -164,11 +180,14 @@ export function Gallery() {
                 `Prince Plaza Kassala, gallery image ${active + 1} of ${GALLERY.length}`,
                 `برنس بلازا كسلا، صورة ${active + 1} من ${GALLERY.length}`,
               )}
-              width={1600}
-              height={1067}
+              width={1280}
+              height={720}
               sizes="(max-width: 1024px) 100vw, 1024px"
+              quality={92}
               priority
-              className="block h-auto max-h-[80vh] w-full rounded-[3px] object-cover"
+              // contain, not cover: the lightbox is the one place the whole
+              // frame should be visible rather than cropped to the container.
+              className="block h-auto max-h-[80vh] w-full rounded-[3px] object-contain"
             />
             <div
               className="absolute bottom-4 left-4 text-[10px] font-medium uppercase tracking-[0.32em]"

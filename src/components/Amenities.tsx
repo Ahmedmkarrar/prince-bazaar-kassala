@@ -10,7 +10,7 @@ export function Amenities() {
 
   return (
     <section
-      className="px-6 py-32 lg:px-12 lg:py-40"
+      className="px-6 lg:px-12 band-tight"
       style={{ background: "var(--color-bone-soft)" }}
       dir={isAr ? "rtl" : "ltr"}
     >

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { HERO_IMAGE, COPY } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 import { useMagnetic } from "@/lib/useMagnetic";
+import { Photo } from "./Photo";
 
 export function Hero() {
   const imgRef = useRef<HTMLDivElement>(null);
@@ -53,32 +54,41 @@ export function Hero() {
     <section className="relative h-[100svh] min-h-[760px] w-full overflow-hidden bg-black">
       {/* Photo background */}
       <div ref={imgRef} className="absolute inset-0 will-change-transform">
-        <div
-          className="absolute inset-0 bg-cover"
-          style={{ backgroundImage: `url(${HERO_IMAGE})`, backgroundPosition: "62% center" }}
+        <Photo
+          src={HERO_IMAGE}
+          alt=""
+          sizes="100vw"
+          // The frame is wider than the viewport, so only the sides crop —
+          // nudged right of centre to hold the two tallest granite domes.
+          position="56% center"
+          priority
+          className="photo-warm"
         />
-        {/* Top → bottom darkness */}
+        {/* Deep base scrim. It has to climb early and hard: the terrace parapet
+            and rooftop plant occupy the bottom fifth of the frame at every
+            viewport ratio, and a gentler ramp left them plainly visible under
+            the CTAs. Above 45% it stays light so the range and sky read. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 30%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.92) 100%)",
+              "linear-gradient(180deg, rgba(10,7,16,0.38) 0%, rgba(10,7,16,0.06) 24%, rgba(10,7,16,0.22) 45%, rgba(10,7,16,0.62) 66%, rgba(10,7,16,0.90) 84%, rgba(10,7,16,0.97) 100%)",
           }}
         />
-        {/* Left vignette for text readability */}
+        {/* Reading edge for the type block. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.20) 45%, transparent 80%)",
+              "linear-gradient(90deg, rgba(10,7,16,0.62) 0%, rgba(10,7,16,0.22) 42%, transparent 78%)",
           }}
         />
-        {/* Royal purple wash to bring in brand color */}
+        {/* Brand wash, kept to the sky so it tints atmosphere rather than stone. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(900px 600px at 85% 30%, rgba(93, 42, 134, 0.32), transparent 65%)",
+              "radial-gradient(1100px 520px at 78% 10%, rgba(93, 42, 134, 0.20), transparent 70%)",
           }}
         />
       </div>
@@ -117,7 +127,7 @@ export function Hero() {
             style={{
               color: "#FFFFFF",
               lineHeight: isAr ? 1.1 : 0.96,
-              fontSize: isAr ? "clamp(38px, 6.5vw, 96px)" : "clamp(48px, 8vw, 124px)",
+              fontSize: isAr ? "clamp(34px, 5.6vw, 84px)" : "clamp(42px, 6.6vw, 104px)",
               fontWeight: 400,
             }}
             dir={isAr ? "rtl" : "ltr"}
@@ -129,8 +139,16 @@ export function Hero() {
                 <span className="block overflow-hidden">
                   <span data-hero-word className="inline-block">Where Arabic Elegance</span>
                 </span>
-                <span className="block overflow-hidden">
-                  <span data-hero-word className="text-foil inline-block italic" style={{ fontWeight: 300 }}>
+                {/* Second tier deliberately smaller. Set at the roman line's
+                    size the italic ran past the measure and orphaned "Sudan."
+                    onto a third line; the step down also gives the lockup a
+                    hierarchy it previously lacked. */}
+                <span className="mt-2 block overflow-hidden sm:mt-3">
+                  <span
+                    data-hero-word
+                    className="text-foil inline-block italic"
+                    style={{ fontWeight: 300, fontSize: "0.58em", lineHeight: 1.14 }}
+                  >
                     Meets the Heart of Sudan.
                   </span>
                 </span>
@@ -138,7 +156,7 @@ export function Hero() {
             )}
           </h1>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4 sm:mt-12">
+          <div className="mt-10 flex flex-wrap items-center gap-x-9 gap-y-4 sm:mt-14">
             <span data-hero-word className="inline-block">
               <button
                 ref={magCta as React.RefObject<HTMLButtonElement>}
@@ -198,20 +216,23 @@ export function Hero() {
           color: #0A0A0A;
           box-shadow: 0 18px 40px -14px rgba(233, 199, 123, 0.6);
         }
+        /* Secondary, and it should look it. As a bordered pill it read at
+           nearly the same weight as the primary, so the hero offered three
+           competing pills counting the one in the nav. A ruled link steps it
+           down without hiding it. */
         .hero-cta-ghost {
           display: inline-flex;
           align-items: center;
           gap: 0.625rem;
-          padding: 1.1rem 2rem;
+          padding: 1.1rem 0.25rem;
           background: transparent;
-          color: rgba(255, 255, 255, 0.92);
+          color: rgba(255, 255, 255, 0.86);
           font-size: 12px;
           font-weight: 500;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.35);
-          transition: all 0.3s ease;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+          transition: color 0.3s ease, border-color 0.3s ease;
         }
         .hero-cta-ghost:hover {
           border-color: #E9C77B;

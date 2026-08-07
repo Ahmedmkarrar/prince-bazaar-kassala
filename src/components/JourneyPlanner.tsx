@@ -45,7 +45,7 @@ export function JourneyPlanner() {
   return (
     <section
       id="journey"
-      className="relative px-6 py-32 lg:px-12 lg:py-44"
+      className="relative px-6 lg:px-12 band"
       style={{ background: "var(--color-ivory)" }}
       dir={isAr ? "rtl" : "ltr"}
     >
@@ -62,10 +62,9 @@ export function JourneyPlanner() {
               </span>
             </div>
             <h2
-              className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+              className={`mt-8 t-chapter ${isAr ? "font-arabic" : "font-display"}`}
               style={{
                 color: "var(--color-charcoal)",
-                fontSize: "clamp(36px, 5vw, 64px)",
                 lineHeight: 1.08,
                 fontWeight: 400,
               }}

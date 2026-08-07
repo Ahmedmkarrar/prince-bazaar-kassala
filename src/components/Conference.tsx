@@ -70,7 +70,7 @@ export function Conference() {
   return (
     <section
       id="conference"
-      className="relative px-6 py-32 lg:px-12 lg:py-44"
+      className="relative px-6 lg:px-12 band"
       style={{ background: "var(--color-bone-soft)" }}
       dir={isAr ? "rtl" : "ltr"}
     >
@@ -86,10 +86,9 @@ export function Conference() {
             </span>
           </div>
           <h2
-            className={`mt-8 tracking-[-0.015em] ${isAr ? "font-arabic" : "font-display"}`}
+            className={`mt-8 t-chapter ${isAr ? "font-arabic" : "font-display"}`}
             style={{
               color: "var(--color-charcoal)",
-              fontSize: "clamp(40px, 5.5vw, 76px)",
               lineHeight: 1.02,
               fontWeight: 400,
             }}
@@ -203,8 +202,8 @@ export function Conference() {
               </h3>
               <p className={`mt-4 text-[14px] leading-[1.85] ${isAr ? "font-arabic" : ""}`} style={{ color: "var(--color-stone)" }}>
                 {t(
-                  "Curated by Chef Hala. Each tier honours regional flavour and adapts to dietary needs — Halal, vegetarian, gluten-free.",
-                  "من إعداد الشيف هالة. تحترم كل باقة النكهة المحلية وتراعي الاحتياجات الغذائية — حلال، نباتي، وخالٍ من الغلوتين.",
+                  "Curated by Chef Husna. Each tier honours regional flavour and adapts to dietary needs — Halal, vegetarian, gluten-free.",
+                  "من إعداد الشيف حسنى. تحترم كل باقة النكهة المحلية وتراعي الاحتياجات الغذائية — حلال، نباتي، وخالٍ من الغلوتين.",
                 )}
               </p>
             </div>

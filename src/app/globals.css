@@ -235,8 +235,58 @@ html { scroll-behavior: smooth; }
 .text-balance { text-wrap: balance; }
 .text-pretty { text-wrap: pretty; }
 
+/* ── Type scale ─────────────────────────────────────────────────────────
+   Three roles, not one size. Every section head previously ran at
+   clamp(40px, 5.5vw, 76px) — the same value eleven times over — so nothing
+   was emphasised and the page ran to twenty-nine screens.
+
+   The complex has seven named parts and the page is read as an itinerary
+   through them, so the scale behaves like wayfinding: a few large arrival
+   moments, then one steady voice for the parts themselves. */
+
+/* Arrival. Three on the page at most: hero, and the full-bleed interstitials. */
+.t-statement {
+  font-size: clamp(42px, 5.6vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+/* Every section head. The workhorse. */
+.t-chapter {
+  font-size: clamp(28px, 3vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+}
+
+/* The paragraph directly under a chapter head, which otherwise sat at body
+   size and left a gap in the hierarchy between 46px and 16px. */
+.t-lede {
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.72;
+}
+
+/* ── Vertical rhythm ────────────────────────────────────────────────────
+   Eleven sections shared one padding value, which reads as a stack rather
+   than a sequence. Three bands give the page pace. */
+.band { padding-top: 6rem; padding-bottom: 6rem; }
+.band-tight { padding-top: 4rem; padding-bottom: 4rem; }
+.band-open { padding-top: 7rem; padding-bottom: 7rem; }
+
+@media (min-width: 1024px) {
+  .band { padding-top: 8rem; padding-bottom: 8rem; }
+  .band-tight { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+  .band-open { padding-top: 11rem; padding-bottom: 11rem; }
+}
+
+/* Frame ratios.
+   The source photography is almost entirely 16:9, so the landscape ratios are
+   the defaults and portrait is reserved for the few frames that survive it.
+   Cropping a 16:9 original into 3/4 discards ~58% of the width. */
 .aspect-portrait { aspect-ratio: 3 / 4; }
 .aspect-cinema { aspect-ratio: 21 / 9; }
+.aspect-frame { aspect-ratio: 16 / 9; }
+.aspect-plate { aspect-ratio: 3 / 2; }
+.aspect-soft { aspect-ratio: 4 / 3; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
@@ -246,15 +296,19 @@ html { scroll-behavior: smooth; }
    curated print, not snapshot: a warm tonal wash, fine film grain, and a
    slow Ken Burns drift. Apply .photo-warm to the image element. */
 
+/* A light grade only. The previous pass desaturated and sepia-tinted every
+   photo to unify them, which read as muddy rather than curated — interiors lost
+   the warmth of their own lighting. Lifting saturation and local contrast
+   slightly does the opposite: compressed sources look cleaner, not flatter. */
 .photo-warm {
-  filter: saturate(0.9) contrast(1.03) brightness(1.02) sepia(0.05);
+  filter: saturate(1.06) contrast(1.06) brightness(1.01);
 }
 .photo-warm::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(155deg, rgba(182, 138, 62, 0.12) 0%, rgba(27, 26, 23, 0) 42%, rgba(59, 22, 96, 0.1) 100%);
+  background: linear-gradient(155deg, rgba(182, 138, 62, 0.05) 0%, rgba(27, 26, 23, 0) 45%, rgba(59, 22, 96, 0.04) 100%);
   mix-blend-mode: multiply;
 }
 
@@ -265,17 +319,20 @@ html { scroll-behavior: smooth; }
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.06;
+  opacity: 0.03;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
 
 /* Slow cinematic pan/zoom for framed photography. */
+/* Kept deliberately shallow. The old 1.04 -> 1.13 drift magnified an already
+   upscaled 1280px source by a further 13%, which is visible as softening on
+   every pass of the loop. 1.00 -> 1.035 still reads as motion without it. */
 @keyframes kenburns {
-  0%   { transform: scale(1.04) translate3d(0, 0, 0); }
-  50%  { transform: scale(1.13) translate3d(-1.6%, -1.2%, 0); }
-  100% { transform: scale(1.04) translate3d(0, 0, 0); }
+  0%   { transform: scale(1) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.035) translate3d(-0.8%, -0.6%, 0); }
+  100% { transform: scale(1) translate3d(0, 0, 0); }
 }
 .kenburns { animation: kenburns 28s ease-in-out infinite; will-change: transform; }
 
@@ -284,15 +341,19 @@ html { scroll-behavior: smooth; }
 .spin-slow { animation: spinSlow 36s linear infinite; }
 
 /* Arched (mihrab) plate framing for room photography. */
+/* Arched (mihrab) plate framing for room photography.
+   Landscape, not portrait: rooms are wide, the source frames are 16:9, and the
+   old 999px full-round top only worked on a tall box. A large-but-finite top
+   radius keeps the arch silhouette on a landscape plate. */
 .photo-arch {
-  border-radius: 999px 999px 6px 6px;
+  border-radius: 160px 160px 6px 6px;
   background: var(--color-bone-soft);
   padding: 10px;
   box-shadow: var(--shadow-card);
   border: 1px solid var(--color-line);
 }
 .photo-arch > .photo-arch-inner {
-  border-radius: 999px 999px 4px 4px;
+  border-radius: 152px 152px 4px 4px;
   overflow: hidden;
   position: relative;
   box-shadow: inset 0 0 0 1px rgba(182, 138, 62, 0.35);
@@ -400,7 +461,24 @@ select:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kenburns, .spin-slow { animation: none; }
-  .text-foil { animation: none; }
-  .btn-primary::after, .btn-gold::after { transition: none; }
+  /* Blanket rule rather than a named list. The previous version covered four
+     specific animations, so ping, blink and pulseRing kept running for users
+     who had asked the OS for no motion — naming them one by one only works
+     until the next animation is added. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal starts at opacity 0 and is un-hidden by an observer. With the
+     transition gone it must not be left mid-state, so pin it to its end
+     position — content must never depend on motion to become visible. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
