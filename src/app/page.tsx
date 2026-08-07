@@ -14,7 +14,6 @@ const HorizontalPan = dynamic(() => import("@/components/HorizontalPan").then(m 
 const ComplexShowcase = dynamic(() => import("@/components/ComplexShowcase").then(m => ({ default: m.ComplexShowcase })));
 const Suites = dynamic(() => import("@/components/Suites").then(m => ({ default: m.Suites })));
 const SudanMap = dynamic(() => import("@/components/SudanMap").then(m => ({ default: m.SudanMap })));
-const Tourism = dynamic(() => import("@/components/Tourism").then(m => ({ default: m.Tourism })));
 const Conference = dynamic(() => import("@/components/Conference").then(m => ({ default: m.Conference })));
 const AISection = dynamic(() => import("@/components/AISection").then(m => ({ default: m.AISection })));
 const Amenities = dynamic(() => import("@/components/Amenities").then(m => ({ default: m.Amenities })));
@@ -23,8 +22,6 @@ const Gallery = dynamic(() => import("@/components/Gallery").then(m => ({ defaul
 const FAQ = dynamic(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
 const Footer = dynamic(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 const CeoMessage = dynamic(() => import("@/components/CeoMessage").then(m => ({ default: m.CeoMessage })));
-const Piedmont = dynamic(() => import("@/components/Piedmont").then(m => ({ default: m.Piedmont })));
-const JourneyPlanner = dynamic(() => import("@/components/JourneyPlanner").then(m => ({ default: m.JourneyPlanner })));
 const Concierge = dynamic(() => import("@/components/Concierge").then(m => ({ default: m.Concierge })));
 const WhatsAppReserve = dynamic(() => import("@/components/WhatsAppReserve").then(m => ({ default: m.WhatsAppReserve })));
 
@@ -46,7 +43,9 @@ export default function Home() {
       <ComplexShowcase />
       <Suites />
       <SudanMap />
-      <Tourism />
+      {/* Tourism, Piedmont Travel and the journey planner were removed on board
+          feedback to eliminate tourism content. Their components remain in the
+          repo, unimported, if that decision is reversed. */}
       <Interstitial
         image={ADDRESS_IMAGE}
         align="right"
@@ -54,8 +53,6 @@ export default function Home() {
         line1={{ en: "Prince Hotel, Kassala.", ar: "فندق برنس، كسلا." }}
         line2={{ en: "Minutes from the Taka.", ar: "دقائق من التاكا." }}
       />
-      <Piedmont />
-      <JourneyPlanner />
       <CeoMessage />
       <Conference />
       <AISection />

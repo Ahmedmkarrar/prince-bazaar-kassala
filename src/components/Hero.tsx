@@ -10,7 +10,7 @@ export function Hero() {
   const imgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const magCta = useMagnetic(0.5);
-  const { language, t } = useI18n();
+  const { language } = useI18n();
   const isAr = language === "ar";
 
   useEffect(() => {
@@ -93,17 +93,9 @@ export function Hero() {
         />
       </div>
 
-      {/* Top hairline */}
-      <div className="absolute inset-x-0 top-24 z-10 mx-auto flex max-w-[1400px] items-center justify-center gap-5 px-6 lg:px-12">
-        <span className="h-px flex-1 max-w-[160px]" style={{ background: "rgba(255,255,255,0.22)" }} />
-        <span
-          className={`text-[10px] font-medium uppercase tracking-[0.42em] ${isAr ? "font-arabic" : ""}`}
-          style={{ color: "rgba(255,255,255,0.82)" }}
-        >
-          {t("Prince Plaza Kassala", "برنس بلازا كسلا")}
-        </span>
-        <span className="h-px flex-1 max-w-[160px]" style={{ background: "rgba(255,255,255,0.22)" }} />
-      </div>
+      {/* The centred "Prince Plaza Kassala" hairline sat here. The name already
+          appears in the top bar and in the logo, so it was the third instance
+          above the fold — the clutter the board flagged in this exact area. */}
 
       {/* Hero copy */}
       <div
@@ -143,11 +135,15 @@ export function Hero() {
                     size the italic ran past the measure and orphaned "Sudan."
                     onto a third line; the step down also gives the lockup a
                     hierarchy it previously lacked. */}
+                {/* One colour. The gold foil treatment on the second line read
+                    as two separate messages rather than one sentence — the
+                    board's note. The italic and the step down in size carry the
+                    distinction on their own. */}
                 <span className="mt-2 block overflow-hidden sm:mt-3">
                   <span
                     data-hero-word
-                    className="text-foil inline-block italic"
-                    style={{ fontWeight: 300, fontSize: "0.58em", lineHeight: 1.14 }}
+                    className="inline-block italic"
+                    style={{ color: "#FFFFFF", fontWeight: 300, fontSize: "0.58em", lineHeight: 1.14 }}
                   >
                     Meets the Heart of Sudan.
                   </span>

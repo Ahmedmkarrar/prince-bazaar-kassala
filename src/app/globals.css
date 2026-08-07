@@ -92,7 +92,34 @@ body {
 html { scroll-behavior: smooth; }
 
 .font-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
-.font-arabic { font-family: var(--font-arabic); }
+/* Arabic typography.
+   Arabic is cursive — letters join into words. Fifty-seven elements inherited
+   the Latin eyebrow treatment (`tracking-[0.42em]` plus `uppercase`), and
+   letter-spacing pulls those joins apart, so the script rendered as loose
+   disconnected glyphs. Uppercase is meaningless here. Naskh also carries
+   diacritics above and below the baseline and needs more leading than the
+   Latin sizes assume. */
+.font-arabic {
+  font-family: var(--font-arabic);
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  line-height: 1.85;
+}
+
+/* Headings set their own leading; 1.85 would break a display line. */
+h1.font-arabic,
+h2.font-arabic,
+h3.font-arabic,
+.font-arabic.t-statement,
+.font-arabic.t-chapter {
+  line-height: 1.4;
+}
+
+/* Small caps-style labels need a touch more size in Naskh to stay legible
+   once the tracking that was padding them out is gone. */
+[dir="rtl"] .font-arabic {
+  font-size: 1.04em;
+}
 
 .eyebrow {
   font-family: var(--font-sans);

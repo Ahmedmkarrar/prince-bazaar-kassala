@@ -36,7 +36,7 @@ export const COMPLEXES: ComplexNode[] = [
     // The warmest room frame in the library — curtains, seating and a made bed.
     // The previous twin-room shot was a flat, windowless wall that read as
     // budget lodging directly under the word "luxury".
-    image: "/hotel/room-lounge-sm.webp",
+    image: "/hotel/room-twin-tv-sm.webp",
   },
   {
     id: "commercial-plaza",

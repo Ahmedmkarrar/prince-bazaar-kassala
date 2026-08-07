@@ -10,7 +10,6 @@ import { useMagnetic } from "@/lib/useMagnetic";
 const LINKS = [
   { href: "#complex", en: "The Complex", ar: "المجمعات" },
   { href: "#suites", en: "Stay", ar: "الإقامة" },
-  { href: "#tourism", en: "Tourism", ar: "السياحة" },
   { href: "#concierge", en: "Concierge", ar: "الكونسيرج" },
   { href: "#contact", en: "Contact", ar: "تواصل" },
 ];

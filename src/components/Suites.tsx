@@ -31,12 +31,10 @@ const SUITES: Suite[] = [
     name: { en: "Double Room", ar: "غرفة مزدوجة" },
     capacity: { en: "1 double bed · 2 guests · 13 rooms", ar: "سرير مزدوج · ضيفان · ١٣ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    // The 1180x430 master is a letterboxed crop; the -sm copy is the intact
-    // 16:9 frame. Photo keeps this one at -sm deliberately.
-    image: "/hotel/room-double-sm.webp",
-    // Centred. The old 60% offset was tuned for the tall arch and, on the wider
-    // plate, pushed the frame off the bed and into the dark wardrobe.
-    focus: "center",
+    // The room-double frame is a cramped letterbox dominated by a dark
+    // wardrobe — the weakest room shot in the set. This one is warmer and
+    // shows the seating area the copy promises.
+    image: "/hotel/room-lounge.webp",
     detail: {
       en: "A double room with one bed. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "غرفة مزدوجة بسرير واحد. تشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
@@ -46,7 +44,7 @@ const SUITES: Suite[] = [
     name: { en: "Twin Suite", ar: "جناح بسريرين" },
     capacity: { en: "2 beds · 2 guests · 22 rooms", ar: "سريران · ضيفان · ٢٢ غرفة" },
     view: { en: "Refrigerator, seating & amenities", ar: "ثلاجة وجلسة ومستلزمات" },
-    image: "/hotel/room-twin.webp",
+    image: "/hotel/room-twin-warm.webp",
     detail: {
       en: "A twin suite with two separate beds. Inclusive of refrigerator, seating, towel and bathroom amenities, with twenty-four-hour reception.",
       ar: "جناح بسريرين منفصلين. يشمل ثلاجة وجلسة ومناشف ومستلزمات الحمّام، مع استقبال على مدار أربع وعشرين ساعة.",
