@@ -46,10 +46,12 @@ const nextConfig: NextConfig = {
     // AVIF first — it holds detail far better than WebP at the low bitrates
     // these 1280px client photos need, which is most of the sharpness win.
     formats: ["image/avif", "image/webp"],
-    // The source photography tops out at 1280px, so generating 1920/2048/3840
-    // variants only upscales. Capping the ladder here keeps every served file
-    // at or below native resolution.
-    deviceSizes: [360, 480, 640, 768, 960, 1080, 1280],
+    // The client photography tops out at 1280px, so most of this ladder stays
+    // low deliberately — asking for more only upscales. The hero is the
+    // exception: it is a 3840px master, and it is the one image that fills the
+    // viewport, so it needs the top rungs. Every other image carries an
+    // accurate `sizes`, so a 340px gallery cell never requests them.
+    deviceSizes: [360, 480, 640, 768, 960, 1080, 1280, 1600, 1920, 2560, 3840],
     imageSizes: [96, 128, 192, 256, 320, 384, 480, 640],
     // Next 16 rejects any quality not listed here (default is [75] only).
     // 88 is the site-wide value from <Photo>; 92 is the gallery lightbox.
