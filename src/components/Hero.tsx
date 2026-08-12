@@ -58,37 +58,57 @@ export function Hero() {
           src={HERO_IMAGE}
           alt=""
           sizes="100vw"
-          // The frame is wider than the viewport, so only the sides crop —
-          // nudged right of centre to hold the two tallest granite domes.
-          position="56% center"
+          // Horizontal only — a vertical value would be dead code here. At
+          // 1.78 the frame is wider than both the desktop viewport (~1.70) and
+          // any portrait phone, so cover always scales to height and crops the
+          // sides; the full height is on screen either way.
+          //
+          // 40% centres the twin granite peaks, which are the reason for the
+          // photograph. Further right drags in the parapet and the lamp posts;
+          // further left clips the taller peak and pulls the corner of the
+          // terrace wall into the frame.
+          position="40% center"
           priority
           className="photo-warm"
         />
-        {/* Deep base scrim. It has to climb early and hard: the terrace parapet
-            and rooftop plant occupy the bottom fifth of the frame at every
-            viewport ratio, and a gentler ramp left them plainly visible under
-            the CTAs. Above 45% it stays light so the range and sky read. */}
+        {/* Base scrim. This frame carries real clutter in its lower third — a
+            parapet, a railing, a hose, a bus-lined street — so the ramp has to
+            climb hard below 60%, the way the terrace frame needed and the
+            mosque frame did not. Above 45% it stays light: that band holds the
+            sky, the granite peaks and the tree line, which are the only reason
+            this photograph was chosen. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(10,7,16,0.38) 0%, rgba(10,7,16,0.06) 24%, rgba(10,7,16,0.22) 45%, rgba(10,7,16,0.62) 66%, rgba(10,7,16,0.90) 84%, rgba(10,7,16,0.97) 100%)",
+              "linear-gradient(180deg, rgba(10,7,16,0.38) 0%, rgba(10,7,16,0.08) 22%, rgba(10,7,16,0.18) 45%, rgba(10,7,16,0.58) 64%, rgba(10,7,16,0.86) 82%, rgba(10,7,16,0.95) 100%)",
           }}
         />
-        {/* Reading edge for the type block. */}
+        {/* Reading edge for the type block, carried further into the frame than
+            the terrace photograph needed. The headline's last word lands on the
+            sunlit brickwork of the dome — the brightest thing here — and at the
+            old 42%/0.22 ramp the white serif thinned out against it. Holding
+            ~0.24 out to 58% keeps the stroke weight legible without flattening
+            the dome into silhouette.
+
+            It has to follow the writing direction. This was a fixed 90deg ramp,
+            which put the dark edge on the left in both locales — but Arabic
+            right-aligns the headline and the CTAs, so in RTL every piece of
+            white type sat on the one side the scrim had left bare, over the lit
+            minaret. Mirroring it is the whole fix. */}
         <div
           className="absolute inset-0"
           style={{
-            background:
-              "linear-gradient(90deg, rgba(10,7,16,0.62) 0%, rgba(10,7,16,0.22) 42%, transparent 78%)",
+            background: `linear-gradient(${isAr ? "270deg" : "90deg"}, rgba(10,7,16,0.66) 0%, rgba(10,7,16,0.44) 34%, rgba(10,7,16,0.24) 58%, transparent 84%)`,
           }}
         />
-        {/* Brand wash, kept to the sky so it tints atmosphere rather than stone. */}
+        {/* Brand wash, kept to the sky so it tints atmosphere rather than stone.
+            Mirrored with the reading edge so it always lands on the open side
+            away from the headline, never behind it. */}
         <div
           className="absolute inset-0"
           style={{
-            background:
-              "radial-gradient(1100px 520px at 78% 10%, rgba(93, 42, 134, 0.20), transparent 70%)",
+            background: `radial-gradient(1100px 520px at ${isAr ? "22%" : "78%"} 10%, rgba(93, 42, 134, 0.20), transparent 70%)`,
           }}
         />
       </div>

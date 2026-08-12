@@ -46,7 +46,17 @@ export const COMPLEXES: ComplexNode[] = [
       en: "A curated selection of retail outlets, bringing modern shopping to your doorstep.",
       ar: "تشكيلة منتقاة من المتاجر تجلب التسوق العصري إلى عتبة دارك.",
     },
-    image: "/hotel/plaza-shops-sm.webp",
+    // Recropped to the client's mark on this card: a third of the frame was
+    // empty forecourt with builder's sheeting and a broken chair lying on it,
+    // and a shuttered unit down the left. Note their line was drawn on the
+    // rendered 4:3 card, which is a 75%-wide centre crop of the master — it
+    // maps to x=280, y=547 in the master, not to 12.5%/76% of it.
+    //
+    // Cropping a 1280px source spends resolution, so the crop was upscaled
+    // afterwards; same caveat as HERO_IMAGE. The frame is 1.83:1 now, and
+    // centred is the right framing — weighting it left pulls the shuttered
+    // unit back in.
+    image: "/hotel/plaza-frontage-sm.webp",
   },
   {
     id: "business",
@@ -83,7 +93,7 @@ export const COMPLEXES: ComplexNode[] = [
     },
     // Wide view of the hall — the only frame that reads at the stated capacity.
     // The old events-hall crop was 620x500 and rendered soft in this card.
-    image: "/hotel/conference-sm.webp",
+    image: "/hotel/conference-4k-sm.webp",
   },
   {
     id: "bazaar",
@@ -94,9 +104,10 @@ export const COMPLEXES: ComplexNode[] = [
       ar: "من الأساسيات اليومية إلى الكنوز الفريدة، تشكيلتنا المتنوعة من المتاجر تضمّ ما يناسب الجميع.",
     },
     // Shopfronts under awnings along the frontage. The courtyard frame this
-    // replaces showed residential balconies over an astroturf yard — no stores
+    // replaced showed residential balconies over an astroturf yard — no stores
     // visible at all, directly under copy about a diverse range of them.
-    image: "/hotel/exterior-street-sm.webp",
+    // Upscaled; the frame is unchanged.
+    image: "/hotel/street-approach-sm.webp",
   },
   {
     id: "tourism",
@@ -154,29 +165,44 @@ export const AMENITIES: AmenityItem[] = [
 // Trimmed from sixteen on client feedback that the page ran long — the
 // property is already shown in the complex index, the suites and the property
 // panels, so a sixteen-frame gallery was the most repetitive stretch of it.
+//
+// The feature tile held the west frontage — the flat midday wall with the dirt
+// forecourt — which the client struck out, pointing instead at the plaza
+// frontage already sitting at index 7. That frame moves up, and a bathroom
+// takes the cell it vacates: the one category the grid had no frame of at all.
+// The atrium was the obvious-looking pick for that cell and is the wrong one —
+// it is the same mashrabiya balustrade as the corridor two cells away, so the
+// row reads as the same photograph printed twice.
 export const GALLERY = [
-  "/hotel/exterior-facade-sm.webp",
+  "/hotel/plaza-frontage-sm.webp",
   "/hotel/lobby-sm.webp",
   "/hotel/restaurant-alt-sm.webp",
   "/hotel/room-twin-warm-sm.webp",
   "/hotel/corridor-sm.webp",
-  "/hotel/conference-sm.webp",
+  "/hotel/conference-4k-sm.webp",
   "/hotel/taka-terrace-sm.webp",
-  "/hotel/plaza-shops-sm.webp",
+  "/hotel/bathroom-vanity-sm.webp",
   "/hotel/room-triple-sm.webp",
 ];
 
-// Hero — the Taka range from the terrace.
+// Hero — the Taka range from the hotel roof, AI-upscaled to 4096x2304.
 //
-// Both building frames put the headline's promise of elegance directly above
-// their own weakest material: plaza-sky leads with a debris-strewn forecourt
-// and overhead cabling, exterior-facade with a car park and a large stained
-// wall. This frame leads with the thing Kassala is actually known for, and is
-// the one photograph in the set with genuine depth and colour. Its clutter —
-// a rooftop water heater and parapet — is confined to the bottom strip, which
-// the scrim covers. The property itself carries the Address interstitial, the
-// complex index and the gallery.
-export const HERO_IMAGE = "/hotel/taka-terrace.webp";
+// Client's pick: they wanted the mountain view back, sharp. Of the three
+// mountain frames this is the sharpest original (edge sigma 71.6, against
+// 54.6 for the terrace shot that used to sit here and 52.7 for the aerial).
+//
+// Sharpness on a phone is a cropping problem, not a file-size one. A 16:9
+// frame cover-fitted into a 390x844 portrait viewport uses only ~26% of its
+// width and magnifies it ~3.5x, so the 1280px original was being blown up
+// past four times its real detail — that, not the encoder, is what read as
+// blurry. At 4096 the same crop draws on ~1065px of source and lands almost
+// 1:1 on a 3x screen.
+//
+// The upscale is generative, so the shop signage in the middle distance is
+// synthesised and no longer real Arabic. It sits small, behind the scrim and
+// below the fold on mobile; if it ever needs to be true, the fix is new
+// photography, not a different encoder.
+export const HERO_IMAGE = "/hotel/taka-rooftop-4k.webp";
 
 // Atmospheric secondary image — Kassala's iconic Taka Mountains from the roof.
 export const TAKA_IMAGE = "/hotel/taka-rooftop.webp";
@@ -184,11 +210,23 @@ export const TAKA_IMAGE = "/hotel/taka-rooftop.webp";
 // Piedmont Travel and Tourism — the agency team on site in the hotel.
 export const PIEDMONT_IMAGE = "/hotel/piedmont-team.webp";
 
-// Second full-bleed band. The signage close-up this replaces was a nameplate
-// on a blank wall — too little information to carry an 80vh band. The wide
-// frontage gives the same "this is the address" reading with the arches,
-// parapet and sky doing the work.
-export const ADDRESS_IMAGE = "/hotel/exterior-facade.webp";
+// Second full-bleed band. Two frames have been tried and rejected here: a
+// signage close-up (a nameplate on a blank wall, too little to carry an 80vh
+// band) and the west frontage, which the client called low quality — a flat
+// midday wall, scuffed render, dirt forecourt and power lines.
+//
+// This is the frontage at dusk instead: sunrays over the whole complex, with
+// the lit shopfronts along the bottom. Cropped past the forecourt clutter and
+// upscaled — see the note on HERO_IMAGE.
+//
+// Chosen on how it holds up on a phone, which is where the client reviews. The
+// band is 80vh full-bleed, so a portrait viewport takes a ~30%-wide vertical
+// slice of whatever sits here, and most of the library collapses to a parked
+// car under that crop — the street approach became a tree and a pickup truck.
+// This frame gives the slice sky at the top and shopfronts at the bottom, and
+// the headline lands on the sky either way. Check any replacement at 390px
+// wide before swapping it, not on a desktop.
+export const ADDRESS_IMAGE = "/hotel/plaza-evening.webp";
 
 // The departments that run the complex, each with its own team photograph.
 export interface TeamMember {

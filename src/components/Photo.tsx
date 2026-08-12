@@ -3,8 +3,9 @@ import Image from "next/image";
 /**
  * Single entry point for every photograph on the site.
  *
- * The client photography is WhatsApp-compressed and tops out at 1280px, so the
- * two things that decide whether it reads as sharp are (a) never asking the
+ * The client photography is WhatsApp-compressed and mostly tops out at 1280px
+ * (the exceptions are the handful of frames upscaled for full-bleed slots), so
+ * the two things that decide whether it reads as sharp are (a) never asking the
  * browser for more pixels than the file actually has, and (b) letting the image
  * optimiser resize from the largest master rather than from a pre-shrunk copy.
  * Both were being lost to `background-image`, which has no srcset at all.

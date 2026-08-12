@@ -28,7 +28,12 @@ const VIGNETTES: Vignette[] = [
       en: "Someone is at the desk whatever time you arrive.",
       ar: "هناك من يستقبلك عند المكتب في أي وقت تصل.",
     },
-    image: "/hotel/reception-banner.webp",
+    // Upscaled for this full-screen panel. The roll-up banner on the right
+    // carries the hotel's real phone number and email, and the upscaler
+    // rewrote both (0965105555 -> 0365105555, gmail -> gmal), so that region
+    // is composited back from the true frame — soft, but correct. Check any
+    // legible text before shipping an upscale.
+    image: "/hotel/reception-banner-4k.webp",
   },
   {
     number: "ii",
@@ -37,7 +42,11 @@ const VIGNETTES: Vignette[] = [
       en: "The open centre of the complex, with the balconies looking in.",
       ar: "قلب المجمّع المفتوح، تطلّ عليه الشرفات.",
     },
-    image: "/hotel/courtyard-bazaar.webp",
+    // Upscaled. Three guests cross the courtyard here; their faces were
+    // unresolvable in the 1280 source and are synthesised in this one. Small
+    // in frame and nobody was identifiable before, but it is generated detail
+    // on real people — approved deliberately, not by default.
+    image: "/hotel/courtyard-bazaar-4k.webp",
   },
   {
     number: "iii",
@@ -46,7 +55,7 @@ const VIGNETTES: Vignette[] = [
       en: "Breakfast through dinner, and room service for the hours between.",
       ar: "من الإفطار حتى العشاء، وخدمة الغرف في ما بينهما.",
     },
-    image: "/hotel/restaurant.webp",
+    image: "/hotel/restaurant-4k.webp",
   },
   {
     number: "iv",
@@ -55,7 +64,10 @@ const VIGNETTES: Vignette[] = [
       en: "Shops along the frontage, a short walk from every room.",
       ar: "متاجر على الواجهة، على بعد خطوات من كل غرفة.",
     },
-    image: "/hotel/plaza-shops.webp",
+    // Shares its master with Complex 02, which is where the client recropped
+    // it — see the note there. The frame is now 1.83:1, so it sits almost
+    // exactly in this full-screen panel with no side crop.
+    image: "/hotel/plaza-frontage.webp",
   },
   {
     number: "v",
@@ -64,7 +76,7 @@ const VIGNETTES: Vignette[] = [
       en: "Weddings, conferences and gatherings of up to a hundred.",
       ar: "أعراس ومؤتمرات ولقاءات تتّسع حتى مئة ضيف.",
     },
-    image: "/hotel/conference.webp",
+    image: "/hotel/conference-4k.webp",
   },
 ];
 

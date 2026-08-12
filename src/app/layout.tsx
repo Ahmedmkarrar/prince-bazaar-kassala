@@ -49,12 +49,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Prince Plaza Kassala",
+    // Matches the hero. Every conversion path on this site is a WhatsApp deep
+    // link, so this thumbnail is the first thing most visitors ever see of
+    // Kassala — it should not be the rooftop frame the hero itself dropped.
     images: [
       {
-        url: "/hotel/taka-terrace.jpg",
-        width: 1280,
-        height: 720,
-        alt: "Prince Plaza Kassala — the Taka Mountains from the terrace",
+        url: "/hotel/taka-rooftop-4k.jpg",
+        width: 4096,
+        height: 2304,
+        alt: "The Taka Mountains from the roof of Prince Plaza Kassala",
       },
     ],
   },
@@ -62,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Prince Plaza Kassala",
     description: "Where Arabic Elegance Meets the Heart of Sudan.",
-    images: ["/hotel/taka-terrace.jpg"],
+    images: ["/hotel/taka-rooftop-4k.jpg"],
   },
   // No `languages` map: English and Arabic are served from the same URL via the
   // in-page toggle, so emitting two hreflang links to "/" would contradict itself.
@@ -84,7 +87,9 @@ const HOTEL_LD = {
   telephone: "+249-96-510-5555",
   email: "Kassala@princehotel-sd.com",
   image: [
-    "https://prince-bazaar.vercel.app/hotel/exterior-facade.jpg",
+    // Leads the list because it is the first photo Google may surface. The
+    // west frontage that sat here was struck out by the client.
+    "https://prince-bazaar.vercel.app/hotel/plaza-frontage.jpg",
     "https://prince-bazaar.vercel.app/hotel/lobby.jpg",
     "https://prince-bazaar.vercel.app/hotel/restaurant-alt.jpg",
     "https://prince-bazaar.vercel.app/hotel/taka-terrace.jpg",

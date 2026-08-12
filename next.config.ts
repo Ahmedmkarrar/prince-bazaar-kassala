@@ -47,10 +47,11 @@ const nextConfig: NextConfig = {
     // these 1280px client photos need, which is most of the sharpness win.
     formats: ["image/avif", "image/webp"],
     // The client photography tops out at 1280px, so most of this ladder stays
-    // low deliberately — asking for more only upscales. The hero is the
-    // exception: it is a 3840px master, and it is the one image that fills the
-    // viewport, so it needs the top rungs. Every other image carries an
-    // accurate `sizes`, so a 340px gallery cell never requests them.
+    // low deliberately — asking for more only upscales. The exceptions are the
+    // frames that fill the viewport and so were upscaled to 3840px masters:
+    // the hero, the address band and the commercial-plaza panel. Every other
+    // image carries an accurate `sizes`, so a 340px gallery cell never
+    // requests the top rungs.
     deviceSizes: [360, 480, 640, 768, 960, 1080, 1280, 1600, 1920, 2560, 3840],
     imageSizes: [96, 128, 192, 256, 320, 384, 480, 640],
     // Next 16 rejects any quality not listed here (default is [75] only).

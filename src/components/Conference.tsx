@@ -34,7 +34,7 @@ const ROOMS: ConferenceRoomCard[] = [
     // a 620x500 crop (cropped to dodge a blurred microphone), upscaled to 720px
     // for the -sm variant. These two cards render ~680 CSS px wide, so they use
     // the full-size files — the -sm ones are visibly soft on a retina display.
-    image: "/hotel/conference.webp",
+    image: "/hotel/conference-4k.webp",
   },
   {
     id: "conference-room",
